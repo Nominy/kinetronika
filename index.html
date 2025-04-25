@@ -1,50 +1,6 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Scroll-Synced Video</title>
-  <style>
-    body {
-      height: 300vh; /* Increase page height to allow scrolling */
-    }
-    video {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Your HTML5 video element -->
-  <video id="myVideo" preload="auto" muted>
-    <source src="./printer.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-
-  <script>
-    const video = document.getElementById('myVideo');
-
-    // Ensure the video metadata is loaded so we know the duration
-    video.addEventListener('loadedmetadata', () => {
-      window.addEventListener('scroll', () => {
-        // Calculate the scroll fraction: how far down the page have you scrolled?
-        const scrollFraction = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-        // Set the video's current time accordingly
-        video.currentTime = video.duration * scrollFraction;
-      });
-    });
-  </script>
-</body>
-</html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scroll-Controlled Animations</title>
     <style>
@@ -194,47 +150,47 @@
         }
     </style>
 </head>
-<body>
+<body style="">
     <!-- Loading Screen -->
-    <div id="loading-screen">
+    <div id="loading-screen" style="opacity: 0; display: none;">
         <span class="loader"></span>
-        <h2 id="loading-status">Loading assets...</h2>
+        <h2 id="loading-status">Loading assets... 100%</h2>
         <div class="loading-progress">
-            <div id="loading-bar" class="loading-bar"></div>
+            <div id="loading-bar" class="loading-bar" style="width: 100%;"></div>
         </div>
     </div>
 
     <!-- Main Content Container -->
-    <div class="content-container" id="content-container">
+    <div class="content-container loaded" id="content-container">
         <header>
-            <a href="#section1">Section 1</a>
-            <a href="#section2">Section 2</a>
-            <a href="#after">After Animations</a>
+            <a href="https://27e4c621.kinetronika.pages.dev/#section1">Section 1</a>
+            <a href="https://27e4c621.kinetronika.pages.dev/#section2">Section 2</a>
+            <a href="https://27e4c621.kinetronika.pages.dev/#after">After Animations</a>
         </header>
 
-        <section id="section1" class="scroll-section">
+        <div class="pin-spacer" style="order: 0; place-self: auto; grid-area: auto; z-index: auto; float: none; flex-shrink: 1; display: flex; margin: 0px; inset: 0px; position: relative; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 1905px; height: 3780px; padding: 0px 0px 2835px;"><section id="section1" class="scroll-section" style="translate: none; rotate: none; scale: none; left: 0px; top: 0.001px; margin: 0px; max-width: 1905px; width: 1905px; max-height: 945px; height: 945px; padding: 0px; box-sizing: border-box; position: fixed; transform: translate(0px, 0px);">
             <div class="video-container">
-                <video id="video1" src="video1.webm" preload="auto" muted playsinline></video>
+                <video id="video1" src="video1.webm" preload="auto" muted="" playsinline=""></video>
             </div>
             <div class="text-content" id="text1">
-                <h2>Welcome to Section 1</h2>
-                <p id="text1-p1">Scroll down to see the magic.</p>
-                <p id="text1-p2">The video plays as you scroll.</p>
-                <p id="text1-p3">Then it pauses, but text continues.</p>
-                <p id="text1-p4">And finally, the video resumes.</p>
+                <h2 style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">Welcome to Section 1</h2>
+                <p id="text1-p1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">Scroll down to see the magic.</p>
+                <p id="text1-p2" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">The video plays as you scroll.</p>
+                <p id="text1-p3" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">Then it pauses, but text continues.</p>
+                <p id="text1-p4" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">And finally, the video resumes.</p>
             </div>
-        </section>
+        </section></div>
 
-        <section id="section2" class="scroll-section">
+        <div class="pin-spacer" style="order: 0; place-self: auto; grid-area: auto; z-index: auto; float: none; flex-shrink: 1; display: flex; margin: 0px; inset: 0px; position: relative; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 1905px; height: 2835px; padding: 0px 0px 1890px;"><section id="section2" class="scroll-section" style="translate: none; rotate: none; scale: none; inset: 0px auto auto 0px; margin: 0px; max-width: 1905px; width: 1905px; max-height: 945px; height: 945px; padding: 0px; transform: translate(0px, 0px);">
             <div class="video-container">
-                <video id="video2" src="video2.webm" preload="auto" muted playsinline></video>
+                <video id="video2" src="video2.webm" preload="auto" muted="" playsinline=""></video>
             </div>
             <div class="text-content" id="text2">
-                <h2>This is Section 2</h2>
-                <p id="text2-p1">A different animation sequence.</p>
-                <p id="text2-p2">Controlled entirely by your scroll.</p>
+                <h2 style="translate: none; rotate: none; scale: none; transform: translate(0px, 20px); opacity: 0;">This is Section 2</h2>
+                <p id="text2-p1" style="translate: none; rotate: none; scale: none; transform: translate(0px, 20px); opacity: 0;">A different animation sequence.</p>
+                <p id="text2-p2" style="translate: none; rotate: none; scale: none; transform: translate(0px, 20px); opacity: 0;">Controlled entirely by your scroll.</p>
             </div>
-        </section>
+        </section></div>
 
         <section id="after" class="content-after">
             <h2>Content After Animations</h2>
@@ -243,9 +199,9 @@
     </div>
 
     <!-- GSAP Core and ScrollTrigger Plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script> <!-- Added ScrollToPlugin -->
+    <script src="./Scroll-Controlled Animations_files/gsap.min.js.Download"></script>
+    <script src="./Scroll-Controlled Animations_files/ScrollTrigger.min.js.Download"></script>
+    <script src="./Scroll-Controlled Animations_files/ScrollToPlugin.min.js.Download"></script> <!-- Added ScrollToPlugin -->
 
     <script>
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin); // Registered ScrollToPlugin
@@ -453,6 +409,5 @@
         // Refresh ScrollTrigger on resize to recalculate positions
         window.addEventListener('resize', () => ScrollTrigger.refresh());
     </script>
-</body>
-</html>
->>>>>>> b9b95a3 (up)
+
+</body></html>
