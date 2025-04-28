@@ -153,7 +153,7 @@
     <header><a href="#section1">Section 1</a><a href="#section2">Section 2</a><a href="#after">After</a></header>
 
     <section id="section1" class="scroll-section">
-      <div class="frame-container"><img id="frame1" src="video1/0001.jpg" alt=""></div>
+      <div class="frame-container"><img id="frame1" src="video1/0001.avif" alt=""></div>
       <div class="text-content" id="text1">
         <h2>Welcome to Section 1</h2>
         <p id="text1-p1">Scroll down to see the magic.</p>
@@ -164,7 +164,7 @@
     </section>
 
     <section id="section2" class="scroll-section">
-      <div class="frame-container"><img id="frame2" src="video2/0001.jpg" alt=""></div>
+      <div class="frame-container"><img id="frame2" src="video2/0001.avif" alt=""></div>
       <div class="text-content" id="text2">
         <h2>This is Section 2</h2>
         <p id="text2-p1">A different animation sequence.</p>
@@ -191,8 +191,8 @@
       const bar = document.getElementById('loading-bar');
       const status = document.getElementById('loading-status');
 
-      const frames1 = Array.from({ length: 240 }, (_, i) => `video1/${String(i + 1).padStart(4, '0')}.jpg`);
-      const frames2 = Array.from({ length: 180 }, (_, i) => `video2/${String(i + 1).padStart(4, '0')}.jpg`);
+      const frames1 = Array.from({ length: 240 }, (_, i) => `video1/${String(i + 1).padStart(4, '0')}.avif`);
+      const frames2 = Array.from({ length: 180 }, (_, i) => `video2/${String(i + 1).padStart(4, '0')}.avif`);
       const total = frames1.length + frames2.length;
       let loaded = 0;
 
@@ -210,8 +210,8 @@
     function init() {
       const img1 = document.getElementById('frame1');
       const img2 = document.getElementById('frame2');
-      const f1 = Array.from({ length: 240 }, (_, i) => `video1/${String(i + 1).padStart(4, '0')}.jpg`);
-      const f2 = Array.from({ length: 180 }, (_, i) => `video2/${String(i + 1).padStart(4, '0')}.jpg`);
+      const f1 = Array.from({ length: 240 }, (_, i) => `video1/${String(i + 1).padStart(4, '0')}.avif`);
+      const f2 = Array.from({ length: 180 }, (_, i) => `video2/${String(i + 1).padStart(4, '0')}.avif`);
 
       const obj1 = { frame: 0 };
       const tl1 = gsap.timeline({ scrollTrigger: { trigger: "#section1", start: "top top", end: "+=250%", scrub: true, pin: true, anticipatePin: 1 } });
