@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll-Controlled Animations</title>
+  <title>Scroll-Controlled Animations with Lazy Loading</title>
   <style>
     body {
       margin: 0;
@@ -12,55 +12,6 @@
       height: 600vh;
       background: #0B0B0B;
       overflow-x: hidden
-    }
-
-    #loading-screen {
-      position: fixed;
-      inset: 0;
-      background: #121212;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      color: #fff;
-      transition: opacity .5s
-    }
-
-    .loader {
-      width: 48px;
-      height: 48px;
-      border: 5px solid #fff;
-      border-bottom-color: transparent;
-      border-radius: 50%;
-      animation: rotation 1s linear infinite;
-      margin-bottom: 20px
-    }
-
-    @keyframes rotation {
-      0% {
-        transform: rotate(0)
-      }
-
-      100% {
-        transform: rotate(360deg)
-      }
-    }
-
-    .loading-progress {
-      width: 250px;
-      background: #333;
-      border-radius: 8px;
-      margin-top: 15px;
-      overflow: hidden
-    }
-
-    .loading-bar {
-      height: 10px;
-      background: #4CAF50;
-      width: 0;
-      border-radius: 8px;
-      transition: width .3s
     }
 
     .scroll-section {
@@ -130,53 +81,73 @@
       text-align: center
     }
 
-    .content-container {
-      opacity: 0;
-      transition: opacity .5s
+    /* Spinner for individual image loading */
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      transition: opacity 0.3s;
     }
 
-    .content-container.loaded {
-      opacity: 1
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Smoother section transitions */
+    .section-transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #121212;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 90;
+      transition: opacity 0.3s ease;
     }
   </style>
 </head>
 
 <body>
-  <div id="loading-screen"><span class="loader"></span>
-    <h2 id="loading-status">Loading assets…</h2>
-    <div class="loading-progress">
-      <div id="loading-bar" class="loading-bar"></div>
+  <div class="section-transition" id="section-transition"></div>
+  
+  <header><a href="#section1">Section 1</a><a href="#section2">Section 2</a><a href="#after">After</a></header>
+
+  <section id="section1" class="scroll-section">
+    <div class="loading-spinner" id="spinner1"></div>
+    <div class="frame-container"><img id="frame1" src="video1/0001.jpg" alt=""></div>
+    <div class="text-content" id="text1">
+      <h2>Welcome to Section 1</h2>
+      <p id="text1-p1">Scroll down to see the magic.</p>
+      <p id="text1-p2">The frames play as you scroll.</p>
+      <p id="text1-p3">Then they pause, but text continues.</p>
+      <p id="text1-p4">And finally, the animation resumes.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="content-container" id="content-container">
-    <header><a href="#section1">Section 1</a><a href="#section2">Section 2</a><a href="#after">After</a></header>
+  <section id="section2" class="scroll-section">
+    <div class="loading-spinner" id="spinner2"></div>
+    <div class="frame-container"><img id="frame2" src="video2/0001.avif" alt=""></div>
+    <div class="text-content" id="text2">
+      <h2>This is Section 2</h2>
+      <p id="text2-p1">A different animation sequence.</p>
+      <p id="text2-p2">Controlled entirely by your scroll.</p>
+    </div>
+  </section>
 
-    <section id="section1" class="scroll-section">
-      <div class="frame-container"><img id="frame1" src="video1/0001.avif" alt=""></div>
-      <div class="text-content" id="text1">
-        <h2>Welcome to Section 1</h2>
-        <p id="text1-p1">Scroll down to see the magic.</p>
-        <p id="text1-p2">The frames play as you scroll.</p>
-        <p id="text1-p3">Then they pause, but text continues.</p>
-        <p id="text1-p4">And finally, the animation resumes.</p>
-      </div>
-    </section>
-
-    <section id="section2" class="scroll-section">
-      <div class="frame-container"><img id="frame2" src="video2/0001.avif" alt=""></div>
-      <div class="text-content" id="text2">
-        <h2>This is Section 2</h2>
-        <p id="text2-p1">A different animation sequence.</p>
-        <p id="text2-p2">Controlled entirely by your scroll.</p>
-      </div>
-    </section>
-
-    <section id="after" class="content-after">
-      <h2>Content After Animations</h2>
-      <p>Normal scrolling resumes here.</p>
-    </section>
-  </div>
+  <section id="after" class="content-after">
+    <h2>Content After Animations</h2>
+    <p>Normal scrolling resumes here.</p>
+  </section>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -185,38 +156,130 @@
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     document.addEventListener('DOMContentLoaded', () => {
-      document.body.style.overflow = 'hidden';
-      const content = document.getElementById('content-container');
-      const loadingScreen = document.getElementById('loading-screen');
-      const bar = document.getElementById('loading-bar');
-      const status = document.getElementById('loading-status');
-
-      const frames1 = Array.from({ length: 240 }, (_, i) => `video1/${String(i + 1).padStart(4, '0')}.avif`);
-      const frames2 = Array.from({ length: 180 }, (_, i) => `video2/${String(i + 1).padStart(4, '0')}.avif`);
-      const total = frames1.length + frames2.length;
-      let loaded = 0;
-
-      [...frames1, ...frames2].forEach(src => {
-        const img = new Image();
-        img.src = src;
-        img.onload = img.onerror = () => { loaded++; bar.style.width = `${loaded / total * 100}%`; status.textContent = `Loading assets… ${Math.round(loaded / total * 100)}%`; if (loaded === total) ready() };
+      // Initialize GSAP animations right away instead of waiting for all images
+      init();
+      
+      // Configure the navigation links
+      document.querySelectorAll('header a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          
+          // Add transition effect
+          const transition = document.getElementById('section-transition');
+          transition.style.opacity = '0.7';
+          
+          setTimeout(() => {
+            gsap.to(window, { 
+              duration: 1, 
+              scrollTo: { y: a.getAttribute('href'), offsetY: 70 }, 
+              ease: "power2.inOut",
+              onComplete: () => {
+                // Hide transition when complete
+                transition.style.opacity = '0';
+              }
+            });
+          }, 300);
+        });
       });
-
-      function ready() {
-        setTimeout(() => { loadingScreen.style.opacity = '0'; content.classList.add('loaded'); setTimeout(() => { loadingScreen.style.display = 'none'; document.body.style.overflow = ''; init(); ScrollTrigger.refresh() }, 500) }, 300);
-      }
     });
 
     function init() {
       const img1 = document.getElementById('frame1');
       const img2 = document.getElementById('frame2');
-      const f1 = Array.from({ length: 240 }, (_, i) => `video1/${String(i + 1).padStart(4, '0')}.avif`);
+      const spinner1 = document.getElementById('spinner1');
+      const spinner2 = document.getElementById('spinner2');
+      
+      // Create frame paths but don't load them yet
+      const f1 = Array.from({ length: 240 }, (_, i) => `video1/${String(i + 1).padStart(4, '0')}.jpg`);
       const f2 = Array.from({ length: 180 }, (_, i) => `video2/${String(i + 1).padStart(4, '0')}.avif`);
 
+      // Image cache to minimize reloading
+      const imageCache = new Map();
+      
+      // Function to lazy load an image
+      function lazyLoadImage(src) {
+        return new Promise((resolve, reject) => {
+          // Check cache first
+          if (imageCache.has(src)) {
+            resolve(imageCache.get(src));
+            return;
+          }
+          
+          const img = new Image();
+          img.onload = () => {
+            imageCache.set(src, src);
+            resolve(src);
+          };
+          img.onerror = () => {
+            console.warn(`Failed to load: ${src}`);
+            resolve(src); // Resolve anyway to not block animation
+          };
+          img.src = src;
+        });
+      }
+
+      // Load images in small batches as needed
+      async function loadFrameBatch(frameArray, startIdx, count) {
+        const endIdx = Math.min(startIdx + count, frameArray.length);
+        const loadPromises = [];
+        
+        for (let i = startIdx; i < endIdx; i++) {
+          loadPromises.push(lazyLoadImage(frameArray[i]));
+        }
+        
+        return Promise.all(loadPromises);
+      }
+
+      // Section 1 animation with lazy loading
       const obj1 = { frame: 0 };
-      const tl1 = gsap.timeline({ scrollTrigger: { trigger: "#section1", start: "top top", end: "+=250%", scrub: true, pin: true, anticipatePin: 1 } });
-      tl1.to(obj1, { frame: 59, duration: 3, ease: "none", onUpdate: () => { img1.src = f1[Math.round(obj1.frame)] } }, 0);
-      tl1.to(obj1, { frame: 239, duration: 4, ease: "none", onUpdate: () => { img1.src = f1[Math.round(obj1.frame)] } }, 6);
+      const tl1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#section1",
+          start: "top top",
+          end: "+=250%",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          onEnter: () => {
+            spinner1.style.opacity = '1';
+            // Preload first batch of frames when entering section
+            loadFrameBatch(f1, 0, 30).then(() => {
+              spinner1.style.opacity = '0';
+            });
+          }
+        }
+      });
+      
+      tl1.to(obj1, {
+        frame: 59,
+        duration: 3,
+        ease: "none",
+        onUpdate: function() {
+          const frameIndex = Math.round(obj1.frame);
+          img1.src = f1[frameIndex];
+          
+          // Preload next batch if we're halfway through current batch
+          if (frameIndex % 15 === 0) {
+            loadFrameBatch(f1, frameIndex, 30);
+          }
+        }
+      }, 0);
+      
+      tl1.to(obj1, {
+        frame: 239,
+        duration: 4,
+        ease: "none",
+        onUpdate: function() {
+          const frameIndex = Math.round(obj1.frame);
+          img1.src = f1[frameIndex];
+          
+          // Preload next batch if we're halfway through current batch
+          if (frameIndex % 15 === 0) {
+            loadFrameBatch(f1, frameIndex, 30);
+          }
+        }
+      }, 6);
+      
       tl1.to(["#text1 h2", "#text1-p1"], { opacity: 1, y: 0, stagger: .2, duration: 1 }, 0);
       tl1.to("#text1-p2", { opacity: 1, y: 0, duration: 1 }, 1);
       tl1.to("#text1-p3", { opacity: 1, y: 0, duration: 1 }, 3);
@@ -224,20 +287,47 @@
       tl1.to("#text1 .text-content>*", { opacity: 0, y: -20, stagger: .1, duration: 2 }, 8);
       tl1.totalDuration(10);
 
+      // Section 2 animation with lazy loading
       const obj2 = { frame: 0 };
-      const tl2 = gsap.timeline({ scrollTrigger: { trigger: "#section2", start: "top top", end: "+=200%", scrub: true, pin: true, anticipatePin: 1 } });
-      tl2.to(obj2, { frame: 179, duration: 5, ease: "none", onUpdate: () => { img2.src = f2[Math.round(obj2.frame)] } }, 0);
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#section2",
+          start: "top top",
+          end: "+=200%",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          onEnter: () => {
+            spinner2.style.opacity = '1';
+            // Preload first batch of frames when entering section
+            loadFrameBatch(f2, 0, 30).then(() => {
+              spinner2.style.opacity = '0';
+            });
+          }
+        }
+      });
+      
+      tl2.to(obj2, {
+        frame: 179,
+        duration: 5,
+        ease: "none",
+        onUpdate: function() {
+          const frameIndex = Math.round(obj2.frame);
+          img2.src = f2[frameIndex];
+          
+          // Preload next batch if we're halfway through current batch
+          if (frameIndex % 15 === 0) {
+            loadFrameBatch(f2, frameIndex, 30);
+          }
+        }
+      }, 0);
+      
       tl2.to(["#text2 h2", "#text2-p1"], { opacity: 1, y: 0, stagger: .3, duration: 1 }, .5);
       tl2.to("#text2-p2", { opacity: 1, y: 0, duration: 1 }, 2);
       tl2.to("#text2 .text-content>*", { opacity: 0, y: -20, stagger: .2, duration: 1 }, 4);
       tl2.totalDuration(5);
 
-      document.querySelectorAll('header a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-          e.preventDefault();
-          gsap.to(window, { duration: 1, scrollTo: { y: a.getAttribute('href'), offsetY: 70 }, ease: "power2.inOut" });
-        });
-      });
+      // Handle window resize
       window.addEventListener('resize', () => ScrollTrigger.refresh());
     }
   </script>
