@@ -6,37 +6,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scroll-Controlled Animations with Optimized Loading</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: sans-serif;
-      height: 600vh;
       background: #0B0B0B;
-      overflow-x: hidden
+      height: 600vh; /* Original height for animations */
+      overflow-x: hidden;
+      position: relative;
     }
 
+    /* Fixed header at the top */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: #1a1a1a;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 15px;
+    }
+
+    /* Add header space at the top of each section */
     .scroll-section {
       height: 100vh;
+      padding-top: 50px; /* Header height */
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
       overflow: hidden;
       color: #fff;
-      text-align: center
+      text-align: center;
     }
 
     .frame-container {
       position: absolute;
-      inset: 0;
-      overflow: hidden
+      top: 50px; /* Offset by header height */
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
     }
 
+    /* Video positioning - pure CSS solution */
     .frame-container img {
+      position: absolute;
+      height: 100%;
+      width: auto;
+      max-width: none; /* Prevent image from being constrained */
+      object-fit: cover;
+      /* Position left edge of image at center of screen */
+      left: 30%;
+      transform: translateX(0);
+    }
+
+    /* Content layout for each section */
+    .section-content {
+      position: relative;
+      z-index: 2;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      position: absolute;
-      inset: 0
+      display: flex;
+      align-items: center;
     }
 
     .text-content {
@@ -45,7 +98,9 @@
       padding: 20px;
       background: rgba(0, 0, 0, .5);
       border-radius: 10px;
-      max-width: 80%
+      max-width: 40%;
+      margin-left: 20%;
+      text-align: left;
     }
 
     .text-content h2,
@@ -54,26 +109,9 @@
       transform: translateY(20px)
     }
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(20, 20, 20, .8);
-      padding: 10px 20px;
-      z-index: 100;
-      display: flex;
-      justify-content: space-around
-    }
-
-    header a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold
-    }
-
     .content-after {
       height: 100vh;
+      padding-top: 50px; /* Header height */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -93,7 +131,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 999;
+      z-index: 2000; /* Above everything */
       color: white;
       transition: opacity 0.5s ease;
     }
@@ -119,6 +157,35 @@
       margin-top: 10px;
       font-size: 14px;
     }
+
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+      .frame-container img {
+        /* Center image on mobile */
+        left: 0;
+        width: 100%;
+        height: auto;
+      }
+
+      .text-content {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      
+      .nav-links {
+        gap: 10px;
+      }
+    }
+
+    /* Handle landscape orientation on mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .frame-container img {
+        height: 100vh;
+        width: auto;
+      }
+    }
   </style>
 </head>
 
@@ -131,26 +198,38 @@
     </div>
     <div class="loading-text" id="loading-text">0%</div>
   </div>
+  
+  <!-- Simple fixed header -->
+  <header>
+    <div class="nav-links">
+      <a href="#section1">Section 1</a>
+      <a href="#section2">Section 2</a>
+      <a href="#after">After</a>
+    </div>
+  </header>
 
-  <header><a href="#section1">Section 1</a><a href="#section2">Section 2</a><a href="#after">After</a></header>
-
+  <!-- Sections with fixed header space -->
   <section id="section1" class="scroll-section">
     <div class="frame-container"><img id="frame1" src="video1/0001.jpg" alt=""></div>
-    <div class="text-content" id="text1">
-      <h2>Welcome to Section 1</h2>
-      <p id="text1-p1">Scroll down to see the magic.</p>
-      <p id="text1-p2">The frames play as you scroll.</p>
-      <p id="text1-p3">Then they pause, but text continues.</p>
-      <p id="text1-p4">And finally, the animation resumes.</p>
+    <div class="section-content">
+      <div class="text-content" id="text1">
+        <h2>Welcome to Section 1</h2>
+        <p id="text1-p1">Scroll down to see the magic.</p>
+        <p id="text1-p2">The frames play as you scroll.</p>
+        <p id="text1-p3">Then they pause, but text continues.</p>
+        <p id="text1-p4">And finally, the animation resumes.</p>
+      </div>
     </div>
   </section>
 
   <section id="section2" class="scroll-section">
-    <div class="frame-container"><img id="frame2" src="video2/0001.avif" alt=""></div>
-    <div class="text-content" id="text2">
-      <h2>This is Section 2</h2>
-      <p id="text2-p1">A different animation sequence.</p>
-      <p id="text2-p2">Controlled entirely by your scroll.</p>
+    <div class="frame-container"><img id="frame2" src="video2/0001.jpg" alt=""></div>
+    <div class="section-content">
+      <div class="text-content" id="text2">
+        <h2>This is Section 2</h2>
+        <p id="text2-p1">A different animation sequence.</p>
+        <p id="text2-p2">Controlled entirely by your scroll.</p>
+      </div>
     </div>
   </section>
 
@@ -168,7 +247,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Create frame paths
       const f1 = Array.from({ length: 240 }, (_, i) => `video1/${String(i + 1).padStart(4, '0')}.jpg`);
-      const f2 = Array.from({ length: 180 }, (_, i) => `video2/${String(i + 1).padStart(4, '0')}.avif`);
+      const f2 = Array.from({ length: 180 }, (_, i) => `video2/${String(i + 1).padStart(4, '0')}.jpg`);
 
       // Image cache
       const imageCache = new Map();
@@ -244,7 +323,6 @@
         });
       }
 
-
       // Background loading for second animation
       async function preloadSecondAnimation() {
         // Load the second animation in batches
@@ -270,6 +348,9 @@
 
         const img1 = document.getElementById('frame1');
         const img2 = document.getElementById('frame2');
+        
+        // Header height - used for scroll offsets
+        const headerHeight = 50;
 
         // First animation - will be smooth because we've preloaded everything
         const obj1 = { frame: 0 };
@@ -363,13 +444,13 @@
         tl2.to("#text2 .text-content>*", { opacity: 0, y: -20, stagger: .2, duration: 1 }, 4);
         tl2.totalDuration(5);
 
-        // Configure navigation links
-        document.querySelectorAll('header a[href^="#"]').forEach(a => {
+        // Configure navigation links - use GSAP for smooth scrolling
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
           a.addEventListener('click', e => {
             e.preventDefault();
             gsap.to(window, {
               duration: 1,
-              scrollTo: { y: a.getAttribute('href'), offsetY: 70 },
+              scrollTo: { y: a.getAttribute('href'), offsetY: 0 },
               ease: "power2.inOut"
             });
           });
