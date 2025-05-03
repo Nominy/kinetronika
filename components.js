@@ -48,11 +48,15 @@ class SiteHeader extends HTMLElement {
     links.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+    
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: { y: target, autoKill: false },
+          overwrite: true,
+          onComplete: () => ScrollTrigger.refresh()
+        });
       });
     });
     

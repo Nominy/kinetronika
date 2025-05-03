@@ -133,15 +133,6 @@ function initAnimations() {
       anticipatePin: 0, // Disable anticipatePin to prevent jiggling
       fastScrollEnd: true, // Improve performance
       preventOverlaps: true, // Help prevent jiggling between ScrollTriggers
-      onUpdate: (self) => {
-        // Smooth progress to prevent jiggling at key points
-        if (Math.abs(self.getVelocity()) > 0) {
-          // Only update when actually scrolling
-          const progress = self.progress;
-          // Use rounded progress to prevent jiggling at certain decimal points
-          self.scroll(Math.round(self.start + (self.end - self.start) * progress));
-        }
-      }
     }
   });
 
@@ -260,15 +251,6 @@ function initAnimations() {
           window.section2Loading = true;
         }
       },
-      onUpdate: (self) => {
-        // Smooth progress to prevent jiggling at key points
-        if (Math.abs(self.getVelocity()) > 0) {
-          // Only update when actually scrolling
-          const progress = self.progress;
-          // Use rounded progress to prevent jiggling at certain decimal points
-          self.scroll(Math.round(self.start + (self.end - self.start) * progress));
-        }
-      }
     }
   });
 
