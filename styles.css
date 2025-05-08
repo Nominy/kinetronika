@@ -171,25 +171,27 @@ scroll-section {
   z-index: 1;
   flex: 1 1 420px;
   min-width: 320px;
-  max-width: 600px;
+  max-width: 700px;
   padding: 40px 100px 40px 8vw;
   background: transparent;
   margin: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   min-height: 300px;
   text-align: left;
   height: 100%;
+  padding-top: 0;
+  margin-top: -60px;
 }
 
 .text-content p, ::slotted(p) {
   opacity: 0;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 300;
-  line-height: 1.4;
-  margin-bottom: 0.8rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
   letter-spacing: 0.01em;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
   position: static;
@@ -263,6 +265,88 @@ loading-indicator h3 {
 }
 
 /* ==================== */
+/* Text Content Styles */
+/* ==================== */
+
+/* General text block styling for section headers */
+.section-title, .general-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.03em;
+}
+
+/* For non-animation parts, make text visible */
+.no-animation .text-content p,
+.static-content p {
+  opacity: 1 !important;
+}
+
+/* Feature specs styling */
+.feature-specs {
+  margin-bottom: 0.3rem;
+}
+
+.feature-specs span {
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+/* Accent color marker */
+.marker {
+  color: #24BA70;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+/* ==================== */
+/* Manufacturing Comparison */
+/* ==================== */
+.manufacturing-comparison {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.comparison-item {
+  flex: 1;
+  text-align: center;
+}
+
+.comparison-item img {
+  width: 100%; /* Make image take full width of its container */
+  height: 250px; /* Set a fixed height for all images */
+  object-fit: contain; /* Scale image to fit within bounds, preserving aspect ratio */
+  display: block; /* Allows for margin auto horizontal centering if parent is text-align: center */
+  margin-left: auto; /* Center if width is less than 100% due to object-fit:contain */
+  margin-right: auto; /* Center if width is less than 100% due to object-fit:contain */
+  margin-bottom: 15px; /* Space below image */
+  border-radius: 15px; /* Added for rounded corners on images */
+}
+
+.comparison-item img:hover {
+  transform: scale(1.02);
+}
+
+.comparison-item p {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.nonplanary-content h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.static-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+/* ==================== */
 /* Media Queries */
 /* ==================== */
 @media (max-width: 768px) {
@@ -299,14 +383,30 @@ loading-indicator h3 {
     text-align: center;
   }
   
-  .text-content p, ::slotted(p) {
+  .text-content p, 
+  ::slotted(p),
+  .section-title, 
+  .general-title {
     font-size: 1.2rem;
     text-align: center;
     width: 100%;
   }
+  
+  .feature-specs span {
+    text-align: center;
+  }
 
   .nav-links {
     gap: 10px;
+  }
+  
+  .manufacturing-comparison {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .comparison-item img {
+    max-width: 90%;
   }
 }
 
@@ -320,7 +420,7 @@ loading-indicator h3 {
 @media (max-width: 1200px) {
   .text-content {
     padding-left: 4vw;
-    max-width: 480px;
+    max-width: 580px;
   }
 }
 
@@ -348,4 +448,117 @@ loading-indicator h3 {
 }
 
 /* Initial and animation states handled by GSAP */
-/* This ensures the text is vertically centered when opacity:1 */ 
+/* This ensures the text is vertically centered when opacity:1 */
+
+/* For non-animated static content */
+.static-content {
+  padding: 0 8vw 40px;
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: -60px;
+}
+
+/* New styles for the nonplanary-strength section */
+.static-content-section {
+  padding: 60px 8vw;
+  color: var(--color-text);
+  text-align: left;
+}
+
+.static-content-section .content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.static-content-section h2 {
+  font-size: 2.5rem; /* Larger title */
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--color-text); /* White text */
+}
+
+.static-content-section .kinetronika-branding {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.static-content-section .kinetronika-branding .slash {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 1.5rem; /* Slightly smaller than header */
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.static-content-section .kinetronika-branding .brand {
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 1.5rem; /* Slightly smaller than header */
+  letter-spacing: .5px;
+  opacity: 1;
+  transform: translateX(0);
+  margin-left: -4px; /* Adjust to align with slash */
+}
+
+.static-content-section .kinetronika-branding .tagline {
+  color: var(--color-text);
+  font-size: 0.9rem; /* Slightly smaller */
+  font-weight: 300;
+  opacity: 1;
+  transform: translateY(0);
+  margin-left: 1.5ch; /* Adjust to align */
+}
+
+.static-content-section h3 {
+  font-size: 1.8rem; /* "STRENGTH" title */
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--color-text);
+}
+
+.static-content-section p {
+  font-size: 1.1rem; /* Paragraph text */
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 800px; /* Limit width for readability */
+  opacity: 1; /* Ensure it's visible */
+}
+
+.manufacturing-comparison {
+  display: flex;
+  justify-content: space-around; /* Space out items */
+  gap: 40px; /* Increased gap */
+  margin-top: 30px;
+  align-items: flex-start; /* Align items to the top */
+  background-color: #fff; /* White background for the image boxes */
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.comparison-item {
+  flex: 1;
+  text-align: center;
+  max-width: 45%; /* Limit width of each item */
+}
+
+.comparison-item img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 15px; /* Space below image */
+}
+
+.comparison-item p {
+  margin-top: 10px;
+  font-weight: 600; /* Bolder caption text */
+  font-size: 1rem;
+  color: #333; /* Darker text for captions */
+  opacity: 1;
+}
+
+/* End of new styles */
+
+::slotted(h2) {
+  display: none; /* Hide headers as requested */
+} 

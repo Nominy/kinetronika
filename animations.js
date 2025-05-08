@@ -127,19 +127,19 @@ function initAnimations() {
     scrollTrigger: {
       trigger: "#section1",
       start: "top top",
-      end: "+=250%",
-      scrub: 0.5, // Smoother scrubbing
+      end: "+=250%", // This might need adjustment if 15s feels too short/long for 250% scroll
+      scrub: 0.5,
       pin: true,
-      anticipatePin: 0, // Disable anticipatePin to prevent jiggling
-      fastScrollEnd: true, // Improve performance
-      preventOverlaps: true, // Help prevent jiggling between ScrollTriggers
+      anticipatePin: 0,
+      fastScrollEnd: true,
+      preventOverlaps: true,
     }
   });
 
-  // Frame animations
+  // Frame animation: Play video1 frames 0-239 over 11.95 seconds
   tl1.to(obj1, {
-    frame: 59,
-    duration: 3,
+    frame: 239,
+    duration: 11.95, // 239 frames / (60 frames / 3 seconds) = 11.95s
     ease: "none",
     onUpdate: function () {
       const frameIndex = Math.round(obj1.frame);
@@ -150,87 +150,89 @@ function initAnimations() {
     }
   }, 0);
 
-  tl1.to(obj1, {
-    frame: 239,
-    duration: 4,
-    ease: "none",
-    onUpdate: function () {
-      const frameIndex = Math.round(obj1.frame);
-      const src = `video1/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
-      if (imageCache.has(src)) {
-        frame1.src = src;
-      }
-    }
-  }, 6);
+  // Position text content area 
+  tl1.set("#section1 .text-content", {
+    paddingTop: "0",
+    marginTop: "60px", // Add negative margin to pull content up
+  }, 0);
 
   // Text animations for section 1 - Apple-style with vertical sliding
   // Set initial position for all paragraphs - off screen at the top
-  tl1.set("#section1 .text-content p", { 
+  tl1.set("#section1 .text-content p:not(:first-child)", { 
     opacity: 0,
-    y: -70, // Start above the center
+    y: -30,
+  }, 0);
+  tl1.set("#section1 .text-content p:first-child", { 
+    opacity: 1,
+    y: 0, // Already visible
   }, 0);
   
-  // First paragraph
-  tl1.to("#section1 .text-content p:nth-child(1)", { 
-    opacity: 1, 
-    y: 0, // Center position
-    duration: 0.8,
-    ease: "power2.out"
-  }, 0.5);
-  
+  // P1: Visible from 0s. Stays for 1.5s. Exits by 2.2s.
+  // (Frame 0 at 0s)
   tl1.to("#section1 .text-content p:nth-child(1)", { 
     opacity: 0, 
-    y: 70, // Exit below the center
+    y: 30, // Reduced from 50 to 30
     duration: 0.7,
     ease: "power1.in"
-  }, 2.5);
+  }, 1.5); // Start exit at 1.5s, ends at 2.2s
   
-  // Second paragraph
+  // P2: Appears at 3.0s (Frame 60). Visible 3.8s-5.3s. Exits by 6.0s.
   tl1.to("#section1 .text-content p:nth-child(2)", { 
     opacity: 1, 
-    y: 0, // Center position
+    y: 0, 
     duration: 0.8,
     ease: "power2.out"
-  }, 3.0);
-  
+  }, 3.0); 
   tl1.to("#section1 .text-content p:nth-child(2)", { 
     opacity: 0, 
-    y: 70, // Exit below the center
+    y: 30, // Reduced from 50 to 30
     duration: 0.7,
     ease: "power1.in"
-  }, 5.0);
+  }, 3.0 + 0.8 + 1.5); // Starts exit at 5.3s, ends at 6.0s
   
-  // Third paragraph
+  // P3: Appears at 6.0s (Frame 120). Visible 6.8s-8.3s. Exits by 9.0s.
   tl1.to("#section1 .text-content p:nth-child(3)", { 
     opacity: 1, 
-    y: 0, // Center position
+    y: 0, 
     duration: 0.8,
     ease: "power2.out"
-  }, 5.5);
-  
+  }, 6.0); 
   tl1.to("#section1 .text-content p:nth-child(3)", { 
     opacity: 0, 
-    y: 70, // Exit below the center
+    y: 30, // Reduced from 50 to 30
     duration: 0.7,
     ease: "power1.in"
-  }, 7.5);
-  
-  // Fourth paragraph
+  }, 6.0 + 0.8 + 1.5); // Starts exit at 8.3s, ends at 9.0s
+
+  // P4: Appears at 9.0s (Frame 180). Visible 9.8s-11.3s. Exits by 12.0s.
   tl1.to("#section1 .text-content p:nth-child(4)", { 
     opacity: 1, 
-    y: 0, // Center position
+    y: 0, 
     duration: 0.8,
     ease: "power2.out"
-  }, 8.0);
-  
+  }, 9.0); 
   tl1.to("#section1 .text-content p:nth-child(4)", { 
     opacity: 0, 
-    y: 70, // Exit below the center
+    y: 30, // Reduced from 50 to 30
     duration: 0.7,
     ease: "power1.in"
-  }, 9.3);
+  }, 9.0 + 0.8 + 1.5); // Starts exit at 11.3s, ends at 12.0s
+
+  // P5: Appears at 12.0s (Frame 239 is reached at 11.95s). Visible 12.8s-14.3s. Exits by 15.0s.
+  tl1.to("#section1 .text-content p:nth-child(5)", { 
+    opacity: 1, 
+    y: 0, 
+    duration: 0.8,
+    ease: "power2.out"
+  }, 12.0); 
+  tl1.to("#section1 .text-content p:nth-child(5)", { 
+    opacity: 0, 
+    y: 30, // Reduced from 50 to 30
+    duration: 0.7,
+    ease: "power1.in"
+  }, 12.0 + 0.8 + 1.5); // Starts exit at 14.3s, ends at 15.0s
   
-  tl1.totalDuration(10);
+  tl1.totalDuration(15.0); // Total duration for section 1 animations
 
   // Second animation timeline
   const obj2 = { frame: 0 };
@@ -256,7 +258,7 @@ function initAnimations() {
 
   tl2.to(obj2, {
     frame: 179,
-    duration: 5,
+    duration: 6.6,
     ease: "none",
     onUpdate: function () {
       const frameIndex = Math.round(obj2.frame);
@@ -278,11 +280,17 @@ function initAnimations() {
     }
   }, 0);
 
+  // Position text content area for section 2
+  tl2.set("#section2 .text-content", {
+    paddingTop: "0",
+    marginTop: "-60px", // Add negative margin to pull content up
+  }, 0);
+
   // Text animations for section 2 - Apple-style with vertical sliding
   // Initialize all paragraphs - off screen at the top
   tl2.set("#section2 .text-content p", { 
     opacity: 0,
-    y: -70, // Start above the center
+    y: -30, // Reduced from -50 to -30
   }, 0);
   
   // First paragraph
@@ -291,14 +299,14 @@ function initAnimations() {
     y: 0, // Center position
     duration: 0.8,
     ease: "power2.out"
-  }, 0.5);
+  }, 0.5); // Initial start time
   
   tl2.to("#section2 .text-content p:nth-child(1)", { 
     opacity: 0, 
-    y: 70, // Exit below the center
+    y: 30, // Reduced from 50 to 30
     duration: 0.7,
     ease: "power1.in"
-  }, 2.5);
+  }, 2.8); // P1 IN ends 1.3s, pause 1.5s, P1 OUT starts 2.8s
   
   // Second paragraph
   tl2.to("#section2 .text-content p:nth-child(2)", { 
@@ -306,16 +314,16 @@ function initAnimations() {
     y: 0, // Center position
     duration: 0.8,
     ease: "power2.out"
-  }, 3.0);
+  }, 3.6); // P1 OUT ends 3.5s, P2 IN starts 3.6s
   
   tl2.to("#section2 .text-content p:nth-child(2)", { 
     opacity: 0, 
-    y: 70, // Exit below the center
+    y: 30, // Reduced from 50 to 30
     duration: 0.7,
     ease: "power1.in"
-  }, 4.3);
+  }, 5.9); // P2 IN ends 4.4s, pause 1.5s, P2 OUT starts 5.9s
   
-  tl2.totalDuration(5);
+  tl2.totalDuration(6.6); // Text ends at 6.6s
 
   // Handle window resize - use debounced refresh for better performance
   let resizeTimeout;

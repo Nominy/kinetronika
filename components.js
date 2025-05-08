@@ -110,6 +110,38 @@ class ScrollSection extends HTMLElement {
     
     // Add external stylesheet to shadow DOM
     this.shadowRoot.prepend(linkElem);
+    
+    // Apply default styling to projected content
+    const style = document.createElement('style');
+    style.textContent = `
+      ::slotted(p) {
+        margin-bottom: 0.5rem;
+      }
+      
+      ::slotted(.marker) {
+        color: #24BA70;
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
+      
+      ::slotted(.general-title),
+      ::slotted(.section-title) {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+        letter-spacing: 0.03em;
+      }
+      
+      ::slotted(.feature-specs) {
+        margin-bottom: 0.3rem;
+      }
+      
+      ::slotted(.feature-specs span) {
+        display: block;
+        margin-bottom: 0.1rem;
+      }
+    `;
+    this.shadowRoot.appendChild(style);
   }
   
   setupAnimation() {
