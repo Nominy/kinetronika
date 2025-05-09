@@ -140,7 +140,7 @@ function initAnimations() {
   tl1.to(obj1, {
     frame: 239,
     duration: 11.95, // 239 frames / (60 frames / 3 seconds) = 11.95s
-    ease: "none",
+    ease: "power1.out",
     onUpdate: function () {
       const frameIndex = Math.round(obj1.frame);
       const src = `video1/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
@@ -259,7 +259,7 @@ function initAnimations() {
   tl2.to(obj2, {
     frame: 179,
     duration: 6.6,
-    ease: "none",
+    ease: "power1.out",
     onUpdate: function () {
       const frameIndex = Math.round(obj2.frame);
       const src = `video2/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
