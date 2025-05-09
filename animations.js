@@ -128,7 +128,7 @@ function initAnimations() {
       trigger: "#section1",
       start: "top top",
       end: "+=250%", // This might need adjustment if 15s feels too short/long for 250% scroll
-      scrub: 0.5,
+      scrub: true,
       pin: true,
       anticipatePin: 0,
       fastScrollEnd: true,
@@ -241,7 +241,7 @@ function initAnimations() {
       trigger: "#section2",
       start: "top top",
       end: "+=200%",
-      scrub: 0.5, // Smoother scrubbing
+      scrub: true, // Removed inertia for immediate scroll response
       pin: true,
       anticipatePin: 0, // Disable anticipatePin to prevent jiggling
       fastScrollEnd: true, // Improve performance
