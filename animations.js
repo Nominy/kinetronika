@@ -128,7 +128,7 @@ function initAnimations() {
       trigger: "#section1",
       start: "top top",
       end: "+=250%", // This might need adjustment if 15s feels too short/long for 250% scroll
-      scrub: true,
+      scrub: 0.1,
       pin: true,
       anticipatePin: 0,
       fastScrollEnd: true,
@@ -288,11 +288,11 @@ function initAnimations() {
       trigger: "#section2",
       start: "top top",
       end: "+=200%",
-      scrub: true, // Removed inertia for immediate scroll response
+      scrub: 0.1,
       pin: true,
-      anticipatePin: 0, // Disable anticipatePin to prevent jiggling
-      fastScrollEnd: true, // Improve performance
-      preventOverlaps: true, // Help prevent jiggling between ScrollTriggers
+      anticipatePin: 0,
+      fastScrollEnd: true,
+      preventOverlaps: true,
       onEnter: () => {
         // When entering section 2, ensure we start preloading if not already
         if (!window.section2Loading) {
