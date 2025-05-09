@@ -136,19 +136,66 @@ function initAnimations() {
     }
   });
 
-  // Frame animation: Play video1 frames 0-239 over 11.95 seconds
-  tl1.to(obj1, {
-    frame: 239,
-    duration: 11.95, // 239 frames / (60 frames / 3 seconds) = 11.95s
-    ease: "power1.out",
-    onUpdate: function () {
-      const frameIndex = Math.round(obj1.frame);
-      const src = `video1/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
-      if (imageCache.has(src)) {
-        frame1.src = src;
-      }
+  // Frame animation: Play video1 frames 0-239 with pauses at keyframes
+  const segmentDuration = 11.95 / 4; // Duration for 60 frames
+  const pauseDuration = (15.0 - 11.95) / 3; // Maximize pause duration within 15s total
+
+  const updateFrame1 = function () {
+    const frameIndex = Math.round(obj1.frame);
+    const src = `video1/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
+    if (imageCache.has(src)) {
+      frame1.src = src;
     }
-  }, 0);
+  };
+
+  let videoTime = 0; // Tracks the current time for video segments and pauses in tl1
+
+  // Segment 1: Animate frames 0-59 (displays 1st to 60th image)
+  tl1.to(obj1, {
+    frame: 59, // Target frame index 59 (60th frame)
+    duration: segmentDuration,
+    ease: 'none', // Linear progression for frames
+    onUpdate: updateFrame1
+  }, videoTime);
+  videoTime += segmentDuration;
+
+  // Pause after 60th frame is reached
+  videoTime += pauseDuration;
+
+  // Segment 2: Animate frames 59-119 (displays 60th to 120th image)
+  tl1.to(obj1, {
+    frame: 119, // Target frame index 119 (120th frame)
+    duration: segmentDuration,
+    ease: 'none',
+    onUpdate: updateFrame1
+  }, videoTime);
+  videoTime += segmentDuration;
+
+  // Pause after 120th frame is reached
+  videoTime += pauseDuration;
+
+  // Segment 3: Animate frames 119-179 (displays 120th to 180th image)
+  tl1.to(obj1, {
+    frame: 179, // Target frame index 179 (180th frame)
+    duration: segmentDuration,
+    ease: 'none',
+    onUpdate: updateFrame1
+  }, videoTime);
+  videoTime += segmentDuration;
+
+  // Pause after 180th frame is reached
+  videoTime += pauseDuration;
+
+  // Segment 4: Animate frames 179-239 (displays 180th to 240th image)
+  tl1.to(obj1, {
+    frame: 239, // Target frame index 239 (240th frame)
+    duration: segmentDuration,
+    ease: 'none',
+    onUpdate: updateFrame1
+  }, videoTime);
+  // End of video animation. Total time taken by video with pauses:
+  // 4 * segmentDuration + 3 * pauseDuration = 11.95s + 1.5s = 13.45s.
+  // Text animations in tl1 are scheduled independently and will continue.
 
   // Position text content area 
   tl1.set("#section1 .text-content", {
@@ -259,7 +306,6 @@ function initAnimations() {
   tl2.to(obj2, {
     frame: 179,
     duration: 6.6,
-    ease: "power1.out",
     onUpdate: function () {
       const frameIndex = Math.round(obj2.frame);
       const src = `video2/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
