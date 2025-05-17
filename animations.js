@@ -121,6 +121,16 @@ function initAnimations() {
   const frame1 = document.querySelector('#section1 .frame-container img');
   const frame2 = document.querySelector('#section2 .frame-container img');
 
+  // Apply larger font size to paragraphs with less text in section1
+  gsap.set("#text1-p1", { fontSize: "2rem" });  // Main title - larger
+  gsap.set("#text1-p3", { fontSize: "1.8rem" }); // Workspace specs - larger
+  gsap.set("#text1-p4", { fontSize: "1.8rem" }); // Printing speed - larger
+  gsap.set("#text1-p5", { fontSize: "1.7rem" }); // Temperature specs - slightly larger
+  
+  // Enhance section titles and markers
+  gsap.set(".section-title", { fontSize: "2.2rem", fontWeight: "800" });
+  gsap.set(".marker", { fontSize: "2.2rem" });
+
   // First animation timeline
   const obj1 = { frame: 0 };
   const tl1 = gsap.timeline({
@@ -204,21 +214,37 @@ function initAnimations() {
   }, 0);
 
   // Text animations for section 1 - Apple-style with vertical sliding
-  // Set initial position for all paragraphs - off screen at the top
+  // Set initial position for all paragraphs - vertically centered
+  tl1.set("#section1 .text-content", {
+    position: "relative",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
+  }, 0);
+  
+  tl1.set("#section1 .text-content p", {
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    width: "100%"
+  }, 0);
+  
   tl1.set("#section1 .text-content p:not(:first-child)", { 
     opacity: 0,
-    y: -30,
+    y: -30, // Start above center
   }, 0);
+  
   tl1.set("#section1 .text-content p:first-child", { 
     opacity: 1,
-    y: 0, // Already visible
+    y: 0, // Already visible at center
   }, 0);
   
   // P1: Visible from 0s. Stays for 1.5s. Exits by 2.2s.
   // (Frame 0 at 0s)
   tl1.to("#section1 .text-content p:nth-child(1)", { 
     opacity: 0, 
-    y: 30, // Reduced from 50 to 30
+    y: 30, // Move down when exiting
     duration: 0.7,
     ease: "power1.in"
   }, 1.5); // Start exit at 1.5s, ends at 2.2s
@@ -226,13 +252,13 @@ function initAnimations() {
   // P2: Appears at 3.0s (Frame 60). Visible 3.8s-5.3s. Exits by 6.0s.
   tl1.to("#section1 .text-content p:nth-child(2)", { 
     opacity: 1, 
-    y: 0, 
+    y: 0, // Center position
     duration: 0.8,
     ease: "power2.out"
   }, 3.0); 
   tl1.to("#section1 .text-content p:nth-child(2)", { 
     opacity: 0, 
-    y: 30, // Reduced from 50 to 30
+    y: 30, // Exit downward
     duration: 0.7,
     ease: "power1.in"
   }, 3.0 + 0.8 + 1.5); // Starts exit at 5.3s, ends at 6.0s
@@ -240,13 +266,13 @@ function initAnimations() {
   // P3: Appears at 6.0s (Frame 120). Visible 6.8s-8.3s. Exits by 9.0s.
   tl1.to("#section1 .text-content p:nth-child(3)", { 
     opacity: 1, 
-    y: 0, 
+    y: 0, // Center position
     duration: 0.8,
     ease: "power2.out"
   }, 6.0); 
   tl1.to("#section1 .text-content p:nth-child(3)", { 
     opacity: 0, 
-    y: 30, // Reduced from 50 to 30
+    y: 30, // Exit downward
     duration: 0.7,
     ease: "power1.in"
   }, 6.0 + 0.8 + 1.5); // Starts exit at 8.3s, ends at 9.0s
@@ -254,13 +280,13 @@ function initAnimations() {
   // P4: Appears at 9.0s (Frame 180). Visible 9.8s-11.3s. Exits by 12.0s.
   tl1.to("#section1 .text-content p:nth-child(4)", { 
     opacity: 1, 
-    y: 0, 
+    y: 0, // Center position
     duration: 0.8,
     ease: "power2.out"
   }, 9.0); 
   tl1.to("#section1 .text-content p:nth-child(4)", { 
     opacity: 0, 
-    y: 30, // Reduced from 50 to 30
+    y: 30, // Exit downward
     duration: 0.7,
     ease: "power1.in"
   }, 9.0 + 0.8 + 1.5); // Starts exit at 11.3s, ends at 12.0s
@@ -268,13 +294,13 @@ function initAnimations() {
   // P5: Appears at 12.0s (Frame 239 is reached at 11.95s). Visible 12.8s-14.3s. Exits by 15.0s.
   tl1.to("#section1 .text-content p:nth-child(5)", { 
     opacity: 1, 
-    y: 0, 
+    y: 0, // Center position
     duration: 0.8,
     ease: "power2.out"
   }, 12.0); 
   tl1.to("#section1 .text-content p:nth-child(5)", { 
     opacity: 0, 
-    y: 30, // Reduced from 50 to 30
+    y: 30, // Exit downward
     duration: 0.7,
     ease: "power1.in"
   }, 12.0 + 0.8 + 1.5); // Starts exit at 14.3s, ends at 15.0s
@@ -328,15 +354,24 @@ function initAnimations() {
 
   // Position text content area for section 2
   tl2.set("#section2 .text-content", {
+    position: "relative",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     paddingTop: "0",
-    marginTop: "-60px", // Add negative margin to pull content up
+    marginTop: "0", // Remove negative margin
   }, 0);
 
   // Text animations for section 2 - Apple-style with vertical sliding
-  // Initialize all paragraphs - off screen at the top
+  // Initialize all paragraphs - position for vertical centering
   tl2.set("#section2 .text-content p", { 
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    width: "100%",
     opacity: 0,
-    y: -30, // Reduced from -50 to -30
+    y: -30, // Start above center
   }, 0);
   
   // First paragraph
@@ -349,7 +384,7 @@ function initAnimations() {
   
   tl2.to("#section2 .text-content p:nth-child(1)", { 
     opacity: 0, 
-    y: 30, // Reduced from 50 to 30
+    y: 30, // Exit downward
     duration: 0.7,
     ease: "power1.in"
   }, 2.8); // P1 IN ends 1.3s, pause 1.5s, P1 OUT starts 2.8s
@@ -364,7 +399,7 @@ function initAnimations() {
   
   tl2.to("#section2 .text-content p:nth-child(2)", { 
     opacity: 0, 
-    y: 30, // Reduced from 50 to 30
+    y: 30, // Exit downward
     duration: 0.7,
     ease: "power1.in"
   }, 5.9); // P2 IN ends 4.4s, pause 1.5s, P2 OUT starts 5.9s

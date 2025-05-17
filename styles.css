@@ -1,6 +1,7 @@
 :root {
   --color-background: #0B0B0B;
   --color-text: #fff;
+  --color-text-dark: #333;
   --color-accent: #14d58c;
   --color-header: #1a1a1a;
   --font-main: "Roboto", sans-serif;
@@ -15,7 +16,6 @@
 }
 
 body {
-  margin: 0;
   font-family: var(--font-main);
   background: var(--color-background);
   height: 600vh;
@@ -23,9 +23,6 @@ body {
   position: relative;
 }
 
-/* ==================== */
-/* Header Styles */
-/* ==================== */
 header, site-header {
   position: fixed;
   top: 0;
@@ -114,9 +111,6 @@ header a, site-header a {
   padding: 5px 15px;
 }
 
-/* ==================== */
-/* Scroll Section Styles */
-/* ==================== */
 .scroll-section, scroll-section {
   height: 100vh;
   padding-top: 50px;
@@ -206,7 +200,7 @@ scroll-section {
 }
 
 ::slotted(h2) {
-  display: none; /* Hide headers as requested */
+  display: none;
 }
 
 .content-after {
@@ -219,9 +213,6 @@ scroll-section {
   text-align: center;
 }
 
-/* ==================== */
-/* Loading Indicator Styles */
-/* ==================== */
 .initial-loading, loading-indicator {
   position: fixed;
   top: 0;
@@ -264,11 +255,6 @@ loading-indicator h3 {
   font-size: 14px;
 }
 
-/* ==================== */
-/* Text Content Styles */
-/* ==================== */
-
-/* General text block styling for section headers */
 .section-title, .general-title {
   font-size: 1.8rem;
   font-weight: 700;
@@ -276,13 +262,11 @@ loading-indicator h3 {
   letter-spacing: 0.03em;
 }
 
-/* For non-animation parts, make text visible */
 .no-animation .text-content p,
 .static-content p {
   opacity: 1 !important;
 }
 
-/* Feature specs styling */
 .feature-specs {
   margin-bottom: 0.3rem;
 }
@@ -292,16 +276,12 @@ loading-indicator h3 {
   margin-bottom: 0.1rem;
 }
 
-/* Accent color marker */
 .marker {
   color: #24BA70;
   font-weight: bold;
   margin-right: 0.5rem;
 }
 
-/* ==================== */
-/* Manufacturing Comparison */
-/* ==================== */
 .manufacturing-comparison {
   display: flex;
   justify-content: space-between;
@@ -316,14 +296,13 @@ loading-indicator h3 {
 }
 
 .comparison-item img {
-  width: 100%; /* Make image take full width of its container */
-  height: 250px; /* Set a fixed height for all images */
-  object-fit: contain; /* Scale image to fit within bounds, preserving aspect ratio */
-  display: block; /* Allows for margin auto horizontal centering if parent is text-align: center */
-  margin-left: auto; /* Center if width is less than 100% due to object-fit:contain */
-  margin-right: auto; /* Center if width is less than 100% due to object-fit:contain */
-  margin-bottom: 15px; /* Space below image */
-  border-radius: 15px; /* Added for rounded corners on images */
+  height: 450px;
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  border-radius: 15px;
 }
 
 .comparison-item img:hover {
@@ -346,9 +325,6 @@ loading-indicator h3 {
   color: var(--color-text);
 }
 
-/* ==================== */
-/* Media Queries */
-/* ==================== */
 @media (max-width: 768px) {
   .slash,
   .brand {
@@ -447,10 +423,6 @@ loading-indicator h3 {
   }
 }
 
-/* Initial and animation states handled by GSAP */
-/* This ensures the text is vertically centered when opacity:1 */
-
-/* For non-animated static content */
 .static-content {
   padding: 0 8vw 40px;
   max-width: 700px;
@@ -458,149 +430,202 @@ loading-indicator h3 {
   margin-top: -60px;
 }
 
-/* New styles for the nonplanary-strength section */
 .static-content-section {
-  padding: 60px 8vw;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   color: var(--color-text);
   text-align: left;
+  position: relative;
+  background-color: #ffffff;
 }
 
 .static-content-section .content-wrapper {
-  max-width: 1100px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 60px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+#nonplanary-strength,
+#strength-showcase,
+#strength-showcase-2, 
+#strength-direction-planning,
+#geometry-showcase,
+#geometry-showcase-2,
+#time-material-optimization,
+#time-material-optimization-2,
+#surface-quality-showcase {
+  background-color: #ffffff;
+}
+
+#nonplanar-printing-sequence,
+#nonplanar-printing-sequence-2,
+#nonplanar-printing-sequence-3,
+#nonplanar-printing-sequence-4,
+#nonplanar-printing-sequence-5 {
+  background-color: #323232;
+}
+
+#use-cases-section {
+  background-color: #ffffff;
+}
+
+#use-cases-section .content-wrapper > div {
+  background-color: #ffffff;
+}
+
+#use-cases-section h2, 
+#use-cases-section p {
+  color: #000000;
+}
+
+/* Changing the left column to be white with black text */
+#use-cases-section .content-wrapper > div > div:first-child {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.static-content-section .video-layout-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  background-color: rgba(50, 50, 50, 0.9);
+  padding: 0;
+  border-radius: 0;
+  margin-top: 0;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+}
+
+.static-content-section #nonplanar-printing-sequence .content-wrapper,
+.static-content-section #nonplanar-printing-sequence-2 .content-wrapper,
+.static-content-section #nonplanar-printing-sequence-3 .content-wrapper, 
+.static-content-section #nonplanar-printing-sequence-4 .content-wrapper,
+.static-content-section #nonplanar-printing-sequence-5 .content-wrapper {
+  max-width: 100%;
+  padding: 0;
+}
+
+#nonplanar-printing-sequence h2,
+#nonplanar-printing-sequence h3,
+#nonplanar-printing-sequence p,
+#nonplanar-printing-sequence-2 h2,
+#nonplanar-printing-sequence-2 h3,
+#nonplanar-printing-sequence-2 p,
+#nonplanar-printing-sequence-3 h2,
+#nonplanar-printing-sequence-3 h3,
+#nonplanar-printing-sequence-3 p,
+#nonplanar-printing-sequence-4 h2,
+#nonplanar-printing-sequence-4 h3,
+#nonplanar-printing-sequence-4 p,
+#nonplanar-printing-sequence-5 h2,
+#nonplanar-printing-sequence-5 h3,
+#nonplanar-printing-sequence-5 p {
+  color: #fff;
+}
+
+.static-content-section .comparison-item p {
+  color: #333;
 }
 
 .static-content-section h2 {
-  font-size: 2.5rem; /* Larger title */
+  font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 10px;
-  color: var(--color-text); /* White text */
-}
-
-.static-content-section .kinetronika-branding {
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.static-content-section .kinetronika-branding .slash {
-  color: var(--color-accent);
-  font-weight: 700;
-  font-size: 1.5rem; /* Slightly smaller than header */
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.static-content-section .kinetronika-branding .brand {
-  color: var(--color-text);
-  font-weight: 700;
-  font-size: 1.5rem; /* Slightly smaller than header */
-  letter-spacing: .5px;
-  opacity: 1;
-  transform: translateX(0);
-  margin-left: -4px; /* Adjust to align with slash */
-}
-
-.static-content-section .kinetronika-branding .tagline {
-  color: var(--color-text);
-  font-size: 0.9rem; /* Slightly smaller */
-  font-weight: 300;
-  opacity: 1;
-  transform: translateY(0);
-  margin-left: 1.5ch; /* Adjust to align */
+  margin-bottom: 15px;
+  color: var(--color-text-dark);
 }
 
 .static-content-section h3 {
-  font-size: 1.8rem; /* "STRENGTH" title */
+  font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 15px;
-  color: var(--color-text);
+  margin-bottom: 20px;
+  color: var(--color-text-dark);
 }
 
 .static-content-section p {
-  font-size: 1.1rem; /* Paragraph text */
+  font-size: 1.25rem;
   line-height: 1.6;
   margin-bottom: 30px;
-  max-width: 800px; /* Limit width for readability */
-  opacity: 1; /* Ensure it's visible */
+  max-width: 800px;
+  opacity: 1;
+  color: var(--color-text-dark);
 }
 
 .static-content-section .manufacturing-comparison {
   display: flex;
-  justify-content: space-around; /* Space out items */
-  gap: 40px; /* Increased gap */
-  margin-top: 30px;
-  align-items: flex-start; /* Align items to the top */
-  background-color: #fff; /* White background for the image boxes */
-  padding: 30px;
-  border-radius: 8px;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px auto;
+  align-items: center;
+  background-color: transparent;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 1000px;
 }
 
 .static-content-section .comparison-item {
-  flex: 1;
   text-align: center;
-  max-width: 45%; /* Limit width of each item */
 }
 
 .static-content-section .comparison-item img {
-  max-width: 100%;
-  height: 250px; /* Set a fixed height for consistent sizing */
-  object-fit: contain; /* Ensure entire image fits, preserving aspect ratio */
-  display: block; /* Needed for margin auto centering */
-  margin-left: auto; /* Center the image */
-  margin-right: auto; /* Center the image */
-  margin-bottom: 15px; /* Space below image */
-  border-radius: 8px; /* Consistent rounded corners - MATCHES CONTAINER */
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
 }
 
 .static-content-section .comparison-item p {
   margin-top: 10px;
-  font-weight: 600; /* Bolder caption text */
+  font-weight: 600;
   font-size: 1rem;
-  color: #333; /* Darker text for captions */
+  color: #333;
   opacity: 1;
 }
 
-/* End of new styles */
-
-/* Styles for video section layout */
-.static-content-section .video-layout-container {
-  display: flex;
-  align-items: flex-start; /* Align items to the top */
-  gap: 30px; /* Space between text and video */
-  background-color: #323232; /* Dark grey background for the container - Kept as per screenshot */
-  padding: 40px; /* Increased padding for a larger feel */
-  border-radius: 8px;
-  margin-top: 30px;
-}
-
 .static-content-section .video-text-content {
-  flex: 1 1 40%;
+  flex: 0 1 30%;
   color: var(--color-text);
+  padding: 60px 40px 60px 8vw;
+  max-width: 450px;
 }
 
 .static-content-section .video-text-content h3 {
-  font-size: 2rem; /* Increased font size for this section's title */
+  font-size: 2rem;
   margin-bottom: 15px;
 }
 
 .static-content-section .video-text-content p {
-  font-size: 1.15rem; /* Slightly increased font size for this section's paragraph */
+  font-size: 1.15rem;
   line-height: 1.6;
 }
 
 .static-content-section .video-media-content {
-  flex: 1 1 55%;
-  max-width: 55%;
+  flex: 0 1 70%;
+  max-width: 70%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .static-content-section .video-media-content .video-aspect-ratio-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 100%; /* 1:1 Aspect Ratio */
+  height: 100%;
+  padding-bottom: 0;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .static-content-section .video-media-content video {
@@ -609,87 +634,76 @@ loading-indicator h3 {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Crop to fill 1:1 container */
+  object-fit: cover;
   display: block;
-  border-radius: 0; /* Radius is now on the wrapper */
+  border-radius: 0;
 }
 
-/* Responsive stacking for video section */
-@media (max-width: 850px) { /* Adjusted breakpoint for better visual */
+@media (max-width: 850px) { 
   .static-content-section .video-layout-container {
     flex-direction: column;
-    align-items: center; /* Center items when stacked */
+    align-items: center;
   }
   .static-content-section .video-text-content,
   .static-content-section .video-media-content {
-    flex-basis: auto; /* Reset flex-basis */
+    flex-basis: auto;
     width: 100%;
-    max-width: 100%; /* Video can take full width when stacked */
-    text-align: center; /* Center text content when stacked */
+    max-width: 100%;
+    text-align: center;
+    padding: 40px 20px;
+    height: auto;
+  }
+  .static-content-section .video-media-content {
+    height: 50vh;
   }
   .static-content-section .video-text-content h3,
   .static-content-section .video-text-content p {
-    text-align: center; /* Ensure h3 and p are centered */
+    text-align: center;
   }
 }
 
-/* New styles for the two-line title in the video section */
 .video-section-title {
-  line-height: 1.2; /* Adjust line height for two lines */
+  line-height: 1.2;
 }
 
-.video-section-title .title-line-1,
-.video-section-title .title-line-2 {
-  display: inline-block; /* Ensures proper block behavior for alignment */
+.video-section-title .title-main-line {
+  white-space: nowrap;
+  /* Relies on default inline display, no specific styles needed here */
 }
 
-.video-section-title .title-line-2 {
-  padding-left: 2ch; /* Indent to align with text after marker */
-}
-
-.static-content-section .video-media-content {
-  flex: 1 1 55%;
-  max-width: 55%;
-}
-
-.static-content-section .video-media-content .video-aspect-ratio-wrapper {
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%; /* 1:1 Aspect Ratio */
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.static-content-section .video-media-content video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Crop to fill 1:1 container */
+.video-section-title .title-sub-line {
   display: block;
-  border-radius: 0; /* Radius is now on the wrapper */
+  padding-left: 1.8ch; 
 }
 
-/* Responsive stacking for video section */
-@media (max-width: 850px) { /* Adjusted breakpoint for better visual */
-  .static-content-section .video-layout-container {
+@media (max-width: 850px) {
+  .static-content-section {
+    padding: 40px 0;
+  }
+  
+  .static-content-section h2 {
+    font-size: 2.2rem;
+  }
+  
+  .static-content-section h3 {
+    font-size: 1.8rem;
+  }
+  
+  .static-content-section p {
+    font-size: 1.1rem;
+  }
+  
+  .static-content-section .manufacturing-comparison {
     flex-direction: column;
-    align-items: center; /* Center items when stacked */
+    align-items: center;
+    padding: 30px 20px;
   }
-  .static-content-section .video-text-content,
-  .static-content-section .video-media-content {
-    flex-basis: auto; /* Reset flex-basis */
-    width: 100%;
-    max-width: 100%; /* Video can take full width when stacked */
-    text-align: center; /* Center text content when stacked */
+  
+  .static-content-section .comparison-item {
+    max-width: 100%;
   }
-  .static-content-section .video-text-content h3,
-  .static-content-section .video-text-content p {
-    text-align: center; /* Ensure h3 and p are centered */
+  
+  .static-content-section .comparison-item img {
+    height: 220px;
   }
-}
-
-::slotted(h2) {
-  display: none; /* Hide headers as requested */
 } 
