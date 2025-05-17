@@ -126,26 +126,13 @@ header a, site-header a {
 scroll-section {
   display: block;
 }
-
 .frame-container {
   position: absolute;
-  top: 50px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  flex: 2 1 0;
-  min-width: 0;
-}
-
-.frame-container img {
-  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10%);
+  width: 100%;
   height: 100%;
-  width: auto;
-  max-width: none;
-  object-fit: cover;
-  left: 30%;
-  transform: translateX(0);
+  object-fit: contain;
 }
 
 .section-content {
@@ -469,7 +456,7 @@ loading-indicator h3 {
 #nonplanar-printing-sequence-3,
 #nonplanar-printing-sequence-4,
 #nonplanar-printing-sequence-5 {
-  background-color: #323232;
+  background-color: #333333;
 }
 
 #use-cases-section {
@@ -496,7 +483,7 @@ loading-indicator h3 {
   align-items: center;
   justify-content: space-between;
   gap: 0;
-  background-color: rgba(50, 50, 50, 0.9);
+  background-color: transparent;
   padding: 0;
   border-radius: 0;
   margin-top: 0;
