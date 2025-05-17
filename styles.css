@@ -126,7 +126,27 @@ header a, site-header a {
 scroll-section {
   display: block;
 }
-.frame-container {
+#section1 > .frame-container {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  flex: 2 1 0;
+  min-width: 0;
+}
+
+#section1 > .frame-container img {
+  position: absolute;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+  left: 30%;
+  transform: translateX(0);
+}
+#section2 > .frame-container {
   position: absolute;
   left: 50%;
   transform: translateX(-50%) translateY(-10%);
