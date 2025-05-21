@@ -481,11 +481,11 @@ loading-indicator h3 {
 #use-cases-section.static-content-section {
   background-color: #818181;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: 0;
   width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
+  height: 100vh; /* Restored to 100vh */
+  min-height: 100vh; /* Restored to 100vh */
   box-sizing: border-box;
 }
 
@@ -521,6 +521,7 @@ loading-indicator h3 {
   max-width: 100vw;
   margin-left: calc(-50vw + 50%);
   position: relative;
+  height: 100vh;
 }
 
 .static-content-section #nonplanar-printing-sequence .content-wrapper,
@@ -613,10 +614,13 @@ loading-indicator h3 {
 }
 
 .static-content-section .video-text-content {
-  flex: 0 1 30%;
+  flex: 0 2 60%;
   color: var(--color-text);
-  padding: 60px 40px 60px 8vw;
-  max-width: 450px;
+  padding: 0 0 0 8vw;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .static-content-section .video-text-content h3 {
@@ -992,10 +996,10 @@ loading-indicator h3 {
 /* Responsive Figma Import Section */
 .responsive-figma-import {
   position: relative;
-  width: 100vw; /* Scales with viewport width */
-  height: 56.25vw; /* Maintains 16:9 aspect ratio (1080/1920 * 100) */
+  width: 100vw;
+  height: 100vh; /* Restored to 100vh */
   background: #818181;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible */
 }
 
 .responsive-figma-import > * { /* Common style for direct children */
@@ -1006,7 +1010,7 @@ loading-indicator h3 {
 
 .figma-text-1 {
   left: 5%; /* 96/1920 */
-  top: 7.87037%; /* 85/1080 */
+  top: 5%; /* Reduced from 7.87037% */
   width: 26.61458%; /* 511/1920 */
   color: white;
   font-family: 'Roboto', var(--font-main), sans-serif;
@@ -1017,7 +1021,7 @@ loading-indicator h3 {
 
 .figma-marker {
   left: 3.125%; /* 60/1920 */
-  top: 7.87037%; /* 85/1080 */
+  top: 5%; /* Reduced from 7.87037% */
   width: 0.78125%; /* 15/1920 */
   height: 4.07407%; /* 44/1080 */
   background: #24BA70;
@@ -1025,7 +1029,7 @@ loading-indicator h3 {
 
 .figma-text-2 {
   left: 4.47916%; /* 86/1920 */
-  top: 15%; /* 162/1080 */
+  top: 12%; /* Reduced from 15% */
   width: 30.88541%; /* 593/1920 */
   color: white;
   font-family: 'Inter', var(--font-main), sans-serif; /* Added fallback for Inter */
@@ -1035,43 +1039,57 @@ loading-indicator h3 {
 }
 
 .responsive-figma-import img {
-  display: block; /* Removes potential extra space under images */
-  /* Aspect ratio of images will be determined by their width/height % */
+  object-fit: contain !important; /* Use contain instead of cover to maintain aspect ratio */
 }
 
 .figma-img-1 {
-  left: 1.82291%; /* 35/1920 */
-  top: 29.44444%; /* 318/1080 */
-  width: 24.8026%; /* 476.21/1920 */
-  height: 41.2037%; /* 445/1080 */
+  left: 1.82291%;
+  top: 22%;
+  width: 24.8026%;
+  height: auto;
+  max-height: 35%;
+  object-fit: contain;
+  border-radius: calc(50 / 1920 * 100vw);
 }
 
 .figma-img-2 {
-  left: 22.1875%; /* 426/1920 */
-  top: 69.9074%; /* 755/1080 */
-  width: 16.17135%; /* 310.49/1920 */
-  height: 22.5%; /* 243/1080 */
+  left: 22.1875%;
+  top: 62%;
+  width: 16.17135%;
+  height: auto;
+  max-height: 22%;
+  object-fit: contain;
+  border-radius: calc(50 / 1920 * 100vw);
 }
 
 .figma-img-3 {
-  left: 60%; /* 1152/1920 */
-  top: 68.88888%; /* 744/1080 */
-  width: 18.03645%; /* 346.30/1920 */
-  height: 24.6296%; /* 266/1080 */
+  left: 60%;
+  top: 62%;
+  width: 18.03645%;
+  height: auto;
+  max-height: 22%;
+  object-fit: contain;
+  border-radius: calc(50 / 1920 * 100vw);
 }
 
 .figma-img-4 {
-  left: 68.02083%; /* 1306/1920 */
-  top: 34.62963%; /* 374/1080 */
-  width: 29.23698%; /* 561.35/1920 */
-  height: 30%; /* 324/1080 */
+  left: 68.02083%;
+  top: 28%;
+  width: 29.23698%;
+  height: auto;
+  max-height: 28%;
+  object-fit: contain;
+  border-radius: calc(50 / 1920 * 100vw);
 }
 
 .figma-img-5 {
-  left: 32.29166%; /* 620/1920 */
-  top: 35.46296%; /* 383/1080 */
-  width: 31.07291%; /* 596.60/1920 */
-  height: 29.16666%; /* 315/1080 */
+  left: 32.29166%;
+  top: 28%;
+  width: 31.07291%;
+  height: auto;
+  max-height: 28%;
+  object-fit: contain;
+  border-radius: calc(50 / 1920 * 100vw);
 }
 
 /* Styles for Figma-like text block in section1 */
@@ -1815,10 +1833,10 @@ loading-indicator h3 {
 /* Styles for Figma-based Slide 2 */
 .responsive-figma-slide-2 {
   position: relative;
-  width: 100vw; /* Full viewport width */
-  height: calc(1080 / 1920 * 100vw); /* Maintain 16:9 aspect ratio */
+  width: 100vw;
+  height: 100vh; /* Restored to 100vh */
   background: #818181;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible */
 }
 
 .responsive-figma-slide-2 > * { /* Common style for direct children */
@@ -1829,9 +1847,8 @@ loading-indicator h3 {
 
 .figma-slide2-text-1 {
   left: calc(93 / 1920 * 100vw); /* 93px */
-  top: calc(98 / 1080 * 100vh);  /* 98px */
+  top: 5%; /* Reduced from calc(98 / 1080 * 100vh) */
   width: calc(511 / 1920 * 100vw); /* 511px */
-  /* height: calc(122 / 1080 * 100vh); // Auto height is better */
   color: white;
   font-family: 'Roboto', var(--font-main), sans-serif;
   font-weight: 700;
@@ -1841,7 +1858,7 @@ loading-indicator h3 {
 
 .figma-slide2-marker {
   left: calc(57 / 1920 * 100vw); /* 57px */
-  top: calc(98 / 1080 * 100vh);  /* 98px */
+  top: 5%; /* Reduced from calc(98 / 1080 * 100vh) */
   width: calc(15 / 1920 * 100vw); /* 15px */
   height: calc(44 / 1080 * 100vh); /* 44px */
   background: #24BA70;
@@ -1849,9 +1866,8 @@ loading-indicator h3 {
 
 .figma-slide2-text-2 {
   left: calc(83 / 1920 * 100vw); /* 83px */
-  top: calc(175 / 1080 * 100vh); /* 175px */
+  top: 12%; /* Reduced from calc(175 / 1080 * 100vh) */
   width: calc(593 / 1920 * 100vw); /* 593px */
-  /* height: calc(120 / 1080 * 100vh); // Auto height */
   color: white;
   font-family: 'Inter', var(--font-main), sans-serif;
   font-weight: 600;
@@ -1860,49 +1876,53 @@ loading-indicator h3 {
 }
 
 .responsive-figma-slide-2 img {
-  display: block;
-  position: absolute;
-  object-fit: cover; /* Ensure images cover their boxes while maintaining aspect ratio */
+  object-fit: contain !important; /* Use contain instead of cover to maintain aspect ratio */
 }
 
-.figma-slide2-img-1 { /* placeholder: 548x731, left: 25px; top: 273px; border-radius: 69px */
+.figma-slide2-img-1 {
   left: calc(25 / 1920 * 100vw);
-  top: calc(273 / 1080 * 100%); /* Changed vh to % */
+  top: 20%;
   width: calc(548 / 1920 * 100vw);
-  height: calc(731 / 1080 * 100%); /* Changed vh to % */
-  border-radius: calc(69 / 1920 * 100vw); /* Scale border-radius with width */
+  height: auto;
+  max-height: 40%;
+  object-fit: contain;
+  border-radius: calc(69 / 1920 * 100vw);
 }
 
-.figma-slide2-img-2 { /* placeholder: 559x386, left: 651px; top: 617px; border-radius: 42px */
+.figma-slide2-img-2 {
   left: calc(651 / 1920 * 100vw);
-  top: calc(617 / 1080 * 100%); /* Changed vh to % */
+  top: 62%;
   width: calc(559 / 1920 * 100vw);
-  height: calc(386 / 1080 * 100%); /* Changed vh to % */
-  border-radius: calc(42 / 1920 * 100vw);
+  height: auto;
+  max-height: 25%;
+  object-fit: contain;
 }
 
-.figma-slide2-img-3 { /* placeholder: 579x387, left: 1288px; top: 617px; border-radius: 56px */
+.figma-slide2-img-3 {
   left: calc(1288 / 1920 * 100vw);
-  top: calc(617 / 1080 * 100%); /* Changed vh to % */
+  top: 62%;
   width: calc(579 / 1920 * 100vw);
-  height: calc(387 / 1080 * 100%); /* Changed vh to % */
-  border-radius: calc(56 / 1920 * 100vw);
+  height: auto;
+  max-height: 25%;
+  object-fit: contain;
 }
 
-.figma-slide2-img-4 { /* placeholder: 781x322, left: 1100px; top: 273px; border-radius: 45px */
+.figma-slide2-img-4 {
   left: calc(1100 / 1920 * 100vw);
-  top: calc(273 / 1080 * 100%); /* Changed vh to % */
+  top: 20%;
   width: calc(781 / 1920 * 100vw);
-  height: calc(322 / 1080 * 100%); /* Changed vh to % */
-  border-radius: calc(45 / 1920 * 100vw);
+  height: auto;
+  max-height: 28%;
+  object-fit: contain;
 }
 
-.figma-slide2-img-5 { /* placeholder: 483x326, left: 590px; top: 269px; border-radius: 55px */
+.figma-slide2-img-5 {
   left: calc(590 / 1920 * 100vw);
-  top: calc(269 / 1080 * 100%); /* Changed vh to % */
+  top: 20%;
   width: calc(483 / 1920 * 100vw);
-  height: calc(326 / 1080 * 100%); /* Changed vh to % */
-  border-radius: calc(55 / 1920 * 100vw);
+  height: auto;
+  max-height: 28%;
+  object-fit: contain;
 }
 
 /* Responsive adjustments for Slide 2 */
@@ -1933,3 +1953,192 @@ loading-indicator h3 {
     /* border-radius: calc(20 / 768 * 100vw); */
   }
 } 
+
+/* Video Sequence Figma Styling */
+.figma-video-layout {
+  position: relative;
+  width: fit-content;
+  overflow: visible;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+}
+
+.figma-video-marker {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: calc(15 / 1920 * 100vw);
+  height: calc(44 / 1080 * 100vh);
+  background: #24BA70;
+}
+
+.figma-video-title {
+  position: relative;
+  margin-left: calc(40 / 1920 * 100vw);
+  width: auto;
+  color: white;
+  font-size: calc(48 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  word-wrap: break-word;
+  text-transform: uppercase;
+  margin-bottom: calc(20 / 1080 * 100vh);
+}
+
+.figma-video-description {
+  position: relative;
+  margin-left: calc(40 / 1920 * 100vw);
+  color: white;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+/* Responsive adjustments for video figma section */
+@media (max-width: 768px) {
+  .figma-video-layout {
+    position: relative;
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .figma-video-marker,
+  .figma-video-title,
+  .figma-video-description {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .figma-video-marker {
+    width: calc(15 / 768 * 100vw);
+    height: calc(44 / 768 * 100vw);
+    margin: 0 auto 10px;
+  }
+  
+  .figma-video-title {
+    font-size: calc(48 / 768 * 100vw);
+    margin-bottom: 20px;
+  }
+  
+  .figma-video-description {
+    font-size: calc(24 / 768 * 100vw);
+  }
+}
+
+/* Add responsive adjustments for smaller screens */
+@media (max-height: 768px) {
+  #use-cases-section.static-content-section {
+    height: 100vh; /* Ensure it's 100vh even on smaller height screens */
+    min-height: 100vh;
+  }
+  
+  .responsive-figma-import,
+  .responsive-figma-slide-2 {
+    height: 100vh; /* Ensure it's 100vh */
+  }
+  
+  /* Further reduce image sizes on smaller height screens */
+  .figma-img-1, 
+  .figma-img-2,
+  .figma-img-3,
+  .figma-img-4,
+  .figma-img-5 {
+    height: 25%;
+  }
+  
+  .figma-slide2-img-1 {
+    height: calc(500 / 1080 * 100%);
+  }
+  
+  .figma-slide2-img-2,
+  .figma-slide2-img-3 {
+    height: calc(300 / 1080 * 100%);
+  }
+  
+  .figma-slide2-img-4,
+  .figma-slide2-img-5 {
+    height: calc(250 / 1080 * 100%);
+  }
+}
+
+/* Tighter packing for slide 2 images */
+.figma-slide2-img-1 { /* Top-left */
+  left: calc(25 / 1920 * 100vw);
+  top: 20%; 
+  width: calc(500 / 1920 * 100vw); /* Slightly reduce width */
+  height: auto;
+  max-height: 45%; /* Increase max-height to fill more vertical space */
+  object-fit: contain;
+  border-radius: calc(69 / 1920 * 100vw);
+}
+
+.figma-slide2-img-5 { /* Top-center */
+  left: calc(550 / 1920 * 100vw); /* Position next to img-1 */
+  top: 20%;
+  width: calc(450 / 1920 * 100vw);
+  height: auto;
+  max-height: 35%; 
+  object-fit: contain;
+  border-radius: calc(55 / 1920 * 100vw);
+}
+
+.figma-slide2-img-4 { /* Top-right */
+  left: calc(1020 / 1920 * 100vw); /* Position next to img-5 */
+  top: 20%;
+  width: calc(750 / 1920 * 100vw);
+  height: auto;
+  max-height: 35%; 
+  object-fit: contain;
+  border-radius: calc(45 / 1920 * 100vw);
+}
+
+.figma-slide2-img-2 { /* Bottom-left */
+  left: calc(450 / 1920 * 100vw); /* Increased from 350 to move righter */
+  top: 58%; 
+  width: calc(550 / 1920 * 100vw);
+  height: auto;
+  max-height: 35%;
+  object-fit: contain;
+  border-radius: calc(42 / 1920 * 100vw);
+}
+
+.figma-slide2-img-3 { /* Bottom-right */
+  left: calc(1020 / 1920 * 100vw); /* Increased from 920 to move righter */
+  top: 58%;
+  width: calc(570 / 1920 * 100vw);
+  height: auto;
+  max-height: 35%;
+  object-fit: contain;
+  border-radius: calc(56 / 1920 * 100vw);
+}
+
+/* Responsive adjustments for tighter packing */
+@media (max-height: 768px) {
+  /* ... existing ... */
+  .figma-slide2-img-1 {
+    max-height: 35%;
+  }
+  .figma-slide2-img-5, .figma-slide2-img-4 {
+    max-height: 30%;
+  }
+  .figma-slide2-img-2, .figma-slide2-img-3 {
+    max-height: 30%;
+    top: 55%; /* Adjust top for smaller screens */
+  }
+  .figma-slide2-img-2 {
+    left: calc(400 / 1920 * 100vw); /* Adjusted for responsive */
+  }
+  .figma-slide2-img-3 {
+    left: calc(970 / 1920 * 100vw); /* Adjusted for responsive */
+  }
+}
