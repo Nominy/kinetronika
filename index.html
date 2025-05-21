@@ -7,7 +7,7 @@
   <title>Scroll-Controlled Animations with Optimized Loading</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,23 +82,28 @@
 
   <hr>
 
-  <section id="nonplanary-strength" class="static-content-section">
+  <section class="title-banner-section">
     <div class="content-wrapper">
-      <h2><span class="marker">█</span> Why nonplanary?</h2>
-      <br>
-      <hr>
-      <br>
-      <h3><span class="marker">█</span> STRENGTH</h3>
-      <p>The strongest direction of the printed part is parallel printed layers. With nonplanar layers can be printed in
-        multiple directions in one printing sequence.</p>
-      <div class="manufacturing-comparison">
-        <div class="comparison-item">
-          <img src="images/ClassicFDMmanufacturing.png" alt="Classic FDM manufacturing" loading="lazy">
-          <p>Classic FDM manufacturing</p>
+      <h2 class="banner-title"><span class="banner-marker"></span>Why nonplanary?</h2>
+    </div>
+  </section>
+
+  <section id="nonplanary-strength" class="static-content-section">
+    <div class="content-wrapper figma-nonplanary-strength">
+      <h2 class="figma-title"><span class="figma-marker-shape"></span>MORE STRENGTH</h2>
+      <p class="figma-description">The strongest direction of the printed part is parallel printed layers. With nonplanary layers can be printed in multiple directions in one printing sequence.</p>
+      <div class="manufacturing-comparison figma-comparison">
+        <div class="comparison-item figma-comparison-item">
+          <img src="images/ClassicFDMmanufacturing.png" alt="Classic FDM manufacturing" loading="lazy" class="figma-image">
+          <div class="figma-caption-wrapper">
+            <p class="figma-caption">Classic FDM manufacturing</p>
+          </div>
         </div>
-        <div class="comparison-item">
-          <img src="images/5 axis_non-planary_manufacturing.png" alt="5 axis non-planary manufacturing" loading="lazy">
-          <p>5 axis non-planary manufacturing</p>
+        <div class="comparison-item figma-comparison-item">
+          <img src="images/5 axis_non-planary_manufacturing.png" alt="5 axis non-planary manufacturing" loading="lazy" class="figma-image">
+          <div class="figma-caption-wrapper">
+            <p class="figma-caption">5 axis non-planary manufacturing</p>
+          </div>
         </div>
       </div>
     </div>
@@ -106,20 +111,14 @@
 
   <hr>
 
-  <section id="strength-showcase" class="static-content-section">
-    <div class="content-wrapper">
-      <h3><span class="marker">█</span> STRENGTH</h3>
-      <div class="manufacturing-comparison">
-        <div class="comparison-item">
-          <img src="images/ClassicFDMmanufacturing2.png" alt="Classic FDM manufacturing - Green Background Example" loading="lazy">
-          <p>Classic FDM manufacturing</p>
-        </div>
-        <div class="comparison-item">
-          <img src="images/5 axis_non-planary_manufacturing2.png"
-            alt="5 axis non-planary manufacturing - Green Background Example" loading="lazy">
-          <p>5 axis non-planary manufacturing</p>
-        </div>
-      </div>
+  <section id="strength-showcase" class="static-content-section figma-strength-showcase">
+    <div class="content-wrapper figma-strength-showcase-content">
+      <div class="figma-strength-marker"></div>
+      <div class="figma-strength-title">STRENGTH</div>
+      <img class="figma-strength-img1" src="images/ClassicFDMmanufacturing2.png" alt="Classic FDM manufacturing - Green Background Example" />
+      <div class="figma-strength-caption1">Classic FDM manufacturing</div>
+      <img class="figma-strength-img2" src="images/5 axis_non-planary_manufacturing2.png" alt="5 axis non-planary manufacturing - Green Background Example" />
+      <div class="figma-strength-caption2">5 axis non-planary manufacturing</div>
     </div>
   </section>
 
