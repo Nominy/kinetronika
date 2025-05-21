@@ -302,12 +302,7 @@ function initAnimations() {
     duration: 0.8,
     ease: "power2.out"
   }, 12.0); 
-  tl1.to("#section1 .text-content p:nth-child(5)", { 
-    opacity: 0, 
-    y: 30, // Exit downward
-    duration: 0.7,
-    ease: "power1.in"
-  }, 12.0 + 0.8 + 1.5); // Starts exit at 14.3s, ends at 15.0s
+
   
   tl1.totalDuration(15.0); // Total duration for section 1 animations
 
