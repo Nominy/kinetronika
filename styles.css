@@ -1321,21 +1321,33 @@ loading-indicator h3 {
   position: relative;
   width: 100vw;
   max-width: 100vw;
-  min-height: calc(1080 / 1920 * 100vw);
-  height: auto;
+  /* min-height: calc(1080 / 1920 * 100vw); */ /* Replaced by height */
+  height: calc(1080 / 1920 * 100vw); /* Set fixed aspect ratio height */
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: hidden; /* Ensure content clips to bounds, as per Figma */
   background: white;
   display: block;
 }
 
+.figma-nonplanary-strength .figma-section-number {
+  position: absolute;
+  left: calc(229 / 1920 * 100vw); /* Figma: 229px */
+  top: calc(137 / 1920 * 100vw); /* Figma: 137px, using 1920 based on other Figma values for consistency */
+  color: black;
+  font-size: calc(64 / 1920 * 100vw); /* Figma: 64px */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600; /* Figma: 600 */
+  line-height: calc(77.88 / 64); /* Figma: 77.88px line height for 64px font */
+  word-wrap: break-word;
+  text-align: center; /* Figma: center */
+}
+
 .figma-nonplanary-strength .figma-title {
   position: absolute;
-  left: calc(72 / 1920 * 100vw);
-  top: calc(140 / 1920 * 100vw); /* Corrected */
-  width: calc(448 / 1920 * 100vw);
+  left: calc(342 / 1920 * 100vw); /* Figma: 342px */
+  top: calc(152 / 1920 * 100vw); /* Figma: 152px */
+  width: calc(448 / 1920 * 100vw); /* Figma: 448px (matches existing) */
   color: black;
   font-size: calc(48 / 1920 * 100vw);
   font-family: 'Roboto', sans-serif;
@@ -1347,19 +1359,19 @@ loading-indicator h3 {
 }
 
 .figma-nonplanary-strength .figma-marker-shape {
-  position: absolute;
-  left: calc((45 - 72) / 1920 * 100vw);
-  top: calc((144 - 140) / 1920 * 100vw); /* Corrected */
-  width: calc(15 / 1920 * 100vw);
-  height: calc(41 / 1920 * 100vw); /* Corrected */
+  position: absolute; /* Ensure the marker itself is absolutely positioned */
+  left: calc((379 - 411) / 1920 * 100vw); /* Relative to title: 379px marker - 411px title */
+  top: calc((150 - 145) / 1920 * 100vw);  /* Relative to title: 150px marker - 145px title */
+  width: calc(16 / 1920 * 100vw);
+  height: calc(44 / 1920 * 100vw);
   background: #24BA70;
 }
 
 .figma-nonplanary-strength .figma-description {
   position: absolute;
-  left: calc(72 / 1920 * 100vw);
-  top: calc(248 / 1920 * 100vw); /* Corrected */
-  width: calc(860 / 1920 * 100vw);
+  left: calc(342 / 1920 * 100vw); /* Figma: 342px */
+  top: calc(234 / 1920 * 100vw); /* Figma: 234px */
+  width: calc(860 / 1920 * 100vw); /* Figma: 860px (matches existing) */
   color: black;
   font-size: calc(24 / 1920 * 100vw);
   font-family: 'Inter', sans-serif;
@@ -1367,116 +1379,92 @@ loading-indicator h3 {
   word-wrap: break-word;
   margin: 0;
   padding: 0;
-  line-height: 1.2;
+  line-height: 1.2; /* Existing seems fine, Figma implies natural line breaks */
   opacity: 1;
 }
 
-/* Remove positioning from intermediate containers if image/caption are absolute to the main section */
+/* Ensure intermediate containers don't interfere with absolute positioning of children */
 .figma-nonplanary-strength .figma-comparison,
 .figma-nonplanary-strength .figma-comparison-item {
-  position: static; /* Ensure they don't become positioning contexts for absolute children */
+  position: static; 
 }
 
-.figma-nonplanary-strength .figma-image,
-.figma-nonplanary-strength .figma-caption {
-  position: absolute;
+.figma-nonplanary-strength .figma-image { /* General style for figma images in this block if needed */
+  position: absolute; /* All images here are absolute */
   margin: 0;
   padding: 0;
+  object-fit: cover; /* Default, can be overridden if needed */
 }
 
 /* Image 1 */
 .figma-nonplanary-strength .figma-comparison-item:nth-child(1) .figma-image {
-  left: calc(84 / 1920 * 100vw);
-  top: calc(455 / 1920 * 100vw); /* Corrected */
-  width: calc(769 / 1920 * 100vw);
-  height: calc(481 / 1920 * 100vw); /* Corrected */
-  border-radius: calc(51 / 1920 * 100vw); /* Corrected */
-  border: calc(3 / 1920 * 100vw) black solid; /* Corrected */
-  object-fit: cover;
+  left: calc(191 / 1920 * 100vw);   /* Figma: 191px */
+  top: calc(413 / 1920 * 100vw);    /* Figma: 413px */
+  width: calc(741 / 1920 * 100vw);  /* Figma: 741px */
+  height: calc(463.49 / 1920 * 100vw); /* Figma: 463.49px */
+  border-radius: calc(51 / 1920 * 100vw); /* Figma: 51px (matches existing) */
 }
 
-/* Caption wrapper */
+/* Caption wrapper - make static or remove positioning if captions are directly absolute */
 #nonplanary-strength .figma-nonplanary-strength .figma-caption-wrapper {
-  position: absolute;
+  position: static; /* Changed from absolute, specific caption elements will be absolute */
   width: auto;
   height: auto;
   margin: 0;
   padding: 0;
 }
 
-/* Caption wrapper 1 */
+/* Caption wrapper 1 - Remove specific positioning */
 #nonplanary-strength .figma-nonplanary-strength .figma-comparison-item:nth-child(1) .figma-caption-wrapper {
-  left: calc(84 / 1920 * 100vw); /* Align with left edge of image */
-  top: calc(455 / 1920 * 100vw + calc(481 / 1920 * 100vw) + calc(35 / 1920 * 100vw)); /* Position it 35px below the bottom of image */
-  width: calc(769 / 1920 * 100vw); /* Same width as image */
+  /* left, top, width removed */
 }
 
-/* Caption wrapper 2 */
-#nonplanary-strength .figma-nonplanary-strength .figma-comparison-item:nth-child(2) .figma-caption-wrapper {
-  left: calc(1062 / 1920 * 100vw); /* Align with left edge of image */
-  top: calc(455 / 1920 * 100vw + calc(481 / 1920 * 100vw) + calc(35 / 1920 * 100vw)); /* Position it 35px below the bottom of image */
-  width: calc(738 / 1920 * 100vw); /* Same width as image */
-}
-
-/* Caption 1 */
+/* Caption 1: Positioned absolutely relative to .figma-nonplanary-strength */
 #nonplanary-strength .figma-nonplanary-strength .figma-comparison-item:nth-child(1) .figma-caption {
-  position: relative; /* Changed to relative for proper placement within wrapper */
-  left: 0;
-  top: 0; 
-  width: 100%;
+  position: absolute; 
+  left: calc(398 / 1920 * 100vw);   /* Figma: 398px */
+  top: calc(903.49 / 1920 * 100vw); /* Figma: 903.49px */
+  width: calc(499 / 1920 * 100vw);  /* Figma: 499px */
+  height: auto; /* Figma defined 55px, auto is safer for text */
   color: black;
-  font-size: calc(32 / 1920 * 100vw);
+  font-size: calc(24 / 1920 * 100vw);   /* Figma: 24px */
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  line-height: calc(40.21 / 32);
+  font-weight: 800;                   /* Figma: 800 */
+  line-height: calc(30.16 / 24);      /* Figma: 30.16px for 24px font */
   word-wrap: break-word;
-  text-align: center; /* Center text */
-  margin: 0 auto;
-  opacity: 1;
-}
-
-/* Caption 2 */
-#nonplanary-strength .figma-nonplanary-strength .figma-comparison-item:nth-child(2) .figma-caption {
-  position: relative; /* Changed to relative for proper placement within wrapper */
-  left: 0;
-  top: 0;
-  width: 100%;
-  color: black;
-  font-size: calc(32 / 1920 * 100vw);
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  line-height: calc(40.21 / 32);
-  word-wrap: break-word;
-  text-align: center; /* Center text */
-  margin: 0 auto;
+  text-align: justify;                /* Figma: justify */
+  margin: 0; /* Reset margin if any from general rules */
   opacity: 1;
 }
 
 /* Image 2 */
 #nonplanary-strength .figma-nonplanary-strength .figma-comparison-item:nth-child(2) .figma-image {
-  left: calc(1062 / 1920 * 100vw);
-  top: calc(455 / 1920 * 100vw); /* Corrected */
-  width: calc(738 / 1920 * 100vw);
-  height: calc(481 / 1920 * 100vw); /* Corrected */
-  border-radius: calc(62 / 1920 * 100vw); /* Corrected (using its specific radius) */
-  border: calc(3 / 1920 * 100vw) black solid; /* Corrected */
-  object-fit: cover;
+  left: calc(992 / 1920 * 100vw);    /* Figma: 992px */
+  top: calc(413.74 / 1920 * 100vw); /* Figma: 413.74px */
+  width: calc(710 / 1920 * 100vw);   /* Figma: 710px */
+  height: calc(462.75 / 1920 * 100vw);/* Figma: 462.75px */
 }
 
-/* Caption 2 */
+/* Caption wrapper 2 - Remove specific positioning */
+#nonplanary-strength .figma-nonplanary-strength .figma-comparison-item:nth-child(2) .figma-caption-wrapper {
+  /* left, top, width removed */
+}
+
+/* Caption 2: Positioned absolutely relative to .figma-nonplanary-strength */
 #nonplanary-strength .figma-nonplanary-strength .figma-comparison-item:nth-child(2) .figma-caption {
-  position: relative; /* Changed to relative for proper placement within wrapper */
-  left: 0;
-  top: 0;
-  width: 100%;
+  position: absolute;
+  left: calc(1139 / 1920 * 100vw);  /* Figma: 1139px */
+  top: calc(903.49 / 1920 * 100vw); /* Figma: 903.49px (same top as caption 1) */
+  width: calc(613 / 1920 * 100vw);  /* Figma: 613px */
+  height: auto; /* Figma defined 36px, auto is safer for text */
   color: black;
-  font-size: calc(32 / 1920 * 100vw);
+  font-size: calc(24 / 1920 * 100vw);   /* Figma: 24px */
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  line-height: calc(40.21 / 32);
+  font-weight: 800;                   /* Figma: 800 */
+  line-height: calc(30.16 / 24);      /* Figma: 30.16px for 24px font */
   word-wrap: break-word;
-  text-align: center; /* Center text */
-  margin: 0 auto;
+  text-align: justify;                /* Figma: justify */
+  margin: 0; /* Reset margin */
   opacity: 1;
 }
 
@@ -1557,69 +1545,82 @@ loading-indicator h3 {
 }
 
 .figma-strength-showcase .figma-strength-marker {
-  left: calc(52 / 1920 * 100vw);
-  top: calc(189 / 1080 * 100vh);
-  width: calc(17 / 1920 * 100vw);
-  height: calc(44 / 1080 * 100vh);
+  left: calc(332 / 1920 * 100vw); /* Figma: 332px */
+  top: calc(209 / 1920 * 100vw);  /* Figma: 209px */
+  width: calc(17 / 1920 * 100vw);   /* Figma: 17px */
+  height: calc(44 / 1920 * 100vw);  /* Figma: 44px */
   background: #24BA70;
 }
 
 .figma-strength-showcase .figma-strength-title {
-  left: calc(82 / 1920 * 100vw);
-  top: calc(185 / 1080 * 100vh);
-  width: calc(295 / 1920 * 100vw); /* Width for the text block */
-  height: auto; /* Height based on content */
+  left: calc(362 / 1920 * 100vw); /* Figma: 362px */
+  top: calc(205 / 1920 * 100vw);  /* Figma: 205px */
+  width: calc(295 / 1920 * 100vw); /* Figma: 295px (matches existing) */
+  height: auto; /* Figma: 46px, auto is safer */
   color: black;
   font-size: calc(48 / 1920 * 100vw);
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   word-wrap: break-word;
-  line-height: normal; /* Or specific line-height if needed */
+  line-height: normal; 
+}
+
+.figma-strength-showcase .figma-strength-description {
+  left: calc(362 / 1920 * 100vw); /* Figma: 362px */
+  top: calc(268 / 1920 * 100vw);  /* Figma: 268px */
+  width: calc(860 / 1920 * 100vw); /* Figma: 860px */
+  height: auto; /* Figma: 77px, auto is safer */
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  line-height: normal; /* Assuming natural line breaks as per Figma visual */
 }
 
 .figma-strength-showcase .figma-strength-img1 {
-  left: calc(82 / 1920 * 100vw);
-  top: calc(380 / 1080 * 100vh);
-  width: calc(835 / 1920 * 100vw);
-  height: calc(444 / 1080 * 100vh);
-  border-radius: calc(53 / 1920 * 100vw); /* Scaled border-radius */
-  object-fit: cover; /* Ensure image covers the area, might crop */
+  left: calc(230 / 1920 * 100vw); /* Figma: 230px */
+  top: calc(367 / 1920 * 100vw);  /* Figma: 367px */
+  width: calc(716 / 1920 * 100vw); /* Figma: 716px */
+  height: calc(380 / 1920 * 100vw);/* Figma: 380px */
+  border-radius: calc(53 / 1920 * 100vw); /* Figma: 53px (matches existing) */
+  object-fit: cover; 
 }
 
 .figma-strength-showcase .figma-strength-caption1 {
-  left: calc(230 / 1920 * 100vw);
-  top: calc(885 / 1080 * 100vh);
-  width: calc(499 / 1920 * 100vw);
-  height: auto; /* Based on text content */
-  text-align: justify;
+  left: calc(407 / 1920 * 100vw);   /* Figma: 407px */
+  top: calc(874 / 1920 * 100vw);    /* Figma: 874px */
+  width: calc(499 / 1920 * 100vw);  /* Figma: 499px */
+  height: auto; /* Figma: 45px, auto is safer */
+  text-align: justify; /* Figma: justify */
   color: black;
-  font-size: calc(36 / 1920 * 100vw);
+  font-size: calc(24 / 1920 * 100vw); /* Figma: 24px */
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  line-height: calc(45.24 / 36); /* line-height/font-size */
+  font-weight: 800; /* Figma: 800 */
+  line-height: calc(30.16 / 24); /* Figma: 30.16px for 24px font */
   word-wrap: break-word;
 }
 
 .figma-strength-showcase .figma-strength-img2 {
-  left: calc(1014 / 1920 * 100vw);
-  top: calc(380 / 1080 * 100vh);
-  width: calc(818 / 1920 * 100vw);
-  height: calc(451 / 1080 * 100vh);
-  border-radius: calc(51 / 1920 * 100vw); /* Scaled border-radius */
+  left: calc(988 / 1920 * 100vw); /* Figma: 988px */
+  top: calc(360 / 1920 * 100vw);  /* Figma: 360px */
+  width: calc(701 / 1920 * 100vw); /* Figma: 701px */
+  height: calc(387 / 1920 * 100vw);/* Figma: 387px */
+  border-radius: calc(51 / 1920 * 100vw); /* Figma: 51px (matches existing) */
   object-fit: cover;
 }
 
 .figma-strength-showcase .figma-strength-caption2 {
-  left: calc(1116 / 1920 * 100vw);
-  top: calc(885 / 1080 * 100vh);
-  width: calc(613 / 1920 * 100vw);
-  height: auto; /* Based on text content */
-  text-align: justify;
+  left: calc(1118 / 1920 * 100vw);  /* Figma: 1118px */
+  top: calc(872 / 1920 * 100vw);    /* Figma: 872px */
+  width: calc(613 / 1920 * 100vw);  /* Figma: 613px */
+  height: auto; /* Figma: 57px, auto is safer */
+  text-align: justify; /* Figma: justify */
   color: black;
-  font-size: calc(36 / 1920 * 100vw);
+  font-size: calc(24 / 1920 * 100vw); /* Figma: 24px */
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  line-height: calc(45.24 / 36);
+  font-weight: 800; /* Figma: 800 */
+  line-height: calc(30.16 / 24); /* Figma: 30.16px for 24px font */
   word-wrap: break-word;
 }
 
@@ -1662,67 +1663,69 @@ loading-indicator h3 {
 }
 
 .figma-strength-direction-planning .figma-sdp-marker {
-  left: calc(45 / 1920 * 100vw);
-  top: calc(132 / 1080 * 100vh);
-  width: calc(9 / 1920 * 100vw);
-  height: calc(44 / 1080 * 100vh);
+  left: calc(363 / 1920 * 100vw); /* Figma: 363px */
+  top: calc(171 / 1920 * 100vw);  /* Figma: 171px */
+  width: calc(9 / 1920 * 100vw);    /* Figma: 9px */
+  height: calc(44 / 1920 * 100vw);  /* Figma: 44px */
   background: #24BA70;
 }
 
 .figma-strength-direction-planning .figma-sdp-title {
-  left: calc(66 / 1920 * 100vw);
-  top: calc(124 / 1080 * 100vh); /* Adjusted to top of text block */
-  width: calc(894 / 1920 * 100vw);
-  height: auto; /* Adjust based on content and line breaks */
+  left: calc(384 / 1920 * 100vw); /* Figma: 384px */
+  top: calc(163 / 1920 * 100vw);  /* Figma: 163px */
+  width: calc(789 / 1920 * 100vw); /* Figma: 789px */
+  height: auto; /* Figma: 92px, auto is safer for text */
   color: black;
   font-size: calc(48 / 1920 * 100vw);
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   word-wrap: break-word;
-  line-height: normal; /* Or specific if defined in Figma */
+  line-height: 1.2; /* Adjust if exact line height for two lines is needed from Figma, e.g., 92px height / 2 lines / 48px font-size */
 }
 
 .figma-strength-direction-planning .figma-sdp-img1 {
-  left: calc(0 / 1920 * 100vw);
-  top: calc(206 / 1080 * 100vh);
-  width: calc(951 / 1920 * 100vw);
-  height: calc(590 / 1080 * 100vh);
-  object-fit: cover; /* Or contain, depending on desired image scaling */
+  left: calc(209 / 1920 * 100vw); /* Figma: 209px */
+  top: calc(336 / 1920 * 100vw);  /* Figma: 336px */
+  width: calc(734 / 1920 * 100vw); /* Figma: 734px */
+  height: calc(455 / 1920 * 100vw);/* Figma: 455px */
+  border-radius: calc(35 / 1920 * 100vw); /* Figma: 35px */
+  object-fit: cover; 
 }
 
 .figma-strength-direction-planning .figma-sdp-caption1 {
-  left: calc(167 / 1920 * 100vw);
-  top: calc(836 / 1080 * 100vh);
-  width: calc(595 / 1920 * 100vw);
-  height: auto; /* Allow height to adjust for text content */
-  text-align: center;
+  left: calc(268 / 1920 * 100vw);   /* Figma: 268px */
+  top: calc(831 / 1920 * 100vw);    /* Figma: 831px */
+  width: calc(616 / 1920 * 100vw);  /* Figma: 616px */
+  height: auto; /* Figma: 130px, auto is safer */
+  text-align: center; /* Figma: center */
   color: black;
-  font-size: calc(32 / 1920 * 100vw);
+  font-size: calc(24 / 1920 * 100vw); /* Figma: 24px */
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  line-height: calc(38.94 / 32);
+  font-weight: 600; /* Figma: 600 */
+  line-height: calc(29.20 / 24); /* Figma: 29.20px for 24px font */
   word-wrap: break-word;
 }
 
 .figma-strength-direction-planning .figma-sdp-img2 {
-  left: calc(1003 / 1920 * 100vw);
-  top: calc(206 / 1080 * 100vh);
-  width: calc(917 / 1920 * 100vw);
-  height: calc(590 / 1080 * 100vh);
+  left: calc(996 / 1920 * 100vw); /* Figma: 996px */
+  top: calc(336 / 1920 * 100vw);  /* Figma: 336px */
+  width: calc(708 / 1920 * 100vw); /* Figma: 708px */
+  height: calc(455 / 1920 * 100vw);/* Figma: 455px */
+  border-radius: calc(36 / 1920 * 100vw); /* Figma: 36px */
   object-fit: cover;
 }
 
 .figma-strength-direction-planning .figma-sdp-caption2 {
-  left: calc(1147 / 1920 * 100vw);
-  top: calc(854 / 1080 * 100vh);
-  width: calc(595 / 1920 * 100vw);
-  height: auto; /* Allow height to adjust for text content */
-  text-align: center;
+  left: calc(1052 / 1920 * 100vw);  /* Figma: 1052px */
+  top: calc(831 / 1920 * 100vw);    /* Figma: 831px */
+  width: calc(595 / 1920 * 100vw);  /* Figma: 595px */
+  height: auto; /* Figma: 130px, auto is safer */
+  text-align: center; /* Figma: center */
   color: black;
-  font-size: calc(32 / 1920 * 100vw);
+  font-size: calc(24 / 1920 * 100vw); /* Figma: 24px */
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  line-height: calc(38.94 / 32);
+  font-weight: 600; /* Figma: 600 */
+  line-height: calc(29.20 / 24); /* Figma: 29.20px for 24px font */
   word-wrap: break-word;
 }
 
@@ -2140,5 +2143,810 @@ loading-indicator h3 {
   }
   .figma-slide2-img-3 {
     left: calc(970 / 1920 * 100vw); /* Adjusted for responsive */
+  }
+}
+
+/* Styles for Figma-based #geometry-showcase section */
+#geometry-showcase .figma-geometry-outer {
+  position: relative; /* New outer container for overall positioning */
+  width: 100vw;
+  max-width: 100vw;
+  height: calc(1080 / 1920 * 100vw); /* Maintain aspect ratio */
+  background: transparent; /* Outer container is transparent */
+  overflow: visible; /* Allows figma-img1 to be positioned outside figma-geometry-inner */
+  margin: 0;
+  padding: 0;
+}
+
+#geometry-showcase .figma-geometry-inner {
+  position: absolute; /* Inner container for the white background and overflow:hidden part */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  overflow: hidden; /* As per Figma design for most elements */
+}
+
+#geometry-showcase .figma-geometry-inner > *,
+#geometry-showcase .figma-geometry-outer > .figma-img1 { /* Apply to direct children of inner and the specific outer image */
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#geometry-showcase .figma-section-number {
+  left: calc(289 / 1920 * 100vw);
+  top: calc(133 / 1920 * 100vw); /* Using 1920 for consistency */
+  color: black;
+  font-size: calc(64 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  line-height: calc(77.88 / 64);
+  text-align: center;
+}
+
+#geometry-showcase .figma-title {
+  left: calc(411 / 1920 * 100vw);
+  top: calc(145 / 1920 * 100vw);
+  width: calc(453 / 1920 * 100vw);
+  height: auto; /* Figma 88px, auto safer */
+  color: black;
+  font-size: calc(48 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+  line-height: 1.2; /* Adjust if specific line height needed for two lines */
+}
+
+#geometry-showcase .figma-marker-shape {
+  position: absolute; /* This was the missing piece! */
+  left: calc((379 - 411) / 1920 * 100vw); 
+  top: calc((150 - 145) / 1920 * 100vw);   
+  width: calc(16 / 1920 * 100vw);
+  height: calc(44 / 1920 * 100vw);
+  background: #24BA70;
+}
+
+#geometry-showcase .figma-description {
+  left: calc(411 / 1920 * 100vw);
+  top: calc(224 / 1920 * 100vw);
+  width: calc(914 / 1920 * 100vw);
+  height: auto; /* Figma 168px, auto safer */
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  line-height: normal; /* Or specific like calc(29.20 / 24) if all lines have that */
+}
+
+/* Image 1 - positioned relative to figma-geometry-outer */
+#geometry-showcase .figma-img1 {
+  left: calc(230 / 1920 * 100vw);
+  top: calc(363 / 1920 * 100vw);
+  width: calc(710 / 1920 * 100vw);
+  height: calc(475 / 1920 * 100vw);
+  object-fit: cover;
+  /* No border-radius mentioned in Figma for this one */
+}
+
+/* Image 2 - positioned relative to figma-geometry-inner */
+#geometry-showcase .figma-img2 {
+  left: calc(928 / 1920 * 100vw);
+  top: calc(365 / 1920 * 100vw);
+  width: calc(728 / 1920 * 100vw);
+  height: calc(488 / 1920 * 100vw);
+  object-fit: cover;
+  /* No border-radius mentioned */
+}
+
+#geometry-showcase .figma-caption1 {
+  left: calc(429 / 1920 * 100vw);
+  top: calc(889 / 1920 * 100vw);
+  width: calc(499 / 1920 * 100vw);
+  height: auto; /* Figma 119px, auto safer */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+#geometry-showcase .figma-caption2 {
+  left: calc(1148 / 1920 * 100vw);
+  top: calc(889 / 1920 * 100vw);
+  width: calc(613 / 1920 * 100vw);
+  height: auto; /* Figma 119px, auto safer */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+/* Add responsive adjustments for #geometry-showcase if needed */
+@media (max-width: 768px) {
+  #geometry-showcase .figma-geometry-outer {
+    height: auto; /* Allow height to adjust based on content */
+     /* Consider padding-bottom for aspect ratio if fixed height becomes an issue */
+  }
+  #geometry-showcase .figma-geometry-inner {
+    position: relative; /* Stack elements for mobile if absolute positioning is problematic */
+    overflow: visible; /* Show all content */
+    height: auto;
+  }
+  #geometry-showcase .figma-geometry-inner > *,
+  #geometry-showcase .figma-geometry-outer > .figma-img1 {
+    position: relative; /* Allow natural flow */
+    width: 90%; /* Example: make elements take most of the width */
+    height: auto;
+    left: auto; 
+    top: auto;
+    margin: 2vh 5%; /* Example margin */
+    text-align: center; /* Center text for mobile */
+  }
+  #geometry-showcase .figma-img1, #geometry-showcase .figma-img2 {
+    width: 80%;
+    margin: 2vh 10%;
+  }
+   #geometry-showcase .figma-title {
+    font-size: calc(48 / 768 * 100vw); /* Scale font */
+  }
+  #geometry-showcase .figma-description,
+  #geometry-showcase .figma-caption1,
+  #geometry-showcase .figma-caption2 {
+    font-size: calc(24 / 768 * 100vw);
+    text-align: center; /* Justify might be too much for mobile */
+  }
+  #geometry-showcase .figma-marker-shape {
+     display: block; /* Ensure marker is visible */
+     margin: 1vh auto; /* Center marker */
+  }
+   #geometry-showcase .figma-section-number {
+    font-size: calc(64 / 768 * 100vw);
+  }
+}
+
+/* Styles for Figma-based #geometry-showcase-2 section */
+#geometry-showcase-2 .figma-gsc2-content {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  height: calc(1080 / 1920 * 100vw); /* Maintain aspect ratio based on 1920x1080 */
+  background: white;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#geometry-showcase-2 .figma-gsc2-content > * {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#geometry-showcase-2 .figma-marker-shape {
+  left: calc(354 / 1920 * 100vw);
+  top: calc(232 / 1920 * 100vw);
+  width: calc(16 / 1920 * 100vw);
+  height: calc(44 / 1920 * 100vw);
+  background: #24BA70;
+}
+
+#geometry-showcase-2 .figma-title {
+  left: calc(386 / 1920 * 100vw);
+  top: calc(227 / 1920 * 100vw);
+  width: calc(284 / 1920 * 100vw); /* Figma: 284px */
+  height: auto; /* Figma: 88px, auto is safer */
+  color: black;
+  font-size: calc(48 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+  line-height: 1.2; /* Adjust if specific line height needed */
+}
+
+#geometry-showcase-2 .figma-description {
+  left: calc(386 / 1920 * 100vw);
+  top: calc(292 / 1920 * 100vw);
+  width: calc(860 / 1920 * 100vw);
+  height: auto; /* Figma: 77px, auto is safer */
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  line-height: normal; /* Or specific like calc(29.20 / 24) */
+}
+
+#geometry-showcase-2 .figma-img1 {
+  left: calc(266 / 1920 * 100vw);
+  top: calc(417 / 1920 * 100vw);
+  width: calc(658 / 1920 * 100vw);
+  height: calc(335 / 1920 * 100vw);
+  border-radius: calc(35 / 1920 * 100vw);
+  object-fit: cover;
+}
+
+#geometry-showcase-2 .figma-caption1 {
+  left: calc(427 / 1920 * 100vw);
+  top: calc(864 / 1920 * 100vw);
+  width: calc(499 / 1920 * 100vw);
+  height: auto; /* Figma: 119px, auto is safer */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+#geometry-showcase-2 .figma-img2 {
+  left: calc(1009 / 1920 * 100vw);
+  top: calc(417 / 1920 * 100vw);
+  width: calc(644 / 1920 * 100vw);
+  height: calc(335 / 1920 * 100vw);
+  border-radius: calc(35 / 1920 * 100vw);
+  object-fit: cover;
+}
+
+#geometry-showcase-2 .figma-caption2 {
+  left: calc(1116 / 1920 * 100vw);
+  top: calc(864 / 1920 * 100vw);
+  width: calc(613 / 1920 * 100vw);
+  height: auto; /* Figma: 119px, auto is safer */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+/* Add responsive adjustments for #geometry-showcase-2 if needed */
+@media (max-width: 768px) {
+  #geometry-showcase-2 .figma-gsc2-content {
+    height: auto; 
+    padding: 5vw 0;
+  }
+  #geometry-showcase-2 .figma-gsc2-content > * {
+    position: relative;
+    width: 90%;
+    left: 5%;
+    top: auto;
+    margin-bottom: 3vw;
+    text-align: center;
+  }
+  #geometry-showcase-2 .figma-img1,
+  #geometry-showcase-2 .figma-img2 {
+    width: 80%;
+    left: 10%;
+    height: auto;
+    border-radius: calc(20 / 768 * 100vw);
+  }
+  #geometry-showcase-2 .figma-title {
+    font-size: calc(48 / 768 * 100vw);
+  }
+  #geometry-showcase-2 .figma-description,
+  #geometry-showcase-2 .figma-caption1,
+  #geometry-showcase-2 .figma-caption2 {
+    font-size: calc(24 / 768 * 100vw);
+    text-align: center; 
+  }
+   #geometry-showcase-2 .figma-marker-shape {
+     display: block; 
+     margin: 1vh auto 2vh; /* Center marker */
+     left: auto; /* Override absolute positioning */
+  }
+}
+
+/* Styles for Figma-based #time-material-optimization section */
+#time-material-optimization .figma-tmo-outer {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  height: calc(1080 / 1920 * 100vw); /* Maintain aspect ratio */
+  background: transparent; /* Outer container is transparent by default */
+  overflow: visible; /* Allows figma-img1 to be positioned "outside" figma-tmo-inner */
+  margin: 0;
+  padding: 0;
+}
+
+#time-material-optimization .figma-tmo-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white; /* Inner container has the white background */
+  overflow: hidden; /* Clip content within this inner box */
+}
+
+#time-material-optimization .figma-tmo-inner > *,
+#time-material-optimization .figma-tmo-outer > .figma-img1 { /* Styles for direct children of inner and the specific outer image */
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#time-material-optimization .figma-section-number {
+  left: calc(289 / 1920 * 100vw);
+  top: calc(110 / 1920 * 100vw); /* Using 1920 for vertical consistency with other Figma values */
+  color: black;
+  font-size: calc(64 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  line-height: calc(77.88 / 64);
+  text-align: center;
+}
+
+#time-material-optimization .figma-marker-shape {
+  left: calc(380 / 1920 * 100vw);
+  top: calc(129 / 1920 * 100vw);
+  width: calc(15 / 1920 * 100vw);
+  height: calc(44 / 1920 * 100vw);
+  background: #24BA70;
+}
+
+#time-material-optimization .figma-title {
+  left: calc(412 / 1920 * 100vw);
+  top: calc(127 / 1920 * 100vw);
+  width: calc(817 / 1920 * 100vw); /* Wide enough for "TIME AND MATERIAL OPTIMIZATION" */
+  height: auto; /* Figma 92px (for two lines), auto is safer */
+  color: black;
+  font-size: calc(48 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+  line-height: 1.2; /* Standard line height, <br/> in HTML will force break if needed */
+}
+
+#time-material-optimization .figma-description {
+  left: calc(412 / 1920 * 100vw);
+  top: calc(261 / 1920 * 100vw);
+  width: calc(695 / 1920 * 100vw);
+  height: auto; /* Figma 224px, auto is safer */
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  line-height: normal; /* Or specific, e.g. calc(29.20 / 24) */
+}
+
+/* Image 1 - positioned relative to figma-tmo-outer */
+#time-material-optimization .figma-img1 {
+  left: calc(243 / 1920 * 100vw);
+  top: calc(395 / 1920 * 100vw);
+  width: calc(630 / 1920 * 100vw);
+  height: calc(502 / 1920 * 100vw);
+  object-fit: cover;
+  /* No border-radius in Figma snippet for this image */
+}
+
+/* Image 2 - positioned relative to figma-tmo-inner */
+#time-material-optimization .figma-img2 {
+  left: calc(960 / 1920 * 100vw);
+  top: calc(430 / 1920 * 100vw);
+  width: calc(700 / 1920 * 100vw);
+  height: calc(473 / 1920 * 100vw);
+  object-fit: cover;
+    /* No border-radius in Figma snippet for this image */
+}
+
+#time-material-optimization .figma-caption1 {
+  left: calc(427 / 1920 * 100vw); /* Based on Figma for "Classic FDM manufacturing" */
+  top: calc(953 / 1920 * 100vw);
+  width: calc(499 / 1920 * 100vw);
+  height: auto; /* Figma 119px, auto safer */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw); /* Caption font size from Figma */
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+#time-material-optimization .figma-caption2 {
+  left: calc(1088 / 1920 * 100vw); /* Based on Figma for "5 axis non-planary manufacturing" */
+  top: calc(953 / 1920 * 100vw);
+  width: calc(613 / 1920 * 100vw);
+  height: auto; /* Figma 119px, auto safer */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+/* Add responsive adjustments for #time-material-optimization if needed */
+@media (max-width: 768px) {
+  #time-material-optimization .figma-tmo-outer {
+    height: auto;
+    padding: 5vw 0;
+  }
+  #time-material-optimization .figma-tmo-inner {
+    position: relative; /* Allow stacking on mobile */
+    height: auto;
+    overflow: visible; /* Ensure all content is shown when stacked */
+  }
+  #time-material-optimization .figma-tmo-inner > *,
+  #time-material-optimization .figma-tmo-outer > .figma-img1 {
+    position: relative;
+    width: 90%;
+    left: 5%;
+    top: auto;
+    margin-bottom: 3vw;
+    text-align: center;
+  }
+  #time-material-optimization .figma-img1,
+  #time-material-optimization .figma-img2 {
+    width: 80%;
+    left: 10%;
+    height: auto;
+  }
+  #time-material-optimization .figma-title {
+    font-size: calc(48 / 768 * 100vw);
+  }
+  #time-material-optimization .figma-description,
+  #time-material-optimization .figma-caption1,
+  #time-material-optimization .figma-caption2 {
+    font-size: calc(24 / 768 * 100vw);
+    text-align: center;
+  }
+  #time-material-optimization .figma-marker-shape {
+    display: block;
+    margin: 1vh auto 2vh;
+    left: auto;
+  }
+  #time-material-optimization .figma-section-number {
+    font-size: calc(64 / 768 * 100vw);
+  }
+}
+
+/* Styles for Figma-based #time-material-optimization-2 section */
+#time-material-optimization-2 .figma-tmo2-outer {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  height: calc(1080 / 1920 * 100vw); /* Maintain aspect ratio */
+  background: transparent; 
+  overflow: visible; 
+  margin: 0;
+  padding: 0;
+}
+
+#time-material-optimization-2 .figma-tmo2-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: white; 
+  overflow: hidden; 
+}
+
+#time-material-optimization-2 .figma-tmo2-inner > *,
+#time-material-optimization-2 .figma-tmo2-outer > .figma-img1 {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#time-material-optimization-2 .figma-marker-shape {
+  left: calc(352 / 1920 * 100vw);
+  top: calc(213 / 1920 * 100vw);
+  width: calc(15 / 1920 * 100vw);
+  height: calc(40 / 1920 * 100vw);
+  background: #24BA70;
+}
+
+#time-material-optimization-2 .figma-title {
+  left: calc(376 / 1920 * 100vw);
+  top: calc(207 / 1920 * 100vw);
+  width: calc(848 / 1920 * 100vw);
+  height: auto; /* Figma 92px, auto is safer */
+  color: black;
+  font-size: calc(48 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+  line-height: 1.2; 
+}
+
+#time-material-optimization-2 .figma-description {
+  left: calc(376 / 1920 * 100vw);
+  top: calc(276 / 1920 * 100vw);
+  width: calc(860 / 1920 * 100vw);
+  height: auto; /* Figma 77px, auto is safer */
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  line-height: normal; 
+}
+
+/* Image 1 - positioned relative to figma-tmo2-outer */
+#time-material-optimization-2 .figma-img1 {
+  left: calc(315 / 1920 * 100vw);
+  top: calc(366 / 1920 * 100vw);
+  width: calc(591 / 1920 * 100vw);
+  height: calc(385 / 1920 * 100vw);
+  border-radius: calc(35 / 1920 * 100vw);
+  object-fit: cover;
+}
+
+/* Image 2 - positioned relative to figma-tmo2-inner */
+#time-material-optimization-2 .figma-img2 {
+  left: calc(1016 / 1920 * 100vw);
+  top: calc(364 / 1920 * 100vw);
+  width: calc(592 / 1920 * 100vw);
+  height: calc(387 / 1920 * 100vw);
+  border-radius: calc(35 / 1920 * 100vw);
+  object-fit: cover;
+}
+
+#time-material-optimization-2 .figma-caption1-maintext {
+  left: calc(439 / 1920 * 100vw);
+  top: calc(850 / 1920 * 100vw);
+  width: calc(499 / 1920 * 100vw);
+  height: auto; /* Figma 119px total for group, auto for this part */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+#time-material-optimization-2 .figma-caption1-details {
+  left: calc(312 / 1920 * 100vw);
+  top: calc(762 / 1920 * 100vw); 
+  width: calc(597 / 1920 * 100vw);
+  height: auto; /* Figma 119px for placeholder, auto safer */
+  text-align: center;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+#time-material-optimization-2 .figma-caption2-maintext {
+  left: calc(1116 / 1920 * 100vw);
+  top: calc(850 / 1920 * 100vw);
+  width: calc(432 / 1920 * 100vw);
+  height: auto; /* Figma 119px total for group, auto for this part */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+#time-material-optimization-2 .figma-caption2-details {
+  left: calc(1016 / 1920 * 100vw);
+  top: calc(762 / 1920 * 100vw);
+  width: calc(592 / 1920 * 100vw);
+  height: auto; /* Figma 119px for placeholder, auto safer */
+  text-align: center;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+/* Add responsive adjustments for #time-material-optimization-2 if needed */
+@media (max-width: 768px) {
+  #time-material-optimization-2 .figma-tmo2-outer {
+    height: auto;
+    padding: 5vw 0;
+  }
+  #time-material-optimization-2 .figma-tmo2-inner {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+  #time-material-optimization-2 .figma-tmo2-inner > *,
+  #time-material-optimization-2 .figma-tmo2-outer > .figma-img1 {
+    position: relative;
+    width: 90%;
+    left: 5%;
+    top: auto;
+    margin-bottom: 3vw;
+    text-align: center;
+  }
+  #time-material-optimization-2 .figma-img1,
+  #time-material-optimization-2 .figma-img2 {
+    width: 80%;
+    left: 10%;
+    height: auto;
+    border-radius: calc(20 / 768 * 100vw);
+  }
+  #time-material-optimization-2 .figma-title {
+    font-size: calc(48 / 768 * 100vw);
+  }
+  #time-material-optimization-2 .figma-description,
+  #time-material-optimization-2 .figma-caption1-maintext,
+  #time-material-optimization-2 .figma-caption1-details,
+  #time-material-optimization-2 .figma-caption2-maintext,
+  #time-material-optimization-2 .figma-caption2-details {
+    font-size: calc(24 / 768 * 100vw);
+    text-align: center;
+  }
+  #time-material-optimization-2 .figma-marker-shape {
+    display: block;
+    margin: 1vh auto 2vh;
+    left: auto;
+  }
+}
+
+/* Styles for Figma-based #surface-quality-showcase section */
+#surface-quality-showcase .figma-sqs-content {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  height: calc(1080 / 1920 * 100vw); /* Maintain aspect ratio based on 1920x1080 */
+  background: white;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#surface-quality-showcase .figma-sqs-content > * {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#surface-quality-showcase .figma-section-number {
+  left: calc(336 / 1920 * 100vw);
+  top: calc(177 / 1920 * 100vw); /* Using 1920 for vertical consistency */
+  color: black;
+  font-size: calc(64 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  line-height: calc(77.88 / 64);
+  text-align: center;
+}
+
+#surface-quality-showcase .figma-marker-shape {
+  left: calc(425 / 1920 * 100vw);
+  top: calc(198 / 1920 * 100vw);
+  width: calc(15 / 1920 * 100vw);
+  height: calc(37 / 1920 * 100vw);
+  background: #24BA70;
+}
+
+#surface-quality-showcase .figma-title {
+  left: calc(455 / 1920 * 100vw);
+  top: calc(193 / 1920 * 100vw);
+  width: calc(747 / 1920 * 100vw);
+  height: auto; /* Figma: 85px, auto is safer */
+  color: black;
+  font-size: calc(48 / 1920 * 100vw);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+  line-height: 1.2; /* Adjust if specific line height needed */
+}
+
+#surface-quality-showcase .figma-description {
+  left: calc(456 / 1920 * 100vw);
+  top: calc(278 / 1920 * 100vw);
+  width: calc(714 / 1920 * 100vw);
+  height: auto; /* Figma: 208px, auto is safer */
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  line-height: normal; /* Or specific like calc(29.20 / 24) */
+}
+
+#surface-quality-showcase .figma-img1 {
+  left: calc(310 / 1920 * 100vw);
+  top: calc(408 / 1920 * 100vw);
+  width: calc(638 / 1920 * 100vw);
+  height: calc(417 / 1920 * 100vw);
+  object-fit: cover;
+  /* No border-radius mentioned in this Figma snippet */
+}
+
+#surface-quality-showcase .figma-caption1 {
+  left: calc(449 / 1920 * 100vw);
+  top: calc(877 / 1920 * 100vw);
+  width: calc(499 / 1920 * 100vw);
+  height: auto; /* Figma: 119px, auto is safer */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+#surface-quality-showcase .figma-img2 {
+  left: calc(1001 / 1920 * 100vw);
+  top: calc(408 / 1920 * 100vw);
+  width: calc(646 / 1920 * 100vw);
+  height: calc(417 / 1920 * 100vw);
+  object-fit: cover;
+  /* No border-radius mentioned in this Figma snippet */
+}
+
+#surface-quality-showcase .figma-caption2 {
+  left: calc(1104 / 1920 * 100vw);
+  top: calc(877 / 1920 * 100vw);
+  width: calc(613 / 1920 * 100vw);
+  height: auto; /* Figma: 119px, auto is safer */
+  text-align: justify;
+  color: black;
+  font-size: calc(24 / 1920 * 100vw);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: calc(30.16 / 24);
+  word-wrap: break-word;
+}
+
+/* Add responsive adjustments for #surface-quality-showcase if needed */
+@media (max-width: 768px) {
+  #surface-quality-showcase .figma-sqs-content {
+    height: auto; 
+    padding: 5vw 0;
+  }
+  #surface-quality-showcase .figma-sqs-content > * {
+    position: relative;
+    width: 90%;
+    left: 5%;
+    top: auto;
+    margin-bottom: 3vw;
+    text-align: center;
+  }
+  #surface-quality-showcase .figma-img1,
+  #surface-quality-showcase .figma-img2 {
+    width: 80%;
+    left: 10%;
+    height: auto;
+  }
+  #surface-quality-showcase .figma-title {
+    font-size: calc(48 / 768 * 100vw);
+  }
+  #surface-quality-showcase .figma-description,
+  #surface-quality-showcase .figma-caption1,
+  #surface-quality-showcase .figma-caption2 {
+    font-size: calc(24 / 768 * 100vw);
+    text-align: center; 
+  }
+  #surface-quality-showcase .figma-marker-shape {
+    display: block; 
+    margin: 1vh auto 2vh; /* Center marker */
+    left: auto; /* Override absolute positioning */
+  }
+  #surface-quality-showcase .figma-section-number {
+    font-size: calc(64 / 768 * 100vw);
   }
 }
