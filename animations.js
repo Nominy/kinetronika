@@ -483,3 +483,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 }); 
+
+// Lazy Load Videos Logic
+function initLazyLoadVideos() {
+  const videos = document.querySelectorAll('.lazy-load-video');
+
+  if (!videos.length) {
+    console.warn('No videos found for lazy loading.');
+    return;
+  }
+
+  const videoObserverOptions = {
+    root: null, // relative to document viewport 
+    rootMargin: '0px',
+    threshold: 0.1 // Trigger when 10% of the video is visible
+  };
+
+  const videoObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Video is in view, attempt to play
+        entry.target.play().catch(error => {
+          // Autoplay was prevented, which is common. 
+          // User interaction might be needed or the video is already playing.
+          console.warn('Video play prevented:', error, entry.target.src);
+        });
+      } else {
+        // Video is out of view, pause it
+        entry.target.pause();
+      }
+    });
+  }, videoObserverOptions);
+
+  videos.forEach(video => {
+    videoObserver.observe(video);
+  });
+}
+
+// Initialize all functionalities on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Ensure GSAP is available or wait for it (for Use Cases Slider)
+  if (window.gsap) {
+    initUseCasesSlider();
+  } else {
+    const checkGSAP = setInterval(() => {
+      if (window.gsap) {
+        clearInterval(checkGSAP);
+        initUseCasesSlider();
+      }
+    }, 100);
+  }
+  // Initialize lazy loading for videos
+  initLazyLoadVideos();
+}); 
