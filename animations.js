@@ -46,31 +46,30 @@ class FrameLoader {
   }
 
   // Preload first animation frames
-  async preloadFirstAnimation(basePath, frameCount, initialFramesToLoad = 60) {
+  async preloadFirstAnimation(basePath, frameCount) {
     const framePaths = this.createFramePaths(basePath, frameCount);
     let loadedCount = 0;
 
-    // Prevent scrolling until we load enough frames
+    // Prevent scrolling until all initial frames are loaded
     document.body.style.overflow = 'hidden';
 
-    // Fire all loads in parallel
-    framePaths.forEach(src => {
-      this.loadImage(src).then(() => {
+    // Fire all loads in parallel and collect promises
+    const promises = framePaths.map(src => {
+      return this.loadImage(src).then(() => {
         loadedCount++;
         this.updateProgress(loadedCount, frameCount);
-
-        // Once we have enough frames to start, initialize animations
-        if (loadedCount === initialFramesToLoad && !window.animationsInitialized) {
-          initAnimations();
-          window.animationsInitialized = true;
-        }
-
-        // When all frames are loaded, finish the loading process
-        if (loadedCount === frameCount) {
-          this.finishLoading();
-        }
       });
     });
+
+    // Wait for all frames of the first animation to be loaded
+    await Promise.all(promises);
+
+    // Now that all frames are loaded:
+    if (!window.animationsInitialized) {
+      initAnimations(); // Initialize animations
+      window.animationsInitialized = true;
+    }
+    this.finishLoading(); // Hide loading indicator, allow scrolling, and start bg load for anim2
   }
 
   // Preload second animation in the background
@@ -410,7 +409,7 @@ function initAnimations() {
 // Start the animation process when document is loaded
 document.addEventListener('DOMContentLoaded', () => {
   const loader = new FrameLoader();
-  loader.preloadFirstAnimation('video1/', 240, 60);
+  loader.preloadFirstAnimation('video1/', 240);
 }); 
 
 // Use Cases Slider Logic
