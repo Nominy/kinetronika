@@ -102,6 +102,20 @@ class FrameLoader {
     
     // Preload second animation in the background
     this.preloadBackgroundAnimation('video2/', 180);
+
+    // Initialize other components now that critical frames are loaded
+    if (window.gsap) {
+      initUseCasesSlider();
+    } else {
+      // Fallback if GSAP isn't loaded yet, though it should be by this point via CDN
+      const checkGSAP = setInterval(() => {
+        if (window.gsap) {
+          clearInterval(checkGSAP);
+          initUseCasesSlider();
+        }
+      }, 100);
+    }
+    initLazyLoadVideos();
   }
 }
 
