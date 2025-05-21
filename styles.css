@@ -478,23 +478,34 @@ loading-indicator h3 {
   background-color: #333333;
 }
 
-#use-cases-section {
-  background-color: #ffffff;
+#use-cases-section.static-content-section {
+  background-color: #818181;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-#use-cases-section .content-wrapper > div {
-  background-color: #ffffff;
-}
-
-#use-cases-section h2, 
-#use-cases-section p {
-  color: #000000;
+#use-cases-section.static-content-section h2, 
+#use-cases-section.static-content-section p {
+  color: #FFFFFF;
 }
 
 /* Changing the left column to be white with black text */
-#use-cases-section .content-wrapper > div > div:first-child {
-  background-color: #ffffff;
+#use-cases-section.static-content-section .content-wrapper > div > div:first-child {
+  background-color: #818181;
   color: #000000;
+}
+
+#use-cases-section .content-wrapper {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .static-content-section .video-layout-container {
@@ -682,6 +693,173 @@ loading-indicator h3 {
   padding-left: 1.8ch; 
 }
 
+/* Use Cases Slider Styles */
+.use-cases-slider-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.use-cases-slides-wrapper {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.use-case-slide {
+  width: 50%; 
+  height: 100%;
+  flex-shrink: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slide-layout-container {
+  display: flex;
+  /* flex-wrap: wrap; // Will be overridden for slide 1 */
+  align-items: stretch; /* Ensure children can stretch to full height */
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.slide-layout-dark .slide-text-content h2 .marker,
+.slide-layout-light .slide-text-content h2 .marker {
+  color: var(--color-accent);
+}
+.slide-layout-dark .slide-text-content h2,
+.slide-layout-dark .slide-text-content p {
+  color: #ffffff;
+}
+
+
+.slide-layout-light .slide-text-content h2,
+.slide-layout-light .slide-text-content p {
+  color: #000000;
+}
+
+.slide-text-content {
+  flex: 1 1 40%;
+  padding: 5vh 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 280px;
+  box-sizing: border-box;
+}
+.slide-text-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+.slide-text-content p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.slide-image-content {
+  flex: 1 1 60%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  box-sizing: border-box;
+}
+
+/* Image Gallery for Slide 1 */
+.image-gallery-slide1 {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-gallery-slide1 .gallery-row-large,
+.image-gallery-slide1 .gallery-row-pair {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.image-gallery-slide1 img {
+  border-radius: 8px;
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.05);
+  max-height: 90vh;
+}
+
+.image-gallery-slide1 .gallery-row-large img {
+  max-height: 40vh;
+}
+
+.image-gallery-slide1 .gallery-row-pair img {
+  max-height: 25vh;
+}
+
+/* Placeholder images for Slide 2 */
+.placeholder-images-slide2 {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.placeholder-images-slide2 img {
+  height: auto;
+  max-height: 80vh;
+  width: 45%;
+  object-fit: contain;
+  border-radius: 12px;
+  background-color: #e0e0e0;
+}
+
+.use-case-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+  line-height: 1;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.use-case-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#use-case-prev {
+  left: 30px;
+  display: none;
+}
+
+#use-case-next {
+  right: 30px;
+}
+
 @media (max-width: 850px) {
   .static-content-section {
     padding: 40px 0;
@@ -712,4 +890,410 @@ loading-indicator h3 {
   .static-content-section .comparison-item img {
     height: 220px;
   }
+} 
+
+/* Specific styles for the first slide in use-cases-section to match Figma */
+#use-cases-section #use-case-slide-1 .slide-layout-container {
+  flex-wrap: nowrap; /* Ensure two-column layout */
+}
+
+#use-cases-section #use-case-slide-1 .slide-text-content {
+  flex: 0 0 30%; /* Text content takes 30% of the width */
+  padding: 8vh 3vw 8vh 6vw; /* Adjusted padding: Top, Right, Bottom, Left */
+  justify-content: flex-start; /* Align text block to the top */
+  align-items: flex-start; /* Align text to the left */
+  text-align: left;
+  color: #FFFFFF; /* Explicitly set text color to white */
+}
+
+#use-cases-section #use-case-slide-1 .slide-text-content h2,
+#use-cases-section #use-case-slide-1 .slide-text-content p {
+  color: #FFFFFF; /* Ensure text is white */
+}
+
+#use-cases-section #use-case-slide-1 .slide-text-content h2 .marker {
+  color: var(--color-accent); /* Ensure marker color */
+}
+
+#use-cases-section #use-case-slide-1 .slide-image-content.image-gallery-slide1 {
+  flex: 1 1 70%; /* Image content takes the remaining 70% */
+  padding: 4vh 4vw; /* Padding around the image gallery */
+  display: flex; /* Use flex to arrange rows */
+  flex-direction: column; /* Stack rows vertically */
+  justify-content: center; /* Center the block of rows vertically */
+  align-items: center; /* Center rows horizontally if they don't take full width */
+  gap: 2vh; /* Gap between image rows */
+}
+
+#use-cases-section #use-case-slide-1 .image-gallery-slide1 .gallery-row-large,
+#use-cases-section #use-case-slide-1 .image-gallery-slide1 .gallery-row-pair {
+  gap: 2vw; /* Gap between images in a pair */
+  width: 100%; /* Rows take full width of their container */
+}
+
+#use-cases-section #use-case-slide-1 .image-gallery-slide1 img {
+  background-color: transparent; /* Remove subtle background from images */
+  /* max-height will be set per row type */
+}
+
+#use-cases-section #use-case-slide-1 .image-gallery-slide1 .gallery-row-large img {
+  max-height: 35vh; 
+}
+
+#use-cases-section #use-case-slide-1 .image-gallery-slide1 .gallery-row-pair img {
+  max-height: 22vh;
+  max-width: calc(50% - 1vw); /* Ensure pairs fit with the 2vw gap */
+}
+/* End of specific styles for use-case-slide-1 */
+
+
+.slide-layout-dark .slide-text-content h2 .marker,
+.slide-layout-light .slide-text-content h2 .marker {
+  color: var(--color-accent);
+}
+
+#use-cases-section .slide-text-content {
+  /* Adjust padding as needed for full viewport, e.g., more responsive padding */
+  padding: 5vh 5vw; 
+}
+
+#use-cases-section .slide-image-content {
+    /* Adjust padding as needed for full viewport */
+  padding: 20px; /* Retaining some padding for image content, can be 0 if needed */
+}
+
+/* Remove or comment out the overly generic max-height for all images in the gallery */
+/*
+#use-cases-section .image-gallery-slide1 img {
+  max-height: 90vh; 
+}
+*/
+
+/* These general rules might conflict or be less specific than the slide-1 rules above.
+   They will act as defaults for other slides if not overridden.
+   It's better to make them less specific if they are intended as general fallbacks. */
+
+#use-cases-section .image-gallery-slide1 .gallery-row-large img { /* General fallback */
+  max-height: 40vh; 
+}
+
+#use-cases-section .image-gallery-slide1 .gallery-row-pair img { /* General fallback */
+  max-height: 25vh; 
+}
+
+#use-cases-section .placeholder-images-slide2 img {
+  max-height: 80vh;
+  width: 45%;
+  object-fit: contain;
+  border-radius: 12px;
+  background-color: #e0e0e0;
+}
+
+/* Responsive Figma Import Section */
+.responsive-figma-import {
+  position: relative;
+  width: 100vw; /* Scales with viewport width */
+  height: 56.25vw; /* Maintains 16:9 aspect ratio (1080/1920 * 100) */
+  background: #818181;
+  overflow: hidden;
+}
+
+.responsive-figma-import > * { /* Common style for direct children */
+  position: absolute;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+.figma-text-1 {
+  left: 5%; /* 96/1920 */
+  top: 7.87037%; /* 85/1080 */
+  width: 26.61458%; /* 511/1920 */
+  color: white;
+  font-family: 'Roboto', var(--font-main), sans-serif;
+  font-weight: 700;
+  font-size: 2.5vw; /* 48/1920 * 100 */
+  line-height: 1.2;
+}
+
+.figma-marker {
+  left: 3.125%; /* 60/1920 */
+  top: 7.87037%; /* 85/1080 */
+  width: 0.78125%; /* 15/1920 */
+  height: 4.07407%; /* 44/1080 */
+  background: #24BA70;
+}
+
+.figma-text-2 {
+  left: 4.47916%; /* 86/1920 */
+  top: 15%; /* 162/1080 */
+  width: 30.88541%; /* 593/1920 */
+  color: white;
+  font-family: 'Inter', var(--font-main), sans-serif; /* Added fallback for Inter */
+  font-weight: 600;
+  font-size: 1.25vw; /* 24/1920 * 100 */
+  line-height: 1.2566; /* 30.16 / 24 */
+}
+
+.responsive-figma-import img {
+  display: block; /* Removes potential extra space under images */
+  /* Aspect ratio of images will be determined by their width/height % */
+}
+
+.figma-img-1 {
+  left: 1.82291%; /* 35/1920 */
+  top: 29.44444%; /* 318/1080 */
+  width: 24.8026%; /* 476.21/1920 */
+  height: 41.2037%; /* 445/1080 */
+}
+
+.figma-img-2 {
+  left: 22.1875%; /* 426/1920 */
+  top: 69.9074%; /* 755/1080 */
+  width: 16.17135%; /* 310.49/1920 */
+  height: 22.5%; /* 243/1080 */
+}
+
+.figma-img-3 {
+  left: 60%; /* 1152/1920 */
+  top: 68.88888%; /* 744/1080 */
+  width: 18.03645%; /* 346.30/1920 */
+  height: 24.6296%; /* 266/1080 */
+}
+
+.figma-img-4 {
+  left: 68.02083%; /* 1306/1920 */
+  top: 34.62963%; /* 374/1080 */
+  width: 29.23698%; /* 561.35/1920 */
+  height: 30%; /* 324/1080 */
+}
+
+.figma-img-5 {
+  left: 32.29166%; /* 620/1920 */
+  top: 35.46296%; /* 383/1080 */
+  width: 31.07291%; /* 596.60/1920 */
+  height: 29.16666%; /* 315/1080 */
+}
+
+/* Styles for Figma-like text block in section1 */
+.figma-styled-text {
+  position: relative; /* For absolute positioning of its children */
+  width: calc(451 / 1920 * 100vw); /* 451px at 1920vw */
+  height: auto; /* Adjust to content, or calc(417 / 1080 * 100vh) if fixed height needed */
+  margin-left: calc((163 - 123) / 1920 * 100vw); /* (163px text left - 123px marker left) relative to marker parent */
+  /* Override GSAP's initial font size for this specific paragraph if needed */
+  font-size: inherit; /* Let children define their font sizes */
+}
+
+.figma-block-marker {
+  position: absolute;
+  left: calc(-40 / 1920 * 100vw); /* (123px marker left - 163px text left) */
+  top: calc(9 / 1080 * 100vh);    /* (339px marker top - 330px text top) */
+  width: calc(18 / 1920 * 100vw); /* 18px at 1920vw */
+  height: calc(54 / 1080 * 100vh);/* 54px at 1080vh */
+  background: #24BA70;
+}
+
+.figma-block-main-title {
+  display: block;
+  color: white;
+  font-family: 'Inter', sans-serif; /* Assuming Inter is available or fallbacks used */
+  font-weight: 700;
+  font-size: calc(60 / 1920 * 100vw); /* 60px at 1920vw */
+  line-height: normal;
+  font-style: normal;
+  margin-bottom: calc(20 / 1080 * 100vh); /* Default smaller margin for main titles */
+  word-wrap: break-word;
+}
+
+/* Specific margin for p1 main title to accommodate subtitle spacing - REMOVING THIS */
+/* #section1 .text-content p#text1-p1 .figma-block-main-title {
+  margin-bottom: calc(3 * (60 / 1920 * 100vw) * 0.5); 
+} */
+
+.figma-block-sub-title {
+  display: block;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: calc(48 / 1920 * 100vw); /* 48px at 1920vw */
+  line-height: 1.2; 
+  word-wrap: break-word;
+}
+
+/* Specific positioning for p1 sub-title */
+#section1 .text-content p#text1-p1 .figma-block-sub-title {
+  position: absolute;
+  top: calc(214 / 1080 * 100vh); /* Updated: Relative to parent top, based on new Figma gaps */
+  left: 0;
+  width: 100%; /* Takes width of its parent p#text1-p1.figma-styled-text */
+}
+
+.figma-block-description {
+  position: absolute;
+  display: block; /* Ensure block behavior for width and internal line breaks */
+  top: calc(80 / 1080 * 100vh); /* Updated for p1: (NONPLANAR-1 height) + 8px gap */
+  left: calc(4 / 1920 * 100vw);  /* (167px Figma left - 163px parent left) */
+  width: calc(324 / 1920 * 100vw); /* 324px width at 1920vw */
+  /* height: calc(86 / 1080 * 100vh); Auto height is usually better for text */
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: calc(24 / 1920 * 100vw); /* 24px at 1920vw */
+  line-height: calc(29.20 / 24); /* approximately 1.2167, from 29.20px line-height / 24px font-size */
+  word-wrap: break-word;
+}
+
+/* Styling for p#text1-p2 block */
+#section1 .text-content p#text1-p2.figma-styled-text {
+  position: absolute !important;
+  top: calc(289 / 1080 * 100vh) !important; /* Figma: title top 289px */
+  left: calc(174 / 1920 * 100vw) !important; /* Figma: title left 174px */
+  width: calc(600 / 1920 * 100vw) !important; /* Figma: title width 600px */
+}
+
+/* Specific styling for the description within p#text1-p2 */
+#section1 .text-content p#text1-p2 .figma-block-description {
+  position: absolute;
+  top: calc(210 / 1080 * 100vh); /* Updated: Relative to p#text1-p2 top: (499px desired desc top - 289px title top) */
+  left: 0; /* Relative to p#text1-p2 left: (174px Figma desc left - 174px title left) */
+  width: calc(488 / 1920 * 100vw); /* Figma: desc width 488px */
+  color: white; /* From Figma span style */
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: calc(24 / 1920 * 100vw); /* Figma: 24px */
+  line-height: calc(29.20 / 24); /* Figma: 29.20px line-height */
+  word-wrap: break-word;
+}
+
+/* Ensure the parent .text-content does not clip or hide this if it's positioned absolutely by GSAP */
+#section1 .text-content p#text1-p1.figma-styled-text {
+  position: absolute !important;
+  top: calc(330 / 1080 * 100vh) !important; /* 330px from top of viewport */
+  left: calc(163 / 1920 * 100vw) !important; /* 163px from left of viewport */
+  width: calc(451 / 1920 * 100vw) !important; /* Width for p#text1-p1 */
+}
+
+/* Adjust media queries if needed for smaller screens if vw units become too small */
+@media (max-width: 768px) {
+  .figma-block-main-title {
+    font-size: calc(60 / 768 * 100vw); /* Scale font based on smaller width */
+    margin-bottom: calc(2 * (60 / 768 * 100vw) * 0.5); /* Adjusted margin for smaller screens */
+  }
+  .figma-block-sub-title {
+    font-size: calc(48 / 768 * 100vw);
+  }
+  .figma-block-marker {
+    left: calc(-30 / 768 * 100vw);
+    width: calc(15 / 768 * 100vw);
+    height: calc(45 / 1080 * 100vh);
+  }
+  #section1 .text-content p#text1-p1.figma-styled-text {
+    left: calc(100 / 1920 * 100vw) !important; /* Adjust left for smaller screens to prevent overflow */
+    width: calc(550 / 1920 * 100vw); /* Adjust width */
+  }
+} 
+
+/* Styling for p#text1-p3 block */
+#section1 .text-content p#text1-p3.figma-styled-text {
+  position: absolute !important;
+  top: calc(357 / 1080 * 100vh) !important; /* Figma: title top 357px */
+  left: calc(189 / 1920 * 100vw) !important; /* Figma: title left 189px */
+  width: calc(446 / 1920 * 100vw) !important; /* Figma: title width 446px */
+}
+
+/* Specific styling for the description within p#text1-p3 */
+#section1 .text-content p#text1-p3 .figma-block-description {
+  position: absolute;
+  top: calc(177 / 1080 * 100vh); /* Updated: Relative: (534px Figma desc top - 357px title top) */
+  left: 0; /* Relative: (189px Figma desc left - 189px title left) */
+  width: calc(330 / 1920 * 100vw); /* Figma: desc width 330px */
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: calc(24 / 1920 * 100vw); /* Figma: 24px */
+  line-height: calc(30.16 / 24); /* Based on Figma for this description block's line height */
+  word-wrap: break-word;
+}
+
+/* Ensure the parent .text-content does not clip or hide this if it's positioned absolutely by GSAP */
+#section1 .text-content p#text1-p1.figma-styled-text {
+  position: absolute !important;
+  top: calc(330 / 1080 * 100vh) !important; /* 330px from top of viewport */
+  left: calc(163 / 1920 * 100vw) !important; /* 163px from left of viewport */
+  width: calc(451 / 1920 * 100vw) !important; /* Width for p#text1-p1 */
+} 
+
+/* Styling for p#text1-p4 block */
+#section1 .text-content p#text1-p4.figma-styled-text {
+  position: absolute !important;
+  top: calc(351 / 1080 * 100vh) !important;   /* Figma: title top 351px */
+  left: calc(102 / 1920 * 100vw) !important;  /* Figma: title left 102px */
+  width: calc(407 / 1920 * 100vw) !important; /* Figma: title width 407px */
+}
+
+/* Specific styling for the marker within p#text1-p4 */
+#section1 .text-content p#text1-p4 .figma-block-marker {
+  left: calc(-33 / 1920 * 100vw); /* Relative: (69px Figma marker left - 102px title left) */
+  width: calc(17 / 1920 * 100vw);  /* Figma: marker width 17px */
+  height: calc(50 / 1080 * 100vh); /* Figma: marker height 50px */
+  /* top: calc(9 / 1080 * 100vh); is already correct from general .figma-block-marker */
+}
+
+/* Specific styling for the main title within p#text1-p4 */
+#section1 .text-content p#text1-p4 .figma-block-main-title {
+  font-size: calc(59 / 1920 * 100vw); /* Figma: 59px font size */
+}
+
+/* Specific styling for the description within p#text1-p4 */
+#section1 .text-content p#text1-p4 .figma-block-description {
+  position: absolute;
+  display: block; /* Ensure block behavior for width and internal line breaks */
+  top: calc(168 / 1080 * 100vh); /* Was 153. Increased to create more visual gap */
+  left: 0; /* Relative: (102px Figma desc left - 102px title left) */
+  /* width: calc(230 / 1920 * 100vw); User removed this, it is fine */
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: calc(24 / 1920 * 100vw); /* Figma: 24px */
+  line-height: calc(30.16 / 24);    /* Figma: 30.16px line-height */
+  word-wrap: break-word;
+}
+
+/* Ensure the parent .text-content does not clip or hide this if it's positioned absolutely by GSAP */
+#section1 .text-content p#text1-p1.figma-styled-text {
+  position: absolute !important;
+  top: calc(330 / 1080 * 100vh) !important; /* 330px from top of viewport */
+  left: calc(163 / 1920 * 100vw) !important; /* 163px from left of viewport */
+  width: calc(451 / 1920 * 100vw) !important; /* Width for p#text1-p1 */
+} 
+
+/* Styling for p#text1-p5 block */
+#section1 .text-content p#text1-p5.figma-styled-text {
+  position: absolute !important;
+  top: calc(329 / 1080 * 100vh) !important;   /* Figma: title top 329px */
+  left: calc(164 / 1920 * 100vw) !important;  /* Figma: title left 164px */
+  width: calc(600 / 1920 * 100vw) !important; /* Figma: title width 600px */
+}
+
+/* Specific styling for the description within p#text1-p5 */
+#section1 .text-content p#text1-p5 .figma-block-description {
+  position: absolute;
+  top: calc(101 / 1080 * 100vh); /* Relative: (430px Figma desc top - 329px title top) */
+  left: calc(-40 / 1920 * 100vw); /* Relative: (124px Figma desc left - 164px title left), aligns with marker */
+  width: calc(488 / 1920 * 100vw); /* Figma: desc width 488px */
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: calc(24 / 1920 * 100vw); /* Figma: 24px */
+  line-height: calc(29.20 / 24);    /* Figma: 29.20px line-height */
+  word-wrap: break-word;
+}
+
+/* Ensure the parent .text-content does not clip or hide this if it's positioned absolutely by GSAP */
+#section1 .text-content p#text1-p1.figma-styled-text {
+  position: absolute !important;
+  top: calc(330 / 1080 * 100vh) !important; /* 330px from top of viewport */
+  left: calc(163 / 1920 * 100vw) !important; /* 163px from left of viewport */
+  width: calc(451 / 1920 * 100vw) !important; /* Width for p#text1-p1 */
 } 

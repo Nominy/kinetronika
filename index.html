@@ -7,7 +7,7 @@
   <title>Scroll-Controlled Animations with Optimized Loading</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -26,33 +26,54 @@
     <div class="frame-container frame-container-upper"><img id="frame1" src="video1/0001.jpg" alt=""></div>
     <div class="section-content">
       <div class="text-content" id="text1">
-        <p id="text1-p1"><span class="marker">█</span> <span class="section-title">Nonplanar-1</span><br>To push
-          printing further</p>
+        <p id="text1-p1" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">NONPLANAR-1</span>
+          <span class="figma-block-sub-title">To push<br>printing<br>further.</span>
+          <span class="figma-block-description">First industry-ready 5 axis nonplanary 3D printer.</span>
+        </p>
 
-        <p id="text1-p2"><span class="marker">█</span> <span class="general-title">GENERAL</span><br>
-          Nonplanar-1 has a purpose to change the way you create. Make industrial-grade prints stronger, faster and more
-          efficient in the comparison with classical 3-axis FDM machines.
-          <br><br>
-          Able to print refractory polymers (PEEK, ULTEM).
-        </p>
-        <p id="text1-p3"><span class="marker">█</span> <span class="general-title">GENERAL</span><br>
-          <span class="feature-specs">
-            <span>Workspace: ⌀300x700mm</span>
-            <span>For your big concepts.</span>
+        <p id="text1-p2" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">CHANGE THE WAY<br>YOU CREATE</span>
+          <span class="figma-block-description">
+            Make industrial-grade prints stronger, faster and more
+            efficient in the comparison with classical 3-axis FDM machines.
+            <br><br>
+            Able to print refractory polymers (PEEK, ULTEM).
           </span>
         </p>
-        <p id="text1-p4"><span class="marker">█</span> <span class="general-title">PRINTING</span><br>
-          <span class="feature-specs">
-            <span>Machine supports up to 1000mm/s speeds and up to 10000mm/s accelerations.</span>
+        <p id="text1-p3" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">BUILT FOR<br>MORE</span>
+          <span class="figma-block-description">
+            Workspace: ⌀300x700 mm<br>in multi-axis mode
+            <br><br>
+            For your big concepts.
           </span>
         </p>
-        <p id="text1-p5"><span class="marker">█</span> <span class="general-title">GENERAL</span><br>
-          <span class="feature-specs">
-            <span>Nozzle max temperature - 500°</span>
-            <span>Bed max temperature - 150°</span>
-            <span>Active chamber max temperature - 150°</span>
-            <span>Water cooling of the components, compressed air cooling of the printed model.</span>
-            <span>Active heated material box.</span>
+        <p id="text1-p4" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">ROBUSTNESS<br>MATTERS</span>
+          <span class="figma-block-description">
+            Custom 5-axis<br>
+            kinematic scheme<br>
+            along with precision<br>
+            linear and rotational<br>
+            drives.
+          </span>
+        </p>
+        <p id="text1-p5" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">NO COMPROMISES</span>
+          <span class="figma-block-description">
+            &bull; Nozzle temperature - up to 500°<br>
+            &bull; Buildplate temperature - up to 150°<br>
+            &bull; Active chamber temperature - up to<br>150°<br>
+            &bull; Water component cooling,<br>compressed air printed model cooling.<br>
+            &bull; Full-auto buildplate leveling and<br>temperture expansion compensation.<br>
+            &bull; Active ringing compensation.<br>
+            &bull; Active heated material box.
           </span>
         </p>
       </div>
@@ -364,29 +385,45 @@
   </section>
 
   <section id="use-cases-section" class="static-content-section">
+    <div class="use-case-arrow" id="use-case-prev">&lt;</div>
+    <div class="use-case-arrow" id="use-case-next">&gt;</div>
     <div class="content-wrapper">
-      <div
-        style="display: flex; flex-wrap: wrap; align-items: stretch; margin: 40px 0; border-radius: 16px; overflow: hidden;">
-        <!-- Left Column: Text -->
-        <div
-          style="flex: 1; color: black; padding: 40px; display: flex; flex-direction: column; justify-content: center; min-width: 300px; background-color: #ffffff;">
-          <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 20px; line-height: 1.3;">Use cases</h2>
-          <p style="font-size: 18px; line-height: 1.7;">Create parts for robotics, aerospace, automotive and other
-            applications - like we already do in kinetronika.</p>
-        </div>
-        <!-- Right Column: Images -->
-        <div
-          style="flex: 2; background-color: #ffffff; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: nowrap; min-width: 320px; overflow: hidden; width: 100%;">
-          <img src="images/usecase1.png" alt="Robotic arm printed part using 5-axis technology"
-            style="height: 70vh; width: 50%; object-fit: contain; border-radius: 12px;">
-          <img src="images/usecase2.png" alt="Complex cycloidal drive printed part"
-            style="height: 70vh; width: 50%; object-fit: contain; border-radius: 12px;">
+      <div class="use-cases-slider-container">
+        <div class="use-cases-slides-wrapper">
+          <!-- Slide 1: Adapted to Figma Design -->
+          <div class="use-case-slide" id="use-case-slide-1">
+            <div class="responsive-figma-import">
+              <div class="figma-text-1">READY FOR INDUSTRY</div>
+              <div class="figma-marker"></div>
+              <div class="figma-text-2">Create parts for robotics, aerospace, automotive and other applications - </div>
+              <img class="figma-img-1" src="images/usecase1_1.png" alt="Placeholder 476x445" />
+              <img class="figma-img-2" src="images/usecase1_2.png" alt="Placeholder 310x243" />
+              <img class="figma-img-3" src="images/usecase1_4.png" alt="Placeholder 346x266" />
+              <img class="figma-img-4" src="images/usecase1_5.png" alt="Placeholder 561x324" />
+              <img class="figma-img-5" src="images/usecase1_3.png" alt="Placeholder 597x315" />
+            </div>
+            <hr>
+          </div>
+          <!-- Slide 2: Placeholder Content -->
+          <div class="use-case-slide" id="use-case-slide-2">
+            <div class="slide-layout-container">
+              <!-- Left Column: Text -->
+              <div class="slide-text-content">
+                <h2><span class="marker">█</span> Another Use Case</h2>
+                <p>This is a placeholder for another amazing application of our technology. More details coming soon!</p>
+              </div>
+              <!-- Right Column: Images -->
+              <div class="slide-image-content placeholder-images-slide2">
+                <img src="images/placeholder_usecase.png" alt="Placeholder image for another use case">
+                <img src="images/placeholder_usecase_2.png" alt="Placeholder image for another use case">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <hr>
 
   <section id="section2" class="scroll-section">
     <div class="frame-container"><img id="frame2" src="video2/0001.jpg" alt=""></div>

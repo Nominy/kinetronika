@@ -210,25 +210,16 @@ function initAnimations() {
   // Position text content area 
   tl1.set("#section1 .text-content", {
     paddingTop: "0",
-    marginTop: "60px", // Add negative margin to pull content up
+    marginTop: "0px", // Removed -300px as Figma coordinates are absolute
   }, 0);
 
-  // Text animations for section 1 - Apple-style with vertical sliding
-  // Set initial position for all paragraphs - vertically centered
-  tl1.set("#section1 .text-content", {
-    position: "relative",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center"
-  }, 0);
-  
+  // Set initial position for all paragraphs - GSAP should not control static layout here
   tl1.set("#section1 .text-content p", {
-    position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
-    width: "100%"
-  }, 0);
+    // position: "absolute", // CSS will handle this
+    // top: "50%",    // CSS will handle this
+    // transform: "translateY(-50%)", // CSS will handle initial, GSAP for animation y
+    // width: "100%"  // CSS will handle this
+  }, 0); // Ensure this object is not empty if all are commented, pass {} or remove if not needed.
   
   tl1.set("#section1 .text-content p:not(:first-child)", { 
     opacity: 0,
@@ -420,4 +411,76 @@ function initAnimations() {
 document.addEventListener('DOMContentLoaded', () => {
   const loader = new FrameLoader();
   loader.preloadFirstAnimation('video1/', 240, 60);
+}); 
+
+// Use Cases Slider Logic
+function initUseCasesSlider() {
+  const slidesWrapper = document.querySelector('.use-cases-slides-wrapper');
+  const prevButton = document.getElementById('use-case-prev');
+  const nextButton = document.getElementById('use-case-next');
+  const slides = document.querySelectorAll('.use-case-slide');
+
+  if (!slidesWrapper || !prevButton || !nextButton || slides.length === 0) {
+    console.warn('Use cases slider elements not found. Slider not initialized.');
+    return;
+  }
+
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+
+  function updateArrows() {
+    if (currentSlide === 0) {
+      gsap.to(prevButton, { autoAlpha: 0, display: 'none', duration: 0.3 });
+    } else {
+      gsap.to(prevButton, { autoAlpha: 1, display: 'flex', duration: 0.3 });
+    }
+
+    if (currentSlide === totalSlides - 1) {
+      gsap.to(nextButton, { autoAlpha: 0, display: 'none', duration: 0.3 });
+    } else {
+      gsap.to(nextButton, { autoAlpha: 1, display: 'flex', duration: 0.3 });
+    }
+  }
+
+  function goToSlide(slideIndex) {
+    gsap.to(slidesWrapper, {
+      x: `${-slideIndex * 100 / totalSlides}%`,
+      duration: 0.7,
+      ease: 'power3.inOut'
+    });
+    currentSlide = slideIndex;
+    updateArrows();
+  }
+
+  nextButton.addEventListener('click', () => {
+    if (currentSlide < totalSlides - 1) {
+      goToSlide(currentSlide + 1);
+    }
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (currentSlide > 0) {
+      goToSlide(currentSlide - 1);
+    }
+  });
+
+  // Initial setup
+  updateArrows();
+}
+
+// Initialize the use cases slider when the DOM is ready
+// It should be called after initAnimations or alongside it if GSAP is already loaded.
+document.addEventListener('DOMContentLoaded', () => {
+  // Ensure GSAP is available or wait for it
+  if (window.gsap) {
+    initUseCasesSlider();
+  } else {
+    // Fallback if GSAP isn't loaded yet, though it should be by this point via CDN
+    const checkGSAP = setInterval(() => {
+      if (window.gsap) {
+        clearInterval(checkGSAP);
+        initUseCasesSlider();
+      }
+    }, 100);
+  }
 }); 
