@@ -328,28 +328,32 @@ function initAnimations() {
     }
   });
 
-  tl2.to(obj2, {
-    frame: 179,
-    duration: 6.6,
-    onUpdate: function () {
-      const frameIndex = Math.round(obj2.frame);
-      const src = `video2/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
-
-      // Try from cache first, otherwise load on demand
-      if (imageCache.has(src)) {
-        frame2.src = src;
-      } else {
-        frame2.src = src;
-        new FrameLoader().loadImage(src);
-
-        // Also try to load a few frames ahead
-        const preloadIndex = frameIndex + 5;
-        if (preloadIndex < 180) {
-          new FrameLoader().loadImage(`video2/${String(preloadIndex + 1).padStart(4, '0')}.jpg`);
-        }
+  // Replace continuous frame animation with two segments and a pause
+  const updateFrame2 = () => {
+    const frameIndex = Math.round(obj2.frame);
+    const src = `video2/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
+    if (imageCache.has(src)) {
+      frame2.src = src;
+    } else {
+      frame2.src = src;
+      new FrameLoader().loadImage(src);
+      const preloadIndex = frameIndex + 5;
+      if (preloadIndex < 180) {
+        new FrameLoader().loadImage(`video2/${String(preloadIndex + 1).padStart(4, '0')}.jpg`);
       }
     }
-  }, 0);
+  };
+
+  const segmentDuration2 = 2.8;
+  const pauseDuration2 = 1.0;
+
+  tl2.to(obj2, { frame: 116, duration: segmentDuration2, ease: 'none', onUpdate: updateFrame2 }, 0);
+  // Pause in the middle
+  tl2.to({}, { duration: pauseDuration2 });
+  // Second half: frames 90-180
+  tl2.to(obj2, { frame: 179, duration: segmentDuration2, ease: 'none', onUpdate: updateFrame2 }, segmentDuration2 + pauseDuration2);
+
+  tl2.totalDuration(segmentDuration2 * 2 + pauseDuration2);
 
   // Position text content area for section 2
   tl2.set("#section2 .text-content", {
@@ -364,7 +368,7 @@ function initAnimations() {
 
   // Text animations for section 2 - Apple-style with vertical sliding
   // Initialize all paragraphs - position for vertical centering
-  tl2.set("#section2 .text-content p", { 
+  tl2.set("#section2 .text-content p:not(.figma-styled-text-s2)", { 
     position: "absolute",
     top: "50%",
     transform: "translateY(-50%)",
@@ -372,38 +376,66 @@ function initAnimations() {
     opacity: 0,
     y: -30, // Start above center
   }, 0);
+
+  // For the Figma-styled paragraph, only set initial animation properties
+  tl2.set("#section2 .text-content p.figma-styled-text-s2", { 
+    opacity: 0,
+    y: -30, // Start above center
+    // position, top, transform, width will be controlled by its CSS
+  }, 0);
   
+  const fadeInTime = 0.6;
+  const fadeOutTime = 0.5;
+  const pauseFadeTime = 0.3; // For the caption during the video pause
+
   // First paragraph
   tl2.to("#section2 .text-content p:nth-child(1)", { 
     opacity: 1, 
     y: 0, // Center position
-    duration: 0.8,
+    duration: fadeInTime,
     ease: "power2.out"
-  }, 0.5); // Initial start time
+  }, 0.1); 
   
   tl2.to("#section2 .text-content p:nth-child(1)", { 
     opacity: 0, 
     y: 30, // Exit downward
-    duration: 0.7,
+    duration: fadeOutTime,
     ease: "power1.in"
-  }, 2.8); // P1 IN ends 1.3s, pause 1.5s, P1 OUT starts 2.8s
-  
-  // Second paragraph
+  }, segmentDuration2 - fadeOutTime - 0.1); // Ends 0.1s before video segment1 ends
+
+  // Second paragraph (middle one, timed with video pause)
+  // Video pause is from segmentDuration2 to segmentDuration2 + pauseDuration2
   tl2.to("#section2 .text-content p:nth-child(2)", { 
     opacity: 1, 
     y: 0, // Center position
-    duration: 0.8,
+    duration: pauseFadeTime,
     ease: "power2.out"
-  }, 3.6); // P1 OUT ends 3.5s, P2 IN starts 3.6s
+  }, segmentDuration2); // Starts exactly when video pause begins
   
   tl2.to("#section2 .text-content p:nth-child(2)", { 
     opacity: 0, 
     y: 30, // Exit downward
-    duration: 0.7,
+    duration: pauseFadeTime,
     ease: "power1.in"
-  }, 5.9); // P2 IN ends 4.4s, pause 1.5s, P2 OUT starts 5.9s
+  }, segmentDuration2 + pauseDuration2 - pauseFadeTime); // Ends exactly when video pause finishes
   
-  tl2.totalDuration(6.6); // Text ends at 6.6s
+  // Third paragraph (was second)
+  // Starts 0.1s after video pause ends
+  tl2.to("#section2 .text-content p:nth-child(3)", { 
+    opacity: 1, 
+    y: 0, // Center position
+    duration: fadeInTime,
+    ease: "power2.out"
+  }, segmentDuration2 + pauseDuration2 + 0.1); 
+  
+  tl2.to("#section2 .text-content p:nth-child(3)", { 
+    opacity: 0, 
+    y: 30, // Exit downward
+    duration: fadeOutTime,
+    ease: "power1.in"
+  }, tl2.totalDuration() - fadeOutTime - 0.1); // Ends 0.1s before tl2 total duration
+  
+  // tl2.totalDuration(segmentDuration2 * 2 + pauseDuration2); // Ensure total duration is correct (already set)
 
   // Handle window resize - use debounced refresh for better performance
   let resizeTimeout;
