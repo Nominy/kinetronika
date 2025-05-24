@@ -137,7 +137,6 @@ scroll-section {
   flex: 2 1 0;
   min-width: 0;
 }
-
 #section1 > .frame-container img {
   position: absolute;
   height: 100%;
@@ -149,11 +148,22 @@ scroll-section {
 }
 #section2 > .frame-container {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(-10%);
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  flex: 2 1 0;
+  min-width: 0;
+}
+#section2 > .frame-container img {
+  position: absolute;
   height: 100%;
-  object-fit: contain;
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+  left: 0;
+  transform: translateX(0);
 }
 
 .section-content {
@@ -3076,24 +3086,23 @@ loading-indicator h3 {
   word-wrap: break-word;
 }
 
-/* Responsive adjustments for s2 text block */
+/* Responsive adjustments for s2 text block - maintain 1920/1080 reference for consistent scaling */
 @media (max-width: 768px) {
   .figma-styled-text-s2 {
-    width: calc(551 / 768 * 80vw); /* Adjust width for smaller screens, e.g. 80% of viewport width scaling */
-    /* GSAP handles centering, so left/top are less critical here for static */
+    width: calc(551 / 1920 * 100vw); /* Keep same reference for consistent scaling */
   }
   .figma-block-marker-s2 {
-    left: calc((58 - 87) / 768 * 80vw); /* Scale relative position */
-    width: calc(15 / 768 * 80vw);
-    height: calc(44 / 1080 * 70vh); /* Scale height based on viewport height */
+    left: calc((58 - 87) / 1920 * 100vw); /* Keep same reference */
+    width: calc(15 / 1920 * 100vw);
+    height: calc(44 / 1080 * 100vh); /* Keep same reference */
   }
   .figma-block-main-title-s2 {
-    font-size: calc(48 / 768 * 70vw); /* Scale font based on smaller reference, e.g. 70% of viewport width */
-    width: calc(511 / 768 * 80vw);
+    font-size: calc(48 / 1920 * 100vw); /* Keep same reference for consistent scaling */
+    width: calc(511 / 1920 * 100vw);
   }
   .figma-block-description-s2 {
-    font-size: calc(24 / 768 * 70vw);
-    width: 100%; /* Take full width of parent .figma-styled-text-s2 */
+    font-size: calc(24 / 1920 * 100vw);
+    width: calc(551 / 1920 * 100vw); /* Keep consistent with parent */
   }
 }
 
@@ -3126,29 +3135,22 @@ loading-indicator h3 {
   /* Font size, color, family, weight, line-height inherited */
 }
 
-/* Responsive adjustments for #text2-p2 */
+/* Responsive adjustments for #text2-p2 - maintain consistent scaling */
 @media (max-width: 768px) {
   #text2-p2.figma-styled-text-s2 {
-    /* For smaller screens, we might want it to stack or behave like other centered elements */
-    /* Option 1: Center it like the first one */
-    left: 50%; 
-    top: 50%; 
-    transform: translate(-50%, -50%);
-    width: calc(511 / 768 * 80vw); /* Adjust width */
-    /* Or, if it should remain on the right but scaled: */
-    /* left: calc(1432 / 1920 * 100vw); */
-    /* top: calc(466 / 1080 * 100vh); */
-    /* width: calc(511 / 768 * 70vw); */
+    /* Keep same scaling approach as section1 for consistency */
+    left: calc(1432 / 1920 * 100vw); /* Maintain same scaling reference */
+    top: calc(466 / 1080 * 100vh);   
+    width: calc(511 / 1920 * 100vw); /* Maintain same scaling reference */
   }
 
   #text2-p2 .figma-block-marker-s2 {
-    /* Adjust if the parent's responsive behavior changes its relative origin */
-    left: calc((1404 - 1432) / 768 * 80vw); 
-    top: calc((473 - 466) / 1080 * 70vh); 
+    left: calc((1404 - 1432) / 1920 * 100vw); /* Keep same scaling */
+    top: calc((473 - 466) / 1080 * 100vh); 
   }
 
   #text2-p2 .figma-block-description-s2 {
-    width: calc(381 / 768 * 80vw);
+    width: calc(381 / 1920 * 100vw); /* Keep same scaling */
   }
 }
 
@@ -3182,23 +3184,22 @@ loading-indicator h3 {
    left: 0; /* Align with parent's left */
 }
 
-/* Responsive adjustments for #text2-p3 */
+/* Responsive adjustments for #text2-p3 - maintain consistent scaling */
 @media (max-width: 768px) {
   #text2-p3.figma-styled-text-s2 {
-    /* For smaller screens, center it like the others */
-    left: 50%; 
-    top: 50%; 
-    transform: translate(-50%, -50%);
-    width: calc(511 / 768 * 80vw); /* Adjust width */
+    /* Keep same scaling approach as section1 for consistency */
+    left: calc(77 / 1920 * 100vw); /* Maintain same scaling reference */
+    top: calc(700 / 1080 * 100vh);   
+    width: calc(511 / 1920 * 100vw); /* Maintain same scaling reference */
   }
 
   #text2-p3 .figma-block-marker-s2 {
-    left: calc((54 - 77) / 768 * 80vw); /* Scale relative position */
-    top: calc((811 - 806) / 1080 * 70vh); /* Scale top relative to parent */
+    left: calc((54 - 77) / 1920 * 100vw); /* Keep same scaling */
+    top: calc((811 - 806) / 1080 * 100vh); /* Keep same scaling */
   }
 
   #text2-p3 .figma-block-description-s2 {
-    width: 100%; /* Take full width of parent */
+    width: calc(381 / 1920 * 100vw); /* Keep same scaling */
   }
 }
 
@@ -3250,4 +3251,175 @@ loading-indicator h3 {
   .s1-i3    {left:52%;top:68%;width:42%;height:auto;border-radius:6vw}
   .s1-i4    {left:6%; top:68%;width:42%;height:auto;border-radius:6vw}
   .s1-i5    {display:none}
+}
+
+/* Responsive adjustments for s2 text block - maintain 1920/1080 reference for consistent scaling */
+@media (max-width: 768px) {
+  .figma-styled-text-s2 {
+    width: calc(551 / 1920 * 100vw); /* Keep same reference for consistent scaling */
+  }
+  .figma-block-marker-s2 {
+    left: calc((58 - 87) / 1920 * 100vw); /* Keep same reference */
+    width: calc(15 / 1920 * 100vw);
+    height: calc(44 / 1080 * 100vh); /* Keep same reference */
+  }
+  .figma-block-main-title-s2 {
+    font-size: calc(48 / 1920 * 100vw); /* Keep same reference for consistent scaling */
+    width: calc(511 / 1920 * 100vw);
+  }
+  .figma-block-description-s2 {
+    font-size: calc(24 / 1920 * 100vw);
+    width: calc(551 / 1920 * 100vw); /* Keep consistent with parent */
+  }
+}
+
+/* Specific positioning for the first Figma-styled text block in section2 */
+#text2-p1.figma-styled-text-s2 {
+  /* Position the first block following the same pattern as section1 */
+  left: calc(87 / 1920 * 100vw); /* Left of main title from Figma */
+  top: calc(535 / 1080 * 100vh);   /* Top of main title from Figma */
+  width: calc(551 / 1920 * 100vw); /* Width of the description block, which is the widest */
+  /* height will be auto based on content */
+}
+
+/* Specific positioning for the second Figma-styled text block in section2 */
+#text2-p2.figma-styled-text-s2 {
+  /* Override general .figma-styled-text-s2 width if needed, or set specific left/top for its unique position */
+  /* This block is on the right side, so we position it absolutely */
+  left: calc(1432 / 1920 * 100vw); /* Left of main title */
+  top: calc(466 / 1080 * 100vh);   /* Top of main title */
+  width: calc(511 / 1920 * 100vw); /* Width of the main title, description might be narrower or wider */
+  /* height will be auto based on content */
+}
+
+/* Proportional scaling for use case images (16:9 aspect ratio based on 1920x1080) */
+.s1-i1, .s1-i2, .s1-i3, .s1-i4, .s1-i5,
+.s2-i1, .s2-i2, .s2-i3, .s2-i4, .s2-i5 {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .s1-i1, .s1-i3, .s1-i4,
+  .s2-i1, .s2-i2, .s2-i3 {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
+
+/* Responsive Use Cases: proportional scaling based on 1920x1080 */
+.s1-i1 {
+  left: calc(234 / 1920 * 100vw);
+  top: calc(307 / 1080 * 100vh);
+  width: calc(410 / 1920 * 100vw);
+  height: calc(383 / 1080 * 100vh);
+  border-radius: calc(51 / 1920 * 100vw);
+}
+.s1-i2 {
+  left: calc(659 / 1920 * 100vw);
+  top: calc(404 / 1080 * 100vh);
+  width: calc(514 / 1920 * 100vw);
+  height: calc(271 / 1080 * 100vh);
+  border-radius: calc(42 / 1920 * 100vw);
+}
+.s1-i3 {
+  left: calc(1203 / 1920 * 100vw);
+  top: calc(349 / 1080 * 100vh);
+  width: calc(483 / 1920 * 100vw);
+  height: calc(279 / 1080 * 100vh);
+  border-radius: calc(45 / 1920 * 100vw);
+}
+.s1-i4 {
+  left: calc(1047 / 1920 * 100vw);
+  top: calc(723 / 1080 * 100vh);
+  width: calc(268 / 1920 * 100vw);
+  height: calc(209 / 1080 * 100vh);
+  border-radius: calc(55 / 1920 * 100vw);
+}
+.s1-i5 {
+  left: calc(590 / 1920 * 100vw);
+  top: calc(715 / 1080 * 100vh);
+  width: calc(298 / 1920 * 100vw);
+  height: calc(229 / 1080 * 100vh);
+  border-radius: calc(35 / 1920 * 100vw);
+}
+
+.s2-i1 {
+  left: calc(223 / 1920 * 100vw);
+  top: calc(297 / 1080 * 100vh);
+  width: calc(435 / 1920 * 100vw);
+  height: calc(580 / 1080 * 100vh);
+  border-radius: calc(69 / 1920 * 100vw);
+}
+.s2-i2 {
+  left: calc(708 / 1920 * 100vw);
+  top: calc(571 / 1080 * 100vh);
+  width: calc(444 / 1920 * 100vw);
+  height: calc(306 / 1080 * 100vh);
+  border-radius: calc(42 / 1920 * 100vw);
+}
+.s2-i3 {
+  left: calc(1225 / 1920 * 100vw);
+  top: calc(570 / 1080 * 100vh);
+  width: calc(459 / 1920 * 100vw);
+  height: calc(307 / 1080 * 100vh);
+  border-radius: calc(56 / 1920 * 100vw);
+}
+.s2-i4 {
+  left: calc(1077 / 1920 * 100vw);
+  top: calc(297 / 1080 * 100vh);
+  width: calc(620 / 1920 * 100vw);
+  height: calc(256 / 1080 * 100vh);
+  border-radius: calc(45 / 1920 * 100vw);
+}
+.s2-i5 {
+  left: calc(676 / 1920 * 100vw);
+  top: calc(297 / 1080 * 100vh);
+  width: calc(383 / 1920 * 100vw);
+  height: calc(259 / 1080 * 100vh);
+  border-radius: calc(55 / 1920 * 100vw);
+}
+
+/* Slide 2 proportional scaling overrides */
+.s2-m {
+  left: calc((341/1920)*100vw) !important;
+  top: calc((123/1080)*100vh) !important;
+  width: calc((15/1920)*100vw) !important;
+  height: calc((44/1080)*100vh) !important;
+}
+.s2-h {
+  left: calc((377/1920)*100vw) !important;
+  top: calc((123/1080)*100vh) !important;
+  width: calc((511/1920)*100vw) !important;
+  font-size: calc((48/1920)*100vw) !important;
+  line-height: 1.2 !important;
+}
+.s2-sub {
+  left: calc((367/1920)*100vw) !important;
+  top: calc((200/1080)*100vh) !important;
+  width: calc((593/1920)*100vw) !important;
+  font-size: calc((24/1920)*100vw) !important;
+  line-height: 1.25 !important;
+}
+
+/* Slide 1 proportional scaling overrides */
+.s1-m {
+  left: calc((401/1920)*100vw) !important;
+  top: calc((110/1080)*100vh) !important;
+  width: calc((15/1920)*100vw) !important;
+  height: calc((44/1080)*100vh) !important;
+}
+.s1-h {
+  left: calc((434/1920)*100vw) !important;
+  top: calc((104/1080)*100vh) !important;
+  width: calc((511/1920)*100vw) !important;
+  font-size: calc((48/1920)*100vw) !important;
+  line-height: 1.2 !important;
+}
+.s1-sub {
+  left: calc((434/1920)*100vw) !important;
+  top: calc((172/1080)*100vh) !important;
+  width: calc((593/1920)*100vw) !important;
+  font-size: calc((24/1920)*100vw) !important;
+  line-height: 1.25 !important;
 }
