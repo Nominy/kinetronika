@@ -3156,7 +3156,7 @@ loading-indicator h3 {
 #text2-p3.figma-styled-text-s2 {
   /* This block is on the left side, similar to the first, but at a different vertical position */
   left: calc(77 / 1920 * 100vw); /* Left of main title */
-  top: calc(806 / 1080 * 100vh);   /* Top of main title */
+  top: calc(700 / 1080 * 100vh);   /* Top of main title */
   width: calc(511 / 1920 * 100vw); /* Width of the main title */
   /* height will be auto based on content */
 }

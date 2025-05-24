@@ -428,12 +428,7 @@ function initAnimations() {
     ease: "power2.out"
   }, segmentDuration2 + pauseDuration2 + 0.1); 
   
-  tl2.to("#section2 .text-content p:nth-child(3)", { 
-    opacity: 0, 
-    y: 30, // Exit downward
-    duration: fadeOutTime,
-    ease: "power1.in"
-  }, tl2.totalDuration() - fadeOutTime - 0.1); // Ends 0.1s before tl2 total duration
+
   
   // tl2.totalDuration(segmentDuration2 * 2 + pauseDuration2); // Ensure total duration is correct (already set)
 
