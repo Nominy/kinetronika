@@ -153,17 +153,14 @@ scroll-section {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  flex: 2 1 0;
-  min-width: 0;
 }
 #section2 > .frame-container img {
   position: absolute;
   height: 100%;
-  width: auto;
+  width: 100vw;
   max-width: none;
   object-fit: cover;
-  left: 0;
-  transform: translateX(0);
+  transform: translateX(-50%);
 }
 
 .section-content {
