@@ -43,6 +43,54 @@
                 overflow-x: hidden;
             }
 
+            body.is-loading {
+                overflow: hidden !important;
+            }
+
+            #page-loader {
+                position: fixed;
+                inset: 0;
+                z-index: 100000;
+                background: #0b0b0b;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: opacity 0.35s ease;
+            }
+
+            #page-loader.is-hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .page-loader-content {
+                width: min(420px, 80vw);
+            }
+
+            .page-loader-value {
+                color: #fff;
+                font-family: Inter;
+                font-size: 18px;
+                font-weight: 600;
+                text-align: right;
+                margin-bottom: 12px;
+            }
+
+            .page-loader-track {
+                width: 100%;
+                height: 10px;
+                background: rgba(255, 255, 255, 0.16);
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .page-loader-bar {
+                width: 0%;
+                height: 100%;
+                background: #24ba70;
+                transition: width 0.2s ease;
+            }
+
             .slides {
                 width: 100%;
             }
@@ -561,6 +609,14 @@
         </style>
     </head>
     <body>
+        <div id="page-loader" aria-live="polite" aria-label="Loading assets">
+            <div class="page-loader-content">
+                <div class="page-loader-value" id="page-loader-value">0%</div>
+                <div class="page-loader-track">
+                    <div class="page-loader-bar" id="page-loader-bar"></div>
+                </div>
+            </div>
+        </div>
         <main class="slides">
             <section class="slide-frame">
                 <div class="slide slide-1">
@@ -580,7 +636,7 @@
                     <video
                         class="hero-image"
                         id="slide1-video"
-                        src="pages_v3/assets/1_1.webm"
+                        src="assets/1_1.webm"
                         autoplay
                         muted
                         loop
@@ -609,7 +665,7 @@
                             top: 0px;
                             position: absolute;
                         "
-                        src="pages_v3/assets/1_1.png"
+                        src="assets/1_1.png"
                         alt=""
                     />
                     <div
@@ -689,7 +745,7 @@
                             top: 0px;
                             position: absolute;
                         "
-                        src="pages_v3/assets/2_1.png"
+                        src="assets/2_1.png"
                         alt=""
                     />
                     <div
@@ -791,7 +847,7 @@
                             top: 0px;
                             position: absolute;
                         "
-                        src="pages_v3/assets/3_1.png"
+                        src="assets/3_1.png"
                         alt=""
                     />
                     <div
@@ -872,7 +928,7 @@
                             top: 112px;
                             position: absolute;
                         "
-                        src="pages_v3/assets/4_1.png"
+                        src="assets/4_1.png"
                         alt=""
                     />
                     <div
@@ -958,7 +1014,7 @@
                             top: 534px;
                             position: absolute;
                         "
-                        src="pages_v3/assets/5_1.png"
+                        src="assets/5_1.png"
                         alt=""
                     />
                     <div
@@ -1122,7 +1178,7 @@
                             top: 500px;
                             position: absolute;
                         "
-                        src="pages_v3/assets/5_2.png"
+                        src="assets/5_2.png"
                         alt=""
                     />
                     <img
@@ -1133,7 +1189,7 @@
                             top: 573px;
                             position: absolute;
                         "
-                        src="pages_v3/assets/5_3.png"
+                        src="assets/5_3.png"
                         alt=""
                     />
                             </div>
@@ -1211,7 +1267,7 @@
                                         top: 0px;
                                         position: absolute;
                                     "
-                                    src="pages_v3/assets/5_2_1.png"
+                                    src="assets/5_2_1.png"
                                     alt="Optimised continuous fiber layout"
                                 />
                             </div>
@@ -1317,7 +1373,7 @@
                                         border-radius: 51px;
                                         border: 1px black solid;
                                     "
-                                    src="pages_v3/assets/5_3_1.png"
+                                    src="assets/5_3_1.png"
                                     alt="Classic 3-axis printing"
                                 />
                                 <div
@@ -1340,7 +1396,7 @@
                                         border-radius: 62px;
                                         border: 1px black solid;
                                     "
-                                    src="pages_v3/assets/5_3_2.png"
+                                    src="assets/5_3_2.png"
                                     alt="5 axis non-planary manufacturing"
                                 />
                                 <div
@@ -1363,7 +1419,7 @@
                                         top: 409px;
                                         position: absolute;
                                     "
-                                    src="pages_v3/assets/5_4_1.png"
+                                    src="assets/5_4_1.png"
                                     alt="Classic 3-axis printing geometry"
                                 />
                                 <img
@@ -1374,7 +1430,7 @@
                                         top: 400px;
                                         position: absolute;
                                     "
-                                    src="pages_v3/assets/5_4_2.png"
+                                    src="assets/5_4_2.png"
                                     alt="5 axis non-planary manufacturing geometry"
                                 />
                                 <div
@@ -1626,7 +1682,7 @@
                                 top: 276px;
                                 position: absolute;
                             "
-                            src="pages_v3/assets/8_1.png"
+                            src="assets/8_1.png"
                             alt="Autocomposite printhead"
                         />
                     </div>
@@ -1693,7 +1749,7 @@
                                 top: 0px;
                                 position: absolute;
                             "
-                            src="pages_v3/assets/6_1.webm"
+                            src="assets/6_1.webm"
                             autoplay
                             muted
                             loop
@@ -1766,7 +1822,7 @@
                                 top: 236px;
                                 position: absolute;
                             "
-                            src="pages_v3/assets/7_1.png"
+                            src="assets/7_1.png"
                             alt=""
                         />
                         <div
@@ -1834,7 +1890,7 @@
                                 top: 0px;
                                 position: absolute;
                             "
-                            src="pages_v3/assets/9_1.png"
+                            src="assets/9_1.png"
                             alt=""
                         />
                         <div
@@ -1930,6 +1986,147 @@
             window.ANIMATIONS_SECTION2_END_PAUSE_DURATION = 1.6;
             window.ANIMATIONS_SECTION2_SCROLL_SPAN = 280;
         </script>
+        <script>
+            (function () {
+                const loaderEl = document.getElementById("page-loader");
+                const valueEl = document.getElementById("page-loader-value");
+                const barEl = document.getElementById("page-loader-bar");
+                document.body.classList.add("is-loading");
+
+                function setProgress(done, total) {
+                    const pct = Math.max(
+                        0,
+                        Math.min(100, Math.round((done / total) * 100)),
+                    );
+                    if (valueEl) {
+                        valueEl.textContent = `${pct}%`;
+                    }
+                    if (barEl) {
+                        barEl.style.width = `${pct}%`;
+                    }
+                }
+
+                function toAbsoluteUrl(src) {
+                    try {
+                        return new URL(src, window.location.href).href;
+                    } catch {
+                        return null;
+                    }
+                }
+
+                function createFramePaths(basePath, count) {
+                    const paths = [];
+                    for (let i = 1; i <= count; i += 1) {
+                        paths.push(`${basePath}${String(i).padStart(4, "0")}.jpg`);
+                    }
+                    return paths;
+                }
+
+                function loadAsset(url) {
+                    return new Promise((resolve) => {
+                        if (!url) {
+                            resolve();
+                            return;
+                        }
+
+                        if (/\.(mp4|webm|ogg)(\?|#|$)/i.test(url)) {
+                            fetch(url, { cache: "force-cache" })
+                                .then(() => resolve())
+                                .catch(() => resolve());
+                            return;
+                        }
+
+                        const img = new Image();
+                        img.decoding = "async";
+                        img.onload = () => resolve();
+                        img.onerror = () => resolve();
+                        img.src = url;
+                    });
+                }
+
+                const urls = new Set();
+                const mediaNodes = document.querySelectorAll(
+                    "img[src], video[src], source[src]",
+                );
+                mediaNodes.forEach((node) => {
+                    const src = node.getAttribute("src");
+                    if (!src || src.startsWith("data:")) {
+                        return;
+                    }
+                    const absolute = toAbsoluteUrl(src);
+                    if (absolute) {
+                        urls.add(absolute);
+                    }
+                });
+
+                const animationsBasePath = window.ANIMATIONS_BASE_PATH || "";
+                createFramePaths(`${animationsBasePath}video1/`, 240).forEach(
+                    (path) => {
+                        const absolute = toAbsoluteUrl(path);
+                        if (absolute) {
+                            urls.add(absolute);
+                        }
+                    },
+                );
+                createFramePaths(`${animationsBasePath}video2/`, 180).forEach(
+                    (path) => {
+                        const absolute = toAbsoluteUrl(path);
+                        if (absolute) {
+                            urls.add(absolute);
+                        }
+                    },
+                );
+
+                const targets = Array.from(urls);
+                const hasFonts = !!(document.fonts && document.fonts.ready);
+                const total = Math.max(1, targets.length + (hasFonts ? 1 : 0));
+                let done = 0;
+                let index = 0;
+                const concurrency = Math.max(8, Math.min(24, navigator.hardwareConcurrency || 12));
+
+                function markDone() {
+                    done += 1;
+                    setProgress(done, total);
+                }
+
+                async function worker() {
+                    while (index < targets.length) {
+                        const currentIndex = index;
+                        index += 1;
+                        await loadAsset(targets[currentIndex]);
+                        markDone();
+                    }
+                }
+
+                const workers = [];
+                const workerCount = Math.min(concurrency, Math.max(1, targets.length));
+                for (let i = 0; i < workerCount; i += 1) {
+                    workers.push(worker());
+                }
+
+                const fontsPromise = hasFonts
+                    ? document.fonts.ready
+                          .then(() => markDone())
+                          .catch(() => markDone())
+                    : Promise.resolve();
+
+                setProgress(0, total);
+                window.ASSETS_READY_PROMISE = Promise.all([
+                    Promise.all(workers),
+                    fontsPromise,
+                ])
+                    .catch(() => {})
+                    .then(() => {
+                        window.ASSETS_PRELOADED_FULL = true;
+                        setProgress(total, total);
+                        if (loaderEl) {
+                            loaderEl.classList.add("is-hidden");
+                            window.setTimeout(() => loaderEl.remove(), 380);
+                        }
+                        document.body.classList.remove("is-loading");
+                    });
+            })();
+        </script>
         <script src="animations.js"></script>
         <script>
             (function () {
@@ -2014,4 +2211,5 @@
         </script>
     </body>
 </html>
+
 

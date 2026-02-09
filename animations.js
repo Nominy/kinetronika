@@ -493,25 +493,37 @@ function initAnimations() {
 
 // Start the animation process when document is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  const loader = new FrameLoader();
+  const startAnimations = () => {
+    const loader = new FrameLoader();
 
-  // In pages like new_pages/index.html we don't want a long, blocking preload.
-  // Initialize immediately and lazy-load frames as needed.
-  if (window.ANIMATIONS_DISABLE_SCROLL_LOCK) {
-    if (!window.animationsInitialized) {
-      initAnimations();
-      window.animationsInitialized = true;
+    // In pages like new_pages/index.html we don't want a long, blocking preload.
+    // Initialize immediately and lazy-load frames as needed.
+    if (window.ANIMATIONS_DISABLE_SCROLL_LOCK) {
+      if (!window.animationsInitialized) {
+        initAnimations();
+        window.animationsInitialized = true;
+      }
+
+      if (loader.loadingIndicator) {
+        loader.loadingIndicator.hide();
+      }
+
+      if (!window.ASSETS_PRELOADED_FULL) {
+        loader.preloadBackgroundAnimation(`${ANIMATIONS_BASE_PATH}video1/`, 240);
+      }
+      return;
     }
 
-    if (loader.loadingIndicator) {
-      loader.loadingIndicator.hide();
-    }
+    loader.preloadFirstAnimation(`${ANIMATIONS_BASE_PATH}video1/`, 240);
+  };
 
-    loader.preloadBackgroundAnimation(`${ANIMATIONS_BASE_PATH}video1/`, 240);
+  const assetsReadyPromise = window.ASSETS_READY_PROMISE;
+  if (assetsReadyPromise && typeof assetsReadyPromise.then === 'function') {
+    assetsReadyPromise.finally(startAnimations);
     return;
   }
 
-  loader.preloadFirstAnimation(`${ANIMATIONS_BASE_PATH}video1/`, 240);
+  startAnimations();
 }); 
 
 // Use Cases Slider Logic

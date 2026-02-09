@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll-Controlled Animations with Optimized Loading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Loading indicator as web component -->
+  <loading-indicator></loading-indicator>
+
+  <!-- Header as web component -->
+  <site-header></site-header>
+
+  <div id="top"></div>
+
+  <!-- Section 1 with animation -->
+  <section id="section1" class="scroll-section">
+    <div class="frame-container frame-container-upper"><img id="frame1" src="video1/0001.jpg" alt=""></div>
+    <div class="section-content">
+      <div class="text-content" id="text1">
+        <p id="text1-p1" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">NONPLANAR-1</span>
+          <span class="figma-block-sub-title">To push<br>printing<br>further.</span>
+          <span class="figma-block-description">First industry-ready 5 axis nonplanary 3D printer.</span>
+        </p>
+
+        <p id="text1-p2" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">CHANGE THE WAY<br>YOU CREATE</span>
+          <span class="figma-block-description">
+            Make industrial-grade prints stronger, faster and more
+            efficient in the comparison with classical 3-axis FDM machines.
+            <br><br>
+            Able to print refractory polymers (PEEK, ULTEM).
+          </span>
+        </p>
+        <p id="text1-p3" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">BUILT FOR<br>MORE</span>
+          <span class="figma-block-description">
+            Workspace: ⌀300x700 mm<br>in multi-axis mode
+            <br><br>
+            For your big concepts.
+          </span>
+        </p>
+        <p id="text1-p4" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">ROBUSTNESS<br>MATTERS</span>
+          <span class="figma-block-description">
+            Custom 5-axis<br>
+            kinematic scheme<br>
+            along with precision<br>
+            linear and rotational<br>
+            drives.
+          </span>
+        </p>
+        <p id="text1-p5" class="figma-styled-text">
+          <span class="figma-block-marker"></span>
+          <span class="figma-block-main-title">NO COMPROMISES</span>
+          <span class="figma-block-description">
+            &bull; Nozzle temperature - up to 500°<br>
+            &bull; Buildplate temperature - up to 150°<br>
+            &bull; Active chamber temperature - up to<br>150°<br>
+            &bull; Water component cooling,<br>compressed air printed model cooling.<br>
+            &bull; Full-auto buildplate leveling and<br>temperture expansion compensation.<br>
+            &bull; Active ringing compensation.<br>
+            &bull; Active heated material box.
+          </span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="title-banner-section">
+    <div class="content-wrapper">
+      <h2 class="banner-title"><span class="banner-marker"></span>Why nonplanary?</h2>
+    </div>
+  </section>
+
+  <section id="nonplanary-strength" class="static-content-section">
+    <div class="content-wrapper figma-nonplanary-strength">
+      <div class="figma-section-number">01</div>
+      <h2 class="figma-title"><span class="figma-marker-shape"></span>MORE STRENGTH</h2>
+      <p class="figma-description">The strongest direction of the printed part is parallel printed layers. With
+        nonplanary layers can be printed in multiple directions in one printing sequence.</p>
+      <div class="manufacturing-comparison figma-comparison">
+        <div class="comparison-item figma-comparison-item">
+          <img src="images/ClassicFDMmanufacturing.png" alt="Classic FDM manufacturing" loading="lazy"
+            class="figma-image">
+          <div class="figma-caption-wrapper">
+            <p class="figma-caption">Classic FDM manufacturing</p>
+          </div>
+        </div>
+        <div class="comparison-item figma-comparison-item">
+          <img src="images/5 axis_non-planary_manufacturing.png" alt="5 axis non-planary manufacturing" loading="lazy"
+            class="figma-image">
+          <div class="figma-caption-wrapper">
+            <p class="figma-caption">5 axis non-planary manufacturing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="strength-showcase" class="static-content-section figma-strength-showcase">
+    <div class="content-wrapper figma-strength-showcase-content">
+      <div class="figma-strength-marker"></div>
+      <div class="figma-strength-title">STRENGTH</div>
+      <div class="figma-strength-description">Comparison of printed models.</div>
+      <img class="figma-strength-img1" src="images/ClassicFDMmanufacturing2.png"
+        alt="Classic FDM manufacturing - Green Background Example" />
+      <div class="figma-strength-caption1">Classic FDM manufacturing</div>
+      <img class="figma-strength-img2" src="images/5 axis_non-planary_manufacturing2.png"
+        alt="5 axis non-planary manufacturing - Green Background Example" />
+      <div class="figma-strength-caption2">5 axis non-planary manufacturing</div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="strength-showcase-2" class="static-content-section figma-strength-direction-planning">
+    <div class="content-wrapper figma-strength-direction-planning-content">
+      <div class="figma-sdp-marker"></div>
+      <div class="figma-sdp-title">STRENGTH - DIRECTION PLANNING</div>
+      <img class="figma-sdp-img1" src="images/turntable.png" alt="Turntable and rotating printhead" />
+      <div class="figma-sdp-caption1">Turntable and rotating printhead allows to build layers from any point in any time
+        of printing process.</div>
+      <img class="figma-sdp-img2" src="images/printhead.png" alt="Printhead building reinforcement layers" />
+      <div class="figma-sdp-caption2">Printhead builds reinforcement layers that are perpendicular to the main core
+        layers.</div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="geometry-showcase" class="static-content-section">
+    <div class="content-wrapper figma-geometry-outer">
+      <div class="figma-geometry-inner">
+        <div class="figma-section-number">02</div>
+        <h3 class="figma-title"><span class="figma-marker-shape"></span>BETTER GEOMETRY</h3>
+        <p class="figma-description">Features and shapes have the best geometry when printed vertically. <br />With
+          nonplanary, all the features can be printed in their individual direction.</p>
+        <img class="figma-img2" src="images/5 axis_non-planary_manufacturing3.png"
+          alt="5 axis non-planary manufacturing - Geometry Example" loading="lazy" />
+        <p class="figma-caption1">Classic FDM manufacturing</p>
+        <p class="figma-caption2">5 axis non-planary manufacturing</p>
+      </div>
+      <img class="figma-img1" src="images/ClassicFDMmanufacturing3.png"
+        alt="Classic FDM manufacturing - Geometry Example" loading="lazy" />
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="geometry-showcase-2" class="static-content-section">
+    <div class="content-wrapper figma-gsc2-content">
+      <div class="figma-marker-shape"></div>
+      <h3 class="figma-title">GEOMETRY</h3>
+      <p class="figma-description">Comparison of printed models.</p>
+      <img class="figma-img1" src="images/ClassicFDMmanufacturing5.png"
+        alt="Classic FDM manufacturing - Geometry Example 2" loading="lazy">
+      <p class="figma-caption1">Classic FDM manufacturing</p>
+      <img class="figma-img2" src="images/5 axis_non-planary_manufacturing5.png"
+        alt="5 axis non-planary manufacturing - Geometry Example 2" loading="lazy">
+      <p class="figma-caption2">5 axis non-planary manufacturing</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="time-material-optimization" class="static-content-section">
+    <div class="content-wrapper figma-tmo-outer">
+      <div class="figma-tmo-inner">
+        <div class="figma-section-number">03</div>
+        <div class="figma-marker-shape"></div>
+        <h3 class="figma-title">TIME AND MATERIAL<br>OPTIMIZATION</h3>
+        <p class="figma-description">No need to waste time and material on support structures - print without them.</p>
+        <img class="figma-img2" src="images/5 axis_non-planary_manufacturing6.png"
+          alt="5 axis non-planary manufacturing - No Support Structures" loading="lazy">
+        <p class="figma-caption1">Classic FDM manufacturing</p>
+        <p class="figma-caption2">5 axis non-planary manufacturing</p>
+      </div>
+      <img class="figma-img1" src="images/ClassicFDMmanufacturing6.png"
+        alt="Classic FDM manufacturing - Support Structures" loading="lazy">
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="time-material-optimization-2" class="static-content-section">
+    <div class="content-wrapper figma-tmo2-outer">
+      <div class="figma-tmo2-inner">
+        <div class="figma-marker-shape"></div>
+        <h3 class="figma-title">TIME AND MATERIAL</h3>
+        <p class="figma-description">Comparison of printed models.</p>
+        <img class="figma-img2" src="images/5 axis_non-planary_manufacturing7.png"
+          alt="5 axis non-planary manufacturing - Material Usage Example" loading="lazy">
+        <p class="figma-caption1-maintext">Classic FDM manufacturing</p>
+        <p class="figma-caption1-details">14.5g of material used<br>48 minutes</p>
+        <p class="figma-caption2-maintext">5 axis non-planary manufacturing</p>
+        <p class="figma-caption2-details">7g of material used<br>34 minutes</p>
+      </div>
+      <img class="figma-img1" src="images/ClassicFDMmanufacturing7.png"
+        alt="Classic FDM manufacturing - Material Usage Example" loading="lazy">
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="surface-quality-showcase" class="static-content-section">
+    <div class="content-wrapper figma-sqs-content">
+      <div class="figma-section-number">04</div>
+      <div class="figma-marker-shape"></div>
+      <h3 class="figma-title">BETTER SURFACE QUALITY</h3>
+      <p class="figma-description">The best layer is the top layer. With nonplanary, any surface of the model can be
+        smooth.</p>
+      <img class="figma-img1" src="images/ClassicFDMmanufacturing8.png"
+        alt="Classic FDM manufacturing - Surface Quality" loading="lazy">
+      <p class="figma-caption1">Classic FDM manufacturing</p>
+      <img class="figma-img2" src="images/5 axis_non-planary_manufacturing8.png"
+        alt="5 axis non-planary manufacturing - Surface Quality" loading="lazy">
+      <p class="figma-caption2">5 axis non-planary manufacturing</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="nonplanar-printing-sequence" class="static-content-section">
+    <div class="content-wrapper">
+      <div class="video-layout-container">
+        <div class="video-text-content">
+          <div class="figma-video-layout">
+            <div class="figma-video-marker"></div>
+            <div class="figma-video-title">GEOMETRY CORE<br>MANUFACTURING</div>
+            <div class="figma-video-description">Machine builds main part geometry<br>consisting of mainly planar
+              layers.</div>
+          </div>
+        </div>
+        <div class="video-media-content">
+          <div class="video-aspect-ratio-wrapper">
+            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
+              <source src="short_video/VID1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="nonplanar-printing-sequence-2" class="static-content-section">
+    <div class="content-wrapper">
+      <div class="video-layout-container">
+        <div class="video-text-content">
+          <div class="figma-video-layout">
+            <div class="figma-video-marker"></div>
+            <div class="figma-video-title">GEOMETRY CORE<br>REINFORCEMENT</div>
+            <div class="figma-video-description">Machine adds continuous external nonplanar<br>layers to core surfaces
+              to achieve strength and<br>final main geometry.</div>
+          </div>
+        </div>
+        <div class="video-media-content">
+          <div class="video-aspect-ratio-wrapper">
+            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
+              <source src="short_video/VID2.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="nonplanar-printing-sequence-3" class="static-content-section">
+    <div class="content-wrapper">
+      <div class="video-layout-container">
+        <div class="video-text-content">
+          <div class="figma-video-layout">
+            <div class="figma-video-marker"></div>
+            <div class="figma-video-title">PRINTING FEATURES</div>
+            <div class="figma-video-description">Machine prints geometrical features in optimal<br>directions.</div>
+          </div>
+        </div>
+        <div class="video-media-content">
+          <div class="video-aspect-ratio-wrapper">
+            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
+              <source src="short_video/VID3.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="nonplanar-printing-sequence-4" class="static-content-section">
+    <div class="content-wrapper">
+      <div class="video-layout-container">
+        <div class="video-text-content">
+          <div class="figma-video-layout">
+            <div class="figma-video-marker"></div>
+            <div class="figma-video-title">FEATURES<br>REINFORCEMENT</div>
+            <div class="figma-video-description">Machine adds reinforcing material to features<br>geometry.</div>
+          </div>
+        </div>
+        <div class="video-media-content">
+          <div class="video-aspect-ratio-wrapper">
+            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
+              <source src="short_video/VID4.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="nonplanar-printing-sequence-5" class="static-content-section">
+    <div class="content-wrapper">
+      <div class="video-layout-container">
+        <div class="video-text-content">
+          <div class="figma-video-layout">
+            <div class="figma-video-marker"></div>
+            <div class="figma-video-title">SURFACE SMOOTHING</div>
+            <div class="figma-video-description">Machine makes smooth "top" planar or nonplanar layers on required<br>
+              surfaces.</div>
+          </div>
+        </div>
+        <div class="video-media-content">
+          <div class="video-aspect-ratio-wrapper">
+            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
+              <source src="short_video/VID5.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="use-cases-section" class="static-content-section">
+    <div class="use-case-arrow" id="use-case-prev">&lt;</div>
+    <div class="use-case-arrow" id="use-case-next">&gt;</div>
+    <div class="content-wrapper">
+      <div class="use-cases-slider-container">
+        <div class="use-cases-slides-wrapper">
+          <!-- Slide 1: Adapted to Figma Design -->
+          <!-- slide-1 -->
+          <div class="use-case-slide" id="use-case-slide-1">
+            <div class="s1">
+              <span class="s1-m"></span>
+              <h2 class="s1-h">READY FOR INDUSTRY</h2>
+              <p class="s1-sub">Create parts for robotics, aerospace, automotive and other applications –</p>
+
+              <img class="s1-i1" src="images/usecase1_1.png" alt="">
+              <img class="s1-i2" src="images/usecase1_3.png" alt="">
+              <img class="s1-i3" src="images/usecase1_5.png" alt="">
+              <img class="s1-i4" src="images/usecase1_4.png" alt="">
+              <img class="s1-i5" src="images/usecase1_2.png" alt="">
+            </div>
+          </div>
+
+          <!-- Slide 2: Adapted to Figma Design -->
+          <div class="use-case-slide" id="use-case-slide-2">
+            <div class="s2">
+              <span class="s2-m"></span>
+              <h2 class="s2-h">READY FOR INDUSTRY</h2>
+              <p class="s2-sub">– like we already do in Kinetronika.</p>
+
+              <img class="s2-i1" src="images/usecase2_1.png" alt="">
+              <img class="s2-i2" src="images/usecase2_2.png" alt="">
+              <img class="s2-i3" src="images/usecase2_3.png" alt="">
+              <img class="s2-i4" src="images/usecase2_4.png" alt="">
+              <img class="s2-i5" src="images/usecase2_5.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <section id="section2" class="scroll-section">
+    <div class="frame-container"><img id="frame2" src="video2/0001.jpg" alt=""></div>
+    <div class="section-content">
+      <div class="text-content" id="text2">
+        <p id="text2-p1" class="figma-styled-text-s2">
+          <span class="figma-block-marker-s2"></span>
+          <span class="figma-block-main-title-s2">TRIPLE Z</span>
+          <span class="figma-block-description-s2"><br /><br />Fast Z translation and full-auto buildplate
+            calibration.</span>
+        </p>
+        <p id="text2-p2" class="figma-styled-text-s2">
+          <span class="figma-block-marker-s2"></span>
+          <span class="figma-block-main-title-s2">HARMONIC<br />DRIVES</span>
+          <span class="figma-block-description-s2"><br /><br />Preciese movements of large prints with almost zero
+            backlash</span>
+        </p>
+        <p id="text2-p3" class="figma-styled-text-s2">
+          <span class="figma-block-marker-s2"></span>
+          <span class="figma-block-main-title-s2">RIGID COREXY</span>
+          <span class="figma-block-description-s2"><br /><br />Tailored for multi-axis</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- External scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+  </script>
+  <script src="components.js"></script>
+  <script src="animations.js"></script>
+</body>
+
+</html>
