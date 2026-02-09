@@ -48,23 +48,22 @@
             }
 
             .slide-frame {
-                width: calc(1920px * var(--scale));
-                height: calc(1080px * var(--scale));
+                width: 100vw;
+                height: 100vh;
                 position: relative;
                 overflow: hidden;
-                margin-left: auto;
-                margin-right: auto;
+                margin: 0;
             }
 
             .slide {
                 width: 1920px;
                 height: 1080px;
                 position: absolute;
-                top: 0;
-                left: 0;
+                top: 50%;
+                left: 50%;
                 overflow: hidden;
-                transform: scale(var(--scale));
-                transform-origin: top left;
+                transform: translate(-50%, -50%) scale(var(--scale));
+                transform-origin: center center;
             }
 
             .slide-1 {
@@ -95,8 +94,95 @@
                 background: #f2f2f2;
             }
 
+            .slide-8 {
+                background: #333333;
+            }
+
+            .slide-9 {
+                background: #ffffff;
+            }
+
             .slide-1b {
                 background: #0b0b0b;
+            }
+
+            .workflow-carousel {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+                background: #fff;
+            }
+
+            .workflow-track {
+                display: flex;
+                width: 7680px;
+                height: 1080px;
+                transform: translateX(0);
+                transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+                will-change: transform;
+            }
+
+            .workflow-panel {
+                position: relative;
+                width: 1920px;
+                height: 1080px;
+                flex: 0 0 1920px;
+                overflow: hidden;
+                background: #fff;
+            }
+
+            .workflow-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 62px;
+                height: 62px;
+                border: none;
+                border-radius: 999px;
+                background: rgba(20, 20, 20, 0.68);
+                color: transparent;
+                font-size: 0;
+                padding: 0;
+                cursor: pointer;
+                z-index: 20;
+                transition: opacity 0.2s ease;
+            }
+
+            .workflow-arrow::before {
+                content: "";
+                display: block;
+                width: 16px;
+                height: 16px;
+                border-top: 4px solid #fff;
+                border-right: 4px solid #fff;
+            }
+
+            .workflow-arrow:hover {
+                opacity: 0.92;
+            }
+
+            .workflow-arrow:disabled {
+                opacity: 0.3;
+                cursor: default;
+            }
+
+            .workflow-arrow-prev {
+                left: 28px;
+            }
+
+            .workflow-arrow-prev::before {
+                transform: rotate(-135deg);
+            }
+
+            .workflow-arrow-next {
+                right: 28px;
+            }
+
+            .workflow-arrow-next::before {
+                transform: rotate(45deg);
             }
 
             .slide-1 .hero-marker {
@@ -173,8 +259,8 @@
             }
 
             .anim-stage-frame {
-                width: calc(1920px * var(--scale));
-                height: calc(1080px * var(--scale));
+                width: 100vw;
+                height: 100vh;
                 position: relative;
                 overflow: hidden;
             }
@@ -182,13 +268,20 @@
             .anim-stage {
                 width: 1920px;
                 height: 1080px;
-                position: relative;
-                overflow: hidden;
-                transform: scale(var(--scale));
-                transform-origin: top left;
                 position: absolute;
-                top: 0;
-                left: 0;
+                top: 50%;
+                left: 50%;
+                overflow: hidden;
+                transform: translate(-50%, -50%) scale(var(--scale));
+                transform-origin: center center;
+            }
+
+            #section1 .anim-stage {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                transform: none;
             }
 
             #section1 .frame-container {
@@ -199,16 +292,20 @@
 
             #section1 .frame-container img {
                 position: absolute;
-                inset: 0;
-                width: 1920px;
-                height: 1080px;
+                top: 0;
+                left: 30%;
+                width: auto;
+                height: 100%;
+                max-width: none;
                 object-fit: cover;
+                transform: translateX(0);
             }
 
             #section1 .text-content {
                 position: absolute;
                 inset: 0;
                 pointer-events: none;
+                overflow: visible;
             }
 
             #section1 .text-content p {
@@ -218,34 +315,33 @@
             }
 
             #text1-p1.figma-styled-text {
-                left: 163px;
-                top: 330px;
-                width: 451px;
-                height: 417px;
+                left: calc(163 / 1920 * 100vw);
+                top: calc(330 / 1080 * 100vh);
+                width: calc(451 / 1920 * 100vw);
             }
 
             #text1-p2.figma-styled-text {
-                left: 174px;
-                top: 289px;
-                width: 600px;
+                left: calc(174 / 1920 * 100vw);
+                top: calc(289 / 1080 * 100vh);
+                width: calc(600 / 1920 * 100vw);
             }
 
             #text1-p3.figma-styled-text {
-                left: 189px;
-                top: 357px;
-                width: 446px;
+                left: calc(189 / 1920 * 100vw);
+                top: calc(357 / 1080 * 100vh);
+                width: calc(446 / 1920 * 100vw);
             }
 
             #text1-p4.figma-styled-text {
-                left: 102px;
-                top: 351px;
-                width: 407px;
+                left: calc(102 / 1920 * 100vw);
+                top: calc(351 / 1080 * 100vh);
+                width: calc(407 / 1920 * 100vw);
             }
 
             #text1-p5.figma-styled-text {
-                left: 164px;
-                top: 329px;
-                width: 600px;
+                left: calc(164 / 1920 * 100vw);
+                top: calc(329 / 1080 * 100vh);
+                width: calc(600 / 1920 * 100vw);
             }
 
             #section1 .figma-styled-text {
@@ -255,10 +351,10 @@
 
             #section1 .figma-block-marker {
                 position: absolute;
-                left: -40px;
-                top: 9px;
-                width: 18px;
-                height: 54px;
+                left: calc(-40 / 1920 * 100vw);
+                top: calc(9 / 1080 * 100vh);
+                width: calc(18 / 1920 * 100vw);
+                height: calc(54 / 1080 * 100vh);
                 background: #24ba70;
             }
 
@@ -267,7 +363,7 @@
                 color: white;
                 font-family: Inter;
                 font-weight: 700;
-                font-size: 60px;
+                font-size: calc(60 / 1920 * 100vw);
                 line-height: normal;
                 word-wrap: break-word;
             }
@@ -277,14 +373,14 @@
                 color: white;
                 font-family: Inter;
                 font-weight: 700;
-                font-size: 48px;
+                font-size: calc(48 / 1920 * 100vw);
                 line-height: 1.2;
                 word-wrap: break-word;
             }
 
             #section1 #text1-p1 .figma-block-sub-title {
                 position: absolute;
-                top: 214px;
+                top: calc(214 / 1080 * 100vh);
                 left: 0;
                 width: 100%;
             }
@@ -292,109 +388,176 @@
             #section1 .figma-block-description {
                 position: absolute;
                 display: block;
-                top: 80px;
-                left: 4px;
-                width: 324px;
+                top: calc(80 / 1080 * 100vh);
+                left: calc(4 / 1920 * 100vw);
+                width: calc(324 / 1920 * 100vw);
                 color: white;
                 font-family: Inter;
                 font-weight: 600;
-                font-size: 24px;
-                line-height: 29.2px;
+                font-size: calc(24 / 1920 * 100vw);
+                line-height: calc(29.2 / 24);
                 word-wrap: break-word;
             }
 
             #section1 #text1-p2 .figma-block-description {
-                top: 210px;
+                top: calc(210 / 1080 * 100vh);
                 left: 0;
-                width: 488px;
+                width: calc(488 / 1920 * 100vw);
             }
 
             #section1 #text1-p3 .figma-block-description {
-                top: 177px;
+                top: calc(177 / 1080 * 100vh);
                 left: 0;
-                width: 330px;
-                line-height: 30.16px;
+                width: calc(330 / 1920 * 100vw);
+                line-height: calc(30.16 / 24);
             }
 
             #section1 #text1-p4 .figma-block-marker {
-                left: -33px;
-                width: 17px;
-                height: 50px;
+                left: calc(-33 / 1920 * 100vw);
+                width: calc(17 / 1920 * 100vw);
+                height: calc(50 / 1080 * 100vh);
             }
 
             #section1 #text1-p4 .figma-block-main-title {
-                font-size: 59px;
+                font-size: calc(59 / 1920 * 100vw);
             }
 
             #section1 #text1-p4 .figma-block-description {
-                top: 168px;
+                top: calc(168 / 1080 * 100vh);
                 left: 0;
-                width: 260px;
-                line-height: 30.16px;
+                line-height: calc(30.16 / 24);
             }
 
             #section1 #text1-p5 .figma-block-description {
-                top: 101px;
-                left: -40px;
-                width: 488px;
+                top: calc(101 / 1080 * 100vh);
+                left: calc(-40 / 1920 * 100vw);
+                width: calc(488 / 1920 * 100vw);
             }
 
-            .animation-learn-more,
-            .close-animation {
+            #section2 .anim-stage {
                 position: absolute;
-                left: calc(
-                    (100vw - (1920px * var(--scale))) / 2 +
-                        (174px * var(--scale))
-                );
-                top: calc(
-                    (100vh - (1080px * var(--scale))) / 2 +
-                        (780px * var(--scale))
-                );
-                width: calc(251px * var(--scale));
-                height: calc(62px * var(--scale));
-                border: none;
-                border-radius: calc(10px * var(--scale));
-                background: #323232;
-                padding: 0;
-                cursor: pointer;
-                opacity: 0;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                transform: none;
+            }
+
+            #section2 .frame-container {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+            }
+
+            #section2 .frame-container img {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                height: 100%;
+                width: 100vw;
+                max-width: none;
+                object-fit: cover;
+                transform: translateX(-50%);
+            }
+
+            #section2 .text-content {
+                position: absolute;
+                inset: 0;
                 pointer-events: none;
-                transition: opacity 0.25s ease;
-                z-index: 20;
+                overflow: visible;
             }
 
-            .animation-learn-more-label,
-            .close-animation-label {
+            #section2 .text-content p {
                 position: absolute;
-                left: calc(32px * var(--scale));
-                top: calc(7px * var(--scale));
-                width: calc(199px * var(--scale));
-                height: calc(46px * var(--scale));
-                color: white;
-                font-size: calc(36px * var(--scale));
-                font-family: Inter;
-                font-weight: 700;
-                line-height: calc(46px * var(--scale));
-                word-wrap: break-word;
-                text-align: left;
-                white-space: nowrap;
+                opacity: 0;
+                transform: translateY(0);
             }
 
-            .animation-learn-more-marker,
-            .close-animation-marker {
+            #section2 .figma-styled-text-s2 {
+                position: absolute !important;
+                width: calc(551 / 1920 * 100vw);
+                height: auto;
+            }
+
+            #section2 .figma-block-marker-s2 {
                 position: absolute;
-                left: calc(16px * var(--scale));
-                top: calc(14px * var(--scale));
-                width: calc(10px * var(--scale));
-                height: calc(31px * var(--scale));
+                left: calc((58 - 87) / 1920 * 100vw);
+                top: calc((540 - 535) / 1080 * 100vh);
+                width: calc(15 / 1920 * 100vw);
+                height: calc(44 / 1080 * 100vh);
                 background: #24ba70;
             }
 
-            .animation-learn-more.is-visible,
-            .close-animation.is-visible {
-                opacity: 1;
-                pointer-events: auto;
+            #section2 .figma-block-main-title-s2 {
+                display: block;
+                position: relative;
+                width: calc(511 / 1920 * 100vw);
+                color: white;
+                font-family: Roboto;
+                font-weight: 700;
+                font-size: calc(48 / 1920 * 100vw);
+                line-height: normal;
+                word-wrap: break-word;
+                margin-bottom: calc((540 - (535 + 48 * 1.2)) / 1080 * 100vh);
             }
+
+            #section2 .figma-block-description-s2 {
+                display: block;
+                position: relative;
+                width: calc(551 / 1920 * 100vw);
+                color: white;
+                font-family: Inter;
+                font-weight: 500;
+                font-size: calc(24 / 1920 * 100vw);
+                line-height: calc(30.16 / 24);
+                word-wrap: break-word;
+            }
+
+            #section2 #text2-p1.figma-styled-text-s2 {
+                left: calc(87 / 1920 * 100vw);
+                top: calc(535 / 1080 * 100vh);
+                width: calc(551 / 1920 * 100vw);
+            }
+
+            #section2 #text2-p2.figma-styled-text-s2 {
+                left: calc(1432 / 1920 * 100vw);
+                top: calc(466 / 1080 * 100vh);
+                width: calc(511 / 1920 * 100vw);
+            }
+
+            #section2 #text2-p2 .figma-block-marker-s2 {
+                left: calc((1404 - 1432) / 1920 * 100vw);
+                top: calc((473 - 466) / 1080 * 100vh);
+            }
+
+            #section2 #text2-p2 .figma-block-main-title-s2 {
+                margin-bottom: calc((519 - (466 + 2 * 48 * 1.2)) / 1080 * 100vh);
+            }
+
+            #section2 #text2-p2 .figma-block-description-s2 {
+                width: calc(381 / 1920 * 100vw);
+            }
+
+            #section2 #text2-p3.figma-styled-text-s2 {
+                left: calc(77 / 1920 * 100vw);
+                top: calc(700 / 1080 * 100vh);
+                width: calc(511 / 1920 * 100vw);
+            }
+
+            #section2 #text2-p3 .figma-block-marker-s2 {
+                left: calc((54 - 77) / 1920 * 100vw);
+                top: calc((811 - 806) / 1080 * 100vh);
+            }
+
+            #section2 #text2-p3 .figma-block-main-title-s2 {
+                margin-bottom: calc((806 - (806 + 48 * 1.2)) / 1080 * 100vh);
+            }
+
+            #section2 #text2-p3 .figma-block-description-s2 {
+                width: calc(381 / 1920 * 100vw);
+                top: 0;
+                left: 0;
+            }
+
         </style>
     </head>
     <body>
@@ -784,6 +947,9 @@
 
             <section class="slide-frame">
                 <div class="slide slide-5">
+                    <div class="workflow-carousel" data-workflow-carousel>
+                        <div class="workflow-track">
+                            <div class="workflow-panel">
                     <img
                         style="
                             width: 257px;
@@ -970,6 +1136,346 @@
                         src="assets/5_3.png"
                         alt=""
                     />
+                            </div>
+                            <div class="workflow-panel">
+                                <div
+                                    style="
+                                        width: 14px;
+                                        height: 34px;
+                                        left: 835px;
+                                        top: 338px;
+                                        position: absolute;
+                                        background: #24ba70;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        width: 545px;
+                                        height: 239px;
+                                        left: 857px;
+                                        top: 332px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 40px;
+                                        font-family: Roboto;
+                                        font-weight: 700;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Optimised continuous fiber layout.
+                                </div>
+                                <div
+                                    style="
+                                        width: 711px;
+                                        height: 209px;
+                                        left: 852px;
+                                        top: 447px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Roboto;
+                                        font-weight: 700;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Composite parts are anisotropic - fiber
+                                    directions are crucial in creating part's
+                                    mechanical properties. With CFNF we can
+                                    create custom layout for every single part
+                                    to optimise weight and costs. Here's how it
+                                    works, step by step.
+                                </div>
+                                <div
+                                    style="
+                                        width: 732px;
+                                        height: 46px;
+                                        left: 852px;
+                                        top: 1034px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 600;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Presented - nonplanary printed basalt fiber
+                                    reinforced drone fuselage
+                                </div>
+                                <img
+                                    style="
+                                        width: 748px;
+                                        height: 1080px;
+                                        left: 0px;
+                                        top: 0px;
+                                        position: absolute;
+                                    "
+                                    src="assets/5_2_1.png"
+                                    alt="Optimised continuous fiber layout"
+                                />
+                            </div>
+                            <div class="workflow-panel">
+                                <div
+                                    style="
+                                        width: 499px;
+                                        height: 32px;
+                                        left: 541px;
+                                        top: 779px;
+                                        position: absolute;
+                                        text-align: justify;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 500;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Classic 3-axis printing
+                                </div>
+                                <div
+                                    style="
+                                        width: 613px;
+                                        height: 36px;
+                                        left: 1142px;
+                                        top: 779px;
+                                        position: absolute;
+                                        text-align: justify;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 500;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    5 axis non-planary manufacturing
+                                </div>
+                                <div
+                                    style="
+                                        width: 448px;
+                                        height: 46px;
+                                        left: 536px;
+                                        top: 186px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 40px;
+                                        font-family: Roboto;
+                                        font-weight: 700;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Anisotropy control
+                                </div>
+                                <div
+                                    style="
+                                        width: 114px;
+                                        height: 54px;
+                                        left: -12px;
+                                        top: 401px;
+                                        position: absolute;
+                                        background: white;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        width: 15px;
+                                        height: 41px;
+                                        left: 509px;
+                                        top: 189px;
+                                        position: absolute;
+                                        background: #24ba70;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        width: 860px;
+                                        height: 100px;
+                                        left: 524px;
+                                        top: 276px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 600;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Turntable with rotating printhead allows
+                                    creating nonplanar reinforcing layers to
+                                    significantly increase part's strength in
+                                    several directions.
+                                </div>
+                                <img
+                                    style="
+                                        width: 521.68px;
+                                        height: 326.3px;
+                                        left: 401px;
+                                        top: 423px;
+                                        position: absolute;
+                                        border-radius: 51px;
+                                        border: 1px black solid;
+                                    "
+                                    src="assets/5_3_1.png"
+                                    alt="Classic 3-axis printing"
+                                />
+                                <div
+                                    style="
+                                        width: 36.63px;
+                                        height: 27.85px;
+                                        left: 420px;
+                                        top: 425px;
+                                        position: absolute;
+                                        background: white;
+                                    "
+                                ></div>
+                                <img
+                                    style="
+                                        width: 500.65px;
+                                        height: 326.3px;
+                                        left: 1067.35px;
+                                        top: 425.38px;
+                                        position: absolute;
+                                        border-radius: 62px;
+                                        border: 1px black solid;
+                                    "
+                                    src="assets/5_3_2.png"
+                                    alt="5 axis non-planary manufacturing"
+                                />
+                                <div
+                                    style="
+                                        width: 52.91px;
+                                        height: 14.92px;
+                                        left: 1498px;
+                                        top: 727px;
+                                        position: absolute;
+                                        background: white;
+                                    "
+                                ></div>
+                            </div>
+                            <div class="workflow-panel">
+                                <img
+                                    style="
+                                        width: 507px;
+                                        height: 339px;
+                                        left: 404px;
+                                        top: 409px;
+                                        position: absolute;
+                                    "
+                                    src="assets/5_4_1.png"
+                                    alt="Classic 3-axis printing geometry"
+                                />
+                                <img
+                                    style="
+                                        width: 520px;
+                                        height: 348px;
+                                        left: 1015px;
+                                        top: 400px;
+                                        position: absolute;
+                                    "
+                                    src="assets/5_4_2.png"
+                                    alt="5 axis non-planary manufacturing geometry"
+                                />
+                                <div
+                                    style="
+                                        width: 499px;
+                                        height: 32px;
+                                        left: 547px;
+                                        top: 787px;
+                                        position: absolute;
+                                        text-align: justify;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 500;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Classic 3-axis printing
+                                </div>
+                                <div
+                                    style="
+                                        width: 613px;
+                                        height: 36px;
+                                        left: 1137px;
+                                        top: 787px;
+                                        position: absolute;
+                                        text-align: justify;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 500;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    5 axis non-planary manufacturing
+                                </div>
+                                <div
+                                    style="
+                                        width: 860px;
+                                        height: 100px;
+                                        left: 542px;
+                                        top: 273px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 600;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    No supports needed for hanging structures -
+                                    base printing direction can be adjusted
+                                    during the print.
+                                </div>
+                                <div
+                                    style="
+                                        width: 448px;
+                                        height: 46px;
+                                        left: 542px;
+                                        top: 188px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 40px;
+                                        font-family: Roboto;
+                                        font-weight: 700;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Geometry optimisation
+                                </div>
+                                <div
+                                    style="
+                                        width: 15px;
+                                        height: 41px;
+                                        left: 517px;
+                                        top: 188px;
+                                        position: absolute;
+                                        background: #24ba70;
+                                    "
+                                ></div>
+                            </div>
+                        </div>
+                        <button
+                            class="workflow-arrow workflow-arrow-prev"
+                            type="button"
+                            aria-label="Previous workflow slide"
+                            data-workflow-prev
+                        >
+                            &#8249;
+                        </button>
+                        <button
+                            class="workflow-arrow workflow-arrow-next"
+                            type="button"
+                            aria-label="Next workflow slide"
+                            data-workflow-next
+                        >
+                            &#8250;
+                        </button>
+                    </div>
                 </div>
             </section>
             <section id="section1" class="anim-scroll-section">
@@ -1052,18 +1558,120 @@
                         </div>
                     </div>
                 </div>
-                <button
-                    class="animation-learn-more"
-                    id="learn-more"
-                    type="button"
-                >
-                    <span class="animation-learn-more-marker"></span>
-                    <span class="animation-learn-more-label">Learn more</span>
-                </button>
-                <button class="close-animation" id="close-animation" type="button">
-                    <span class="close-animation-marker"></span>
-                    <span class="close-animation-label">Close</span>
-                </button>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-8">
+                    <div
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            background: #333333;
+                            overflow: hidden;
+                        "
+                    >
+                        <div
+                            style="
+                                width: 546px;
+                                height: 610px;
+                                left: 473px;
+                                top: 365px;
+                                position: absolute;
+                                color: white;
+                                font-size: 40px;
+                                font-family: Inter;
+                                font-weight: 700;
+                                word-wrap: break-word;
+                            "
+                        >
+                            AUTOCOMPOSITE<br /><br />
+                        </div>
+                        <div
+                            style="
+                                width: 14px;
+                                height: 42px;
+                                left: 448px;
+                                top: 368px;
+                                position: absolute;
+                                background: #24ba70;
+                            "
+                        ></div>
+                        <div
+                            style="
+                                width: 401px;
+                                height: 305px;
+                                left: 474px;
+                                top: 427px;
+                                position: absolute;
+                                color: white;
+                                font-size: 20px;
+                                font-family: Inter;
+                                font-weight: 600;
+                                line-height: 24.34px;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Continuous fiber coextrusion printhead for nonplanar
+                            printing.<br /><br />Max. printing temp - 450C;<br />High-temperature
+                            materials support;<br />Water cooling;<br />Dual gear
+                            extrusion for both materials;<br />Configured for
+                            5-axis nonplanar printing;<br />
+                        </div>
+                        <img
+                            style="
+                                width: 618px;
+                                height: 572px;
+                                left: 944px;
+                                top: 276px;
+                                position: absolute;
+                            "
+                            src="assets/8_1.png"
+                            alt="Autocomposite printhead"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            <section id="section2" class="anim-scroll-section">
+                <div class="anim-stage-frame">
+                    <div class="anim-stage">
+                        <div class="frame-container">
+                            <img id="frame2" src="../video2/0001.jpg" alt="" />
+                        </div>
+                        <div class="text-content" id="text2">
+                            <p id="text2-p1" class="figma-styled-text-s2">
+                                <span class="figma-block-marker-s2"></span>
+                                <span class="figma-block-main-title-s2"
+                                    >TRIPLE Z</span
+                                >
+                                <span class="figma-block-description-s2"
+                                    ><br /><br />Fast Z translation and
+                                    full-auto buildplate calibration.</span
+                                >
+                            </p>
+                            <p id="text2-p2" class="figma-styled-text-s2">
+                                <span class="figma-block-marker-s2"></span>
+                                <span class="figma-block-main-title-s2"
+                                    >HARMONIC<br />DRIVES</span
+                                >
+                                <span class="figma-block-description-s2"
+                                    ><br /><br />Preciese movements of large
+                                    prints with almost zero backlash</span
+                                >
+                            </p>
+                            <p id="text2-p3" class="figma-styled-text-s2">
+                                <span class="figma-block-marker-s2"></span>
+                                <span class="figma-block-main-title-s2"
+                                    >RIGID COREXY</span
+                                >
+                                <span class="figma-block-description-s2"
+                                    ><br /><br />Tailored for multi-axis</span
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="slide-frame">
@@ -1207,13 +1815,97 @@
                     </div>
                 </div>
             </section>
+            <section class="slide-frame">
+                <div class="slide slide-9">
+                    <div
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            background: white;
+                            overflow: hidden;
+                        "
+                    >
+                        <img
+                            style="
+                                width: 1920px;
+                                height: 1080px;
+                                left: 0px;
+                                top: 0px;
+                                position: absolute;
+                            "
+                            src="assets/9_1.png"
+                            alt=""
+                        />
+                        <div
+                            style="
+                                width: 622px;
+                                height: 120px;
+                                left: 58px;
+                                top: 1030px;
+                                position: absolute;
+                                color: white;
+                                font-size: 20px;
+                                font-family: Inter;
+                                font-weight: 600;
+                                line-height: 25.13px;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Nonplanary printed part
+                        </div>
+                        <div
+                            style="
+                                width: 343px;
+                                height: 167px;
+                                left: 279px;
+                                top: 174px;
+                                position: absolute;
+                                color: black;
+                                font-size: 40px;
+                                font-family: Inter;
+                                font-weight: 900;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Contact us
+                        </div>
+                        <div
+                            style="
+                                width: 708px;
+                                height: 167px;
+                                left: 279px;
+                                top: 255px;
+                                position: absolute;
+                                color: black;
+                                font-size: 40px;
+                                font-family: Inter;
+                                font-weight: 700;
+                                word-wrap: break-word;
+                            "
+                        >
+                            esatalov868@gmail.com
+                        </div>
+                        <div
+                            style="
+                                width: 8px;
+                                height: 33px;
+                                left: 265px;
+                                top: 180px;
+                                position: absolute;
+                                background: #24ba70;
+                            "
+                        ></div>
+                    </div>
+                </div>
+            </section>
         </main>
         <script>
             const DESIGN_WIDTH = 1920;
             const DESIGN_HEIGHT = 1080;
 
             function updateScale() {
-                const scale = Math.min(
+                const scale = Math.max(
                     document.documentElement.clientWidth / DESIGN_WIDTH,
                     document.documentElement.clientHeight / DESIGN_HEIGHT,
                 );
@@ -1234,397 +1926,91 @@
             window.ANIMATIONS_BASE_PATH = "../";
             window.ANIMATIONS_DISABLE_SCROLL_LOCK = true;
             window.ANIMATIONS_SCRUB = true;
+            window.ANIMATIONS_SECTION2_PAUSE_DURATION = 3.2;
+            window.ANIMATIONS_SECTION2_END_PAUSE_DURATION = 1.6;
+            window.ANIMATIONS_SECTION2_SCROLL_SPAN = 280;
         </script>
         <script src="../animations.js"></script>
         <script>
-            const learnMoreButton = document.getElementById("learn-more");
-            const closeButton = document.getElementById("close-animation");
-            const section1 = document.getElementById("section1");
-
-            const MODES = Object.freeze({
-                NORMAL: "normal",
-                LOCKED: "locked",
-                SKIPPED: "skipped",
-                EXPANDED: "expanded",
-            });
-
-            const EVENTS = Object.freeze({
-                REACH_CHECKPOINT: "reach-checkpoint",
-                SCROLL_PAST_RELEASE: "scroll-past-release",
-                SCROLL_BEFORE_CHECKPOINT: "scroll-before-checkpoint",
-                SCROLL_BACK_TO_RESET: "scroll-back-to-reset",
-                CLICK_LEARN_MORE: "click-learn-more",
-                CLICK_CLOSE: "click-close",
-            });
-
-            const TRANSITIONS = Object.freeze({
-                [MODES.NORMAL]: {
-                    [EVENTS.REACH_CHECKPOINT]: MODES.LOCKED,
-                },
-                [MODES.LOCKED]: {
-                    [EVENTS.SCROLL_BEFORE_CHECKPOINT]: MODES.NORMAL,
-                    [EVENTS.CLICK_LEARN_MORE]: MODES.EXPANDED,
-                },
-                [MODES.SKIPPED]: {
-                    [EVENTS.SCROLL_BACK_TO_RESET]: MODES.NORMAL,
-                    [EVENTS.CLICK_LEARN_MORE]: MODES.EXPANDED,
-                },
-                [MODES.EXPANDED]: {
-                    [EVENTS.CLICK_CLOSE]: MODES.LOCKED,
-                },
-            });
-
-            const checkpointState = {
-                mode: MODES.NORMAL,
-                checkpointProgress: null,
-                checkpointScrollY: null,
-                originalEnd: null,
-                lockedEntryScrollY: null,
-            };
-
-            function setLearnMoreVisible(isVisible) {
-                if (!learnMoreButton) {
-                    return;
-                }
-                learnMoreButton.classList.toggle("is-visible", isVisible);
-            }
-
-            function setCloseVisible(isVisible) {
-                if (!closeButton) {
-                    return;
-                }
-                closeButton.classList.toggle("is-visible", isVisible);
-            }
-
-            function isSectionInView() {
-                if (!section1) {
-                    return false;
-                }
-                const rect = section1.getBoundingClientRect();
-                return (
-                    rect.bottom > 0 &&
-                    rect.top < document.documentElement.clientHeight
+            (function () {
+                const carousels = document.querySelectorAll(
+                    "[data-workflow-carousel]",
                 );
-            }
-
-            function getCheckpointTime(timeline) {
-                return (
-                    timeline?.labels?.checkpoint1 ??
-                    timeline?.totalDuration?.() * 0.2 ??
-                    0
-                );
-            }
-
-            function getCheckpointProgress(timeline) {
-                const total = Math.max(
-                    0.0001,
-                    timeline?.totalDuration?.() ?? 1,
-                );
-                return getCheckpointTime(timeline) / total;
-            }
-
-            function computeReleasePixels() {
-                const vh = Math.max(320, document.documentElement.clientHeight);
-                return Math.max(64, Math.min(160, Math.round(vh * 0.15)));
-            }
-
-            function computeRewindPixels() {
-                return Math.max(48, Math.round(computeReleasePixels() * 0.6));
-            }
-
-            function getScrollY(trigger) {
-                if (trigger && typeof trigger.scroll === "function") {
-                    return trigger.scroll();
-                }
-                return (
-                    window.pageYOffset ||
-                    document.documentElement.scrollTop ||
-                    0
-                );
-            }
-
-            function setTriggerEndIfChanged(trigger, nextEnd) {
-                if (!trigger) {
-                    return;
-                }
-                const currentEnd = trigger.vars.end;
-                const bothNumbers =
-                    typeof currentEnd === "number" &&
-                    typeof nextEnd === "number";
-                const sameEnd = bothNumbers
-                    ? Math.abs(currentEnd - nextEnd) < 0.5
-                    : currentEnd === nextEnd;
-
-                if (sameEnd) {
+                if (!carousels.length) {
                     return;
                 }
 
-                trigger.vars.end = nextEnd;
-                trigger.refresh();
-            }
-
-            function ensureOriginalEnd(trigger) {
-                if (!trigger || checkpointState.originalEnd == null) {
-                    return;
-                }
-                setTriggerEndIfChanged(trigger, checkpointState.originalEnd);
-            }
-
-            function captureCheckpointSnapshot(trigger, timeline) {
-                if (!trigger || !timeline) {
-                    return;
-                }
-
-                checkpointState.checkpointProgress =
-                    getCheckpointProgress(timeline);
-                if (checkpointState.originalEnd == null) {
-                    checkpointState.originalEnd = trigger.vars.end;
-                }
-                checkpointState.checkpointScrollY =
-                    trigger.start +
-                    (trigger.end - trigger.start) *
-                        checkpointState.checkpointProgress;
-            }
-
-            function ensureShortenedEnd(trigger) {
-                if (!trigger || checkpointState.checkpointScrollY == null) {
-                    return;
-                }
-                const shortenedEnd =
-                    checkpointState.checkpointScrollY + computeReleasePixels();
-                setTriggerEndIfChanged(trigger, shortenedEnd);
-            }
-
-            function freezeAtCheckpoint(timeline) {
-                if (
-                    !timeline ||
-                    checkpointState.checkpointProgress == null ||
-                    Number.isNaN(checkpointState.checkpointProgress)
-                ) {
-                    return;
-                }
-                timeline.totalProgress(checkpointState.checkpointProgress);
-            }
-
-            function getNextMode(event) {
-                return TRANSITIONS[checkpointState.mode]?.[event] ?? null;
-            }
-
-            function applyMode(mode, payload) {
-                const trigger = payload?.trigger;
-                const timeline = payload?.timeline;
-                const inView = isSectionInView();
-
-                if (mode === MODES.NORMAL) {
-                    ensureOriginalEnd(trigger);
-                    setLearnMoreVisible(false);
-                    setCloseVisible(false);
-                    checkpointState.lockedEntryScrollY = null;
-                    return;
-                }
-
-                if (mode === MODES.LOCKED) {
-                    ensureOriginalEnd(trigger);
-                    captureCheckpointSnapshot(trigger, timeline);
+                carousels.forEach((carousel) => {
+                    const track = carousel.querySelector(".workflow-track");
+                    const panels = carousel.querySelectorAll(".workflow-panel");
+                    const prevButton =
+                        carousel.querySelector("[data-workflow-prev]");
+                    const nextButton =
+                        carousel.querySelector("[data-workflow-next]");
                     if (
-                        payload?.scrollToCheckpoint &&
-                        checkpointState.checkpointScrollY != null
+                        !track ||
+                        !panels.length ||
+                        !prevButton ||
+                        !nextButton
                     ) {
-                        const lockTop = checkpointState.checkpointScrollY + 1;
-                        if (window.gsap) {
-                            gsap.to(window, {
-                                scrollTo: lockTop,
-                                duration: 0.35,
-                                ease: "power2.out",
-                                overwrite: "auto",
-                            });
-                        } else {
-                            window.scrollTo({
-                                top: lockTop,
-                                behavior: "smooth",
-                            });
+                        return;
+                    }
+
+                    let currentIndex = 0;
+                    const panelCount = panels.length;
+
+                    function updateCarousel() {
+                        const panelWidth = panels[0].offsetWidth || 1920;
+                        track.style.transform = `translateX(${-currentIndex * panelWidth}px)`;
+                        prevButton.disabled = currentIndex === 0;
+                        nextButton.disabled = currentIndex >= panelCount - 1;
+                    }
+
+                    function isVisible() {
+                        const rect = carousel.getBoundingClientRect();
+                        const vh =
+                            window.innerHeight ||
+                            document.documentElement.clientHeight;
+                        return rect.top < vh * 0.7 && rect.bottom > vh * 0.3;
+                    }
+
+                    prevButton.addEventListener("click", () => {
+                        if (currentIndex <= 0) {
+                            return;
                         }
-                    }
-                    checkpointState.lockedEntryScrollY =
-                        checkpointState.checkpointScrollY != null
-                            ? checkpointState.checkpointScrollY
-                            : getScrollY(trigger);
-                    freezeAtCheckpoint(timeline);
-                    setLearnMoreVisible(inView);
-                    setCloseVisible(false);
-                    return;
-                }
-
-                if (mode === MODES.SKIPPED) {
-                    ensureShortenedEnd(trigger);
-                    freezeAtCheckpoint(timeline);
-                    setLearnMoreVisible(inView);
-                    setCloseVisible(false);
-                    checkpointState.lockedEntryScrollY = null;
-                    return;
-                }
-
-                if (mode === MODES.EXPANDED) {
-                    ensureOriginalEnd(trigger);
-                    if (trigger && !trigger.enabled) {
-                        trigger.enable();
-                    }
-
-                    setLearnMoreVisible(false);
-                    setCloseVisible(inView);
-                    checkpointState.lockedEntryScrollY = null;
-
-                    if (
-                        payload?.scrollToCheckpoint &&
-                        checkpointState.checkpointScrollY != null
-                    ) {
-                        window.scrollTo({
-                            top: checkpointState.checkpointScrollY + 1,
-                            behavior: "auto",
-                        });
-                    }
-
-                    if (window.ScrollTrigger) {
-                        requestAnimationFrame(() =>
-                            ScrollTrigger.refresh(true),
-                        );
-                    }
-                }
-            }
-
-            function dispatch(event, payload = {}) {
-                const nextMode = getNextMode(event);
-                if (!nextMode) {
-                    return false;
-                }
-
-                checkpointState.mode = nextMode;
-                applyMode(nextMode, payload);
-                return true;
-            }
-
-            window.section1OnUpdate = (trigger, timeline) => {
-                if (!trigger || !timeline) {
-                    return;
-                }
-
-                if (checkpointState.mode !== MODES.SKIPPED) {
-                    captureCheckpointSnapshot(trigger, timeline);
-                }
-
-                const y = getScrollY(trigger);
-                const releasePx = computeReleasePixels();
-                const rewindPx = computeRewindPixels();
-
-                if (checkpointState.mode === MODES.NORMAL) {
-                    if (
-                        checkpointState.checkpointProgress != null &&
-                        trigger.progress >= checkpointState.checkpointProgress
-                    ) {
-                        dispatch(EVENTS.REACH_CHECKPOINT, {
-                            trigger,
-                            timeline,
-                        });
-                    } else {
-                        setLearnMoreVisible(false);
-                        setCloseVisible(false);
-                    }
-                    return;
-                }
-
-                if (checkpointState.mode === MODES.LOCKED) {
-                    freezeAtCheckpoint(timeline);
-                    setLearnMoreVisible(isSectionInView());
-
-                    if (
-                        checkpointState.checkpointScrollY != null &&
-                        y < checkpointState.checkpointScrollY - rewindPx
-                    ) {
-                        dispatch(EVENTS.SCROLL_BEFORE_CHECKPOINT, {
-                            trigger,
-                            timeline,
-                        });
-                    }
-                    return;
-                }
-
-                if (checkpointState.mode === MODES.SKIPPED) {
-                    freezeAtCheckpoint(timeline);
-                    setLearnMoreVisible(isSectionInView());
-
-                    if (
-                        checkpointState.checkpointScrollY != null &&
-                        y < checkpointState.checkpointScrollY - rewindPx
-                    ) {
-                        dispatch(EVENTS.SCROLL_BACK_TO_RESET, {
-                            trigger,
-                            timeline,
-                        });
-                    }
-                    return;
-                }
-
-                if (checkpointState.mode === MODES.EXPANDED) {
-                    setLearnMoreVisible(false);
-                    setCloseVisible(isSectionInView());
-                    return;
-                }
-
-                checkpointState.mode = MODES.NORMAL;
-                setLearnMoreVisible(false);
-                setCloseVisible(false);
-            };
-
-            if (learnMoreButton) {
-                learnMoreButton.addEventListener("click", () => {
-                    const trigger = window.section1ScrollTrigger;
-                    const timeline = window.section1Timeline;
-                    dispatch(EVENTS.CLICK_LEARN_MORE, {
-                        trigger,
-                        timeline,
-                        scrollToCheckpoint: true,
+                        currentIndex -= 1;
+                        updateCarousel();
                     });
-                });
-            }
 
-            if (closeButton) {
-                closeButton.addEventListener("click", () => {
-                    const trigger = window.section1ScrollTrigger;
-                    const timeline = window.section1Timeline;
-                    dispatch(EVENTS.CLICK_CLOSE, {
-                        trigger,
-                        timeline,
-                        scrollToCheckpoint: true,
+                    nextButton.addEventListener("click", () => {
+                        if (currentIndex >= panelCount - 1) {
+                            return;
+                        }
+                        currentIndex += 1;
+                        updateCarousel();
                     });
+
+                    document.addEventListener("keydown", (event) => {
+                        if (!isVisible()) {
+                            return;
+                        }
+                        if (
+                            event.key === "ArrowRight" &&
+                            currentIndex < panelCount - 1
+                        ) {
+                            currentIndex += 1;
+                            updateCarousel();
+                        }
+                        if (event.key === "ArrowLeft" && currentIndex > 0) {
+                            currentIndex -= 1;
+                            updateCarousel();
+                        }
+                    });
+
+                    window.addEventListener("resize", updateCarousel);
+                    updateCarousel();
                 });
-            }
-
-            function syncButtonVisibility() {
-                const inView = isSectionInView();
-                if (checkpointState.mode === MODES.EXPANDED) {
-                    setLearnMoreVisible(false);
-                    setCloseVisible(inView);
-                    return;
-                }
-
-                setCloseVisible(false);
-
-                if (
-                    checkpointState.mode === MODES.LOCKED ||
-                    checkpointState.mode === MODES.SKIPPED
-                ) {
-                    setLearnMoreVisible(inView);
-                    return;
-                }
-
-                setLearnMoreVisible(false);
-            }
-
-            window.addEventListener("scroll", syncButtonVisibility, {
-                passive: true,
-            });
-            window.addEventListener("resize", syncButtonVisibility);
-            syncButtonVisibility();
+            })();
         </script>
     </body>
 </html>

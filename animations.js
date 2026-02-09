@@ -6,6 +6,11 @@ const ANIMATIONS_BASE_PATH = window.ANIMATIONS_BASE_PATH || "";
 const ANIMATIONS_SCRUB =
   typeof window.ANIMATIONS_SCRUB === "undefined" ? 0.1 : window.ANIMATIONS_SCRUB;
 
+function getPositiveNumber(value, fallback) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 // Utilities for frame loading
 class FrameLoader {
   constructor() {
@@ -345,11 +350,12 @@ function initAnimations() {
     return;
   }
 
+  const section2ScrollSpan = getPositiveNumber(window.ANIMATIONS_SECTION2_SCROLL_SPAN, 200);
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section2",
       start: "top top",
-      end: "+=200%",
+      end: `+=${section2ScrollSpan}%`,
       scrub: ANIMATIONS_SCRUB,
       pin: true,
       anticipatePin: 0,
@@ -381,16 +387,19 @@ function initAnimations() {
     }
   };
 
-  const segmentDuration2 = 2.8;
-  const pauseDuration2 = 1.0;
+  const segmentDuration2 = getPositiveNumber(window.ANIMATIONS_SECTION2_SEGMENT_DURATION, 3.1);
+  const pauseDuration2 = getPositiveNumber(window.ANIMATIONS_SECTION2_PAUSE_DURATION, 1.4);
+  const endPauseDuration2 = getPositiveNumber(window.ANIMATIONS_SECTION2_END_PAUSE_DURATION, 0.1);
 
   tl2.to(obj2, { frame: 116, duration: segmentDuration2, ease: 'none', onUpdate: updateFrame2 }, 0);
   // Pause in the middle
   tl2.to({}, { duration: pauseDuration2 });
   // Second half: frames 90-180
   tl2.to(obj2, { frame: 179, duration: segmentDuration2, ease: 'none', onUpdate: updateFrame2 }, segmentDuration2 + pauseDuration2);
+  // Hold final frame a bit longer before section unpins
+  tl2.to({}, { duration: endPauseDuration2 });
 
-  tl2.totalDuration(segmentDuration2 * 2 + pauseDuration2);
+  tl2.totalDuration(segmentDuration2 * 2 + pauseDuration2 + endPauseDuration2);
 
   // Position text content area for section 2
   tl2.set("#section2 .text-content", {
