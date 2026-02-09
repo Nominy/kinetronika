@@ -1,442 +1,2017 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kinetronika Slides V3</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --scale: 1;
+            }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll-Controlled Animations with Optimized Loading</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-<body>
-  <!-- Loading indicator as web component -->
-  <loading-indicator></loading-indicator>
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+            }
 
-  <!-- Header as web component -->
-  <site-header></site-header>
+            html {
+                background: #0b0b0b;
+            }
 
-  <div id="top"></div>
+            body {
+                font-family: Inter;
+                background: #0b0b0b;
+                height: auto;
+                min-height: 100%;
+                overflow-x: hidden;
+            }
 
-  <!-- Section 1 with animation -->
-  <section id="section1" class="scroll-section">
-    <div class="frame-container frame-container-upper"><img id="frame1" src="video1/0001.jpg" alt=""></div>
-    <div class="section-content">
-      <div class="text-content" id="text1">
-        <p id="text1-p1" class="figma-styled-text">
-          <span class="figma-block-marker"></span>
-          <span class="figma-block-main-title">NONPLANAR-1</span>
-          <span class="figma-block-sub-title">To push<br>printing<br>further.</span>
-          <span class="figma-block-description">First industry-ready 5 axis nonplanary 3D printer.</span>
-        </p>
+            .slides {
+                width: 100%;
+            }
 
-        <p id="text1-p2" class="figma-styled-text">
-          <span class="figma-block-marker"></span>
-          <span class="figma-block-main-title">CHANGE THE WAY<br>YOU CREATE</span>
-          <span class="figma-block-description">
-            Make industrial-grade prints stronger, faster and more
-            efficient in the comparison with classical 3-axis FDM machines.
-            <br><br>
-            Able to print refractory polymers (PEEK, ULTEM).
-          </span>
-        </p>
-        <p id="text1-p3" class="figma-styled-text">
-          <span class="figma-block-marker"></span>
-          <span class="figma-block-main-title">BUILT FOR<br>MORE</span>
-          <span class="figma-block-description">
-            Workspace: ⌀300x700 mm<br>in multi-axis mode
-            <br><br>
-            For your big concepts.
-          </span>
-        </p>
-        <p id="text1-p4" class="figma-styled-text">
-          <span class="figma-block-marker"></span>
-          <span class="figma-block-main-title">ROBUSTNESS<br>MATTERS</span>
-          <span class="figma-block-description">
-            Custom 5-axis<br>
-            kinematic scheme<br>
-            along with precision<br>
-            linear and rotational<br>
-            drives.
-          </span>
-        </p>
-        <p id="text1-p5" class="figma-styled-text">
-          <span class="figma-block-marker"></span>
-          <span class="figma-block-main-title">NO COMPROMISES</span>
-          <span class="figma-block-description">
-            &bull; Nozzle temperature - up to 500°<br>
-            &bull; Buildplate temperature - up to 150°<br>
-            &bull; Active chamber temperature - up to<br>150°<br>
-            &bull; Water component cooling,<br>compressed air printed model cooling.<br>
-            &bull; Full-auto buildplate leveling and<br>temperture expansion compensation.<br>
-            &bull; Active ringing compensation.<br>
-            &bull; Active heated material box.
-          </span>
-        </p>
-      </div>
-    </div>
-  </section>
+            .slide-frame {
+                width: 100vw;
+                height: 100vh;
+                position: relative;
+                overflow: hidden;
+                margin: 0;
+            }
 
-  <hr>
+            .slide {
+                width: 1920px;
+                height: 1080px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                overflow: hidden;
+                transform: translate(-50%, -50%) scale(var(--scale));
+                transform-origin: center center;
+            }
 
-  <section class="title-banner-section">
-    <div class="content-wrapper">
-      <h2 class="banner-title"><span class="banner-marker"></span>Why nonplanary?</h2>
-    </div>
-  </section>
+            .slide-1 {
+                background: #0b0b0b;
+            }
 
-  <section id="nonplanary-strength" class="static-content-section">
-    <div class="content-wrapper figma-nonplanary-strength">
-      <div class="figma-section-number">01</div>
-      <h2 class="figma-title"><span class="figma-marker-shape"></span>MORE STRENGTH</h2>
-      <p class="figma-description">The strongest direction of the printed part is parallel printed layers. With
-        nonplanary layers can be printed in multiple directions in one printing sequence.</p>
-      <div class="manufacturing-comparison figma-comparison">
-        <div class="comparison-item figma-comparison-item">
-          <img src="images/ClassicFDMmanufacturing.png" alt="Classic FDM manufacturing" loading="lazy"
-            class="figma-image">
-          <div class="figma-caption-wrapper">
-            <p class="figma-caption">Classic FDM manufacturing</p>
-          </div>
-        </div>
-        <div class="comparison-item figma-comparison-item">
-          <img src="images/5 axis_non-planary_manufacturing.png" alt="5 axis non-planary manufacturing" loading="lazy"
-            class="figma-image">
-          <div class="figma-caption-wrapper">
-            <p class="figma-caption">5 axis non-planary manufacturing</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            .slide-2 {
+                background: #ffffff;
+            }
 
-  <hr>
+            .slide-3 {
+                background: #efecee;
+            }
 
-  <section id="strength-showcase" class="static-content-section figma-strength-showcase">
-    <div class="content-wrapper figma-strength-showcase-content">
-      <div class="figma-strength-marker"></div>
-      <div class="figma-strength-title">STRENGTH</div>
-      <div class="figma-strength-description">Comparison of printed models.</div>
-      <img class="figma-strength-img1" src="images/ClassicFDMmanufacturing2.png"
-        alt="Classic FDM manufacturing - Green Background Example" />
-      <div class="figma-strength-caption1">Classic FDM manufacturing</div>
-      <img class="figma-strength-img2" src="images/5 axis_non-planary_manufacturing2.png"
-        alt="5 axis non-planary manufacturing - Green Background Example" />
-      <div class="figma-strength-caption2">5 axis non-planary manufacturing</div>
-    </div>
-  </section>
+            .slide-4 {
+                background: #e2dfe0;
+            }
 
-  <hr>
+            .slide-5 {
+                background: #ffffff;
+            }
 
-  <section id="strength-showcase-2" class="static-content-section figma-strength-direction-planning">
-    <div class="content-wrapper figma-strength-direction-planning-content">
-      <div class="figma-sdp-marker"></div>
-      <div class="figma-sdp-title">STRENGTH - DIRECTION PLANNING</div>
-      <img class="figma-sdp-img1" src="images/turntable.png" alt="Turntable and rotating printhead" />
-      <div class="figma-sdp-caption1">Turntable and rotating printhead allows to build layers from any point in any time
-        of printing process.</div>
-      <img class="figma-sdp-img2" src="images/printhead.png" alt="Printhead building reinforcement layers" />
-      <div class="figma-sdp-caption2">Printhead builds reinforcement layers that are perpendicular to the main core
-        layers.</div>
-    </div>
-  </section>
+            .slide-6 {
+                background: #ffffff;
+            }
 
-  <hr>
+            .slide-7 {
+                background: #f2f2f2;
+            }
 
-  <section id="geometry-showcase" class="static-content-section">
-    <div class="content-wrapper figma-geometry-outer">
-      <div class="figma-geometry-inner">
-        <div class="figma-section-number">02</div>
-        <h3 class="figma-title"><span class="figma-marker-shape"></span>BETTER GEOMETRY</h3>
-        <p class="figma-description">Features and shapes have the best geometry when printed vertically. <br />With
-          nonplanary, all the features can be printed in their individual direction.</p>
-        <img class="figma-img2" src="images/5 axis_non-planary_manufacturing3.png"
-          alt="5 axis non-planary manufacturing - Geometry Example" loading="lazy" />
-        <p class="figma-caption1">Classic FDM manufacturing</p>
-        <p class="figma-caption2">5 axis non-planary manufacturing</p>
-      </div>
-      <img class="figma-img1" src="images/ClassicFDMmanufacturing3.png"
-        alt="Classic FDM manufacturing - Geometry Example" loading="lazy" />
-    </div>
-  </section>
+            .slide-8 {
+                background: #333333;
+            }
 
-  <hr>
+            .slide-9 {
+                background: #ffffff;
+            }
 
-  <section id="geometry-showcase-2" class="static-content-section">
-    <div class="content-wrapper figma-gsc2-content">
-      <div class="figma-marker-shape"></div>
-      <h3 class="figma-title">GEOMETRY</h3>
-      <p class="figma-description">Comparison of printed models.</p>
-      <img class="figma-img1" src="images/ClassicFDMmanufacturing5.png"
-        alt="Classic FDM manufacturing - Geometry Example 2" loading="lazy">
-      <p class="figma-caption1">Classic FDM manufacturing</p>
-      <img class="figma-img2" src="images/5 axis_non-planary_manufacturing5.png"
-        alt="5 axis non-planary manufacturing - Geometry Example 2" loading="lazy">
-      <p class="figma-caption2">5 axis non-planary manufacturing</p>
-    </div>
-  </section>
+            .slide-1b {
+                background: #0b0b0b;
+            }
 
-  <hr>
+            .workflow-carousel {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+                background: #fff;
+            }
 
-  <section id="time-material-optimization" class="static-content-section">
-    <div class="content-wrapper figma-tmo-outer">
-      <div class="figma-tmo-inner">
-        <div class="figma-section-number">03</div>
-        <div class="figma-marker-shape"></div>
-        <h3 class="figma-title">TIME AND MATERIAL<br>OPTIMIZATION</h3>
-        <p class="figma-description">No need to waste time and material on support structures - print without them.</p>
-        <img class="figma-img2" src="images/5 axis_non-planary_manufacturing6.png"
-          alt="5 axis non-planary manufacturing - No Support Structures" loading="lazy">
-        <p class="figma-caption1">Classic FDM manufacturing</p>
-        <p class="figma-caption2">5 axis non-planary manufacturing</p>
-      </div>
-      <img class="figma-img1" src="images/ClassicFDMmanufacturing6.png"
-        alt="Classic FDM manufacturing - Support Structures" loading="lazy">
-    </div>
-  </section>
+            .workflow-track {
+                display: flex;
+                width: 7680px;
+                height: 1080px;
+                transform: translateX(0);
+                transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+                will-change: transform;
+            }
 
-  <hr>
+            .workflow-panel {
+                position: relative;
+                width: 1920px;
+                height: 1080px;
+                flex: 0 0 1920px;
+                overflow: hidden;
+                background: #fff;
+            }
 
-  <section id="time-material-optimization-2" class="static-content-section">
-    <div class="content-wrapper figma-tmo2-outer">
-      <div class="figma-tmo2-inner">
-        <div class="figma-marker-shape"></div>
-        <h3 class="figma-title">TIME AND MATERIAL</h3>
-        <p class="figma-description">Comparison of printed models.</p>
-        <img class="figma-img2" src="images/5 axis_non-planary_manufacturing7.png"
-          alt="5 axis non-planary manufacturing - Material Usage Example" loading="lazy">
-        <p class="figma-caption1-maintext">Classic FDM manufacturing</p>
-        <p class="figma-caption1-details">14.5g of material used<br>48 minutes</p>
-        <p class="figma-caption2-maintext">5 axis non-planary manufacturing</p>
-        <p class="figma-caption2-details">7g of material used<br>34 minutes</p>
-      </div>
-      <img class="figma-img1" src="images/ClassicFDMmanufacturing7.png"
-        alt="Classic FDM manufacturing - Material Usage Example" loading="lazy">
-    </div>
-  </section>
+            .workflow-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 62px;
+                height: 62px;
+                border: none;
+                border-radius: 999px;
+                background: rgba(20, 20, 20, 0.68);
+                color: transparent;
+                font-size: 0;
+                padding: 0;
+                cursor: pointer;
+                z-index: 20;
+                transition: opacity 0.2s ease;
+            }
 
-  <hr>
+            .workflow-arrow::before {
+                content: "";
+                display: block;
+                width: 16px;
+                height: 16px;
+                border-top: 4px solid #fff;
+                border-right: 4px solid #fff;
+            }
 
-  <section id="surface-quality-showcase" class="static-content-section">
-    <div class="content-wrapper figma-sqs-content">
-      <div class="figma-section-number">04</div>
-      <div class="figma-marker-shape"></div>
-      <h3 class="figma-title">BETTER SURFACE QUALITY</h3>
-      <p class="figma-description">The best layer is the top layer. With nonplanary, any surface of the model can be
-        smooth.</p>
-      <img class="figma-img1" src="images/ClassicFDMmanufacturing8.png"
-        alt="Classic FDM manufacturing - Surface Quality" loading="lazy">
-      <p class="figma-caption1">Classic FDM manufacturing</p>
-      <img class="figma-img2" src="images/5 axis_non-planary_manufacturing8.png"
-        alt="5 axis non-planary manufacturing - Surface Quality" loading="lazy">
-      <p class="figma-caption2">5 axis non-planary manufacturing</p>
-    </div>
-  </section>
+            .workflow-arrow:hover {
+                opacity: 0.92;
+            }
 
-  <hr>
+            .workflow-arrow:disabled {
+                opacity: 0.3;
+                cursor: default;
+            }
 
-  <section id="nonplanar-printing-sequence" class="static-content-section">
-    <div class="content-wrapper">
-      <div class="video-layout-container">
-        <div class="video-text-content">
-          <div class="figma-video-layout">
-            <div class="figma-video-marker"></div>
-            <div class="figma-video-title">GEOMETRY CORE<br>MANUFACTURING</div>
-            <div class="figma-video-description">Machine builds main part geometry<br>consisting of mainly planar
-              layers.</div>
-          </div>
-        </div>
-        <div class="video-media-content">
-          <div class="video-aspect-ratio-wrapper">
-            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
-              <source src="short_video/VID1.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            .workflow-arrow-prev {
+                left: 28px;
+            }
 
-  <hr>
+            .workflow-arrow-prev::before {
+                transform: rotate(-135deg);
+            }
 
-  <section id="nonplanar-printing-sequence-2" class="static-content-section">
-    <div class="content-wrapper">
-      <div class="video-layout-container">
-        <div class="video-text-content">
-          <div class="figma-video-layout">
-            <div class="figma-video-marker"></div>
-            <div class="figma-video-title">GEOMETRY CORE<br>REINFORCEMENT</div>
-            <div class="figma-video-description">Machine adds continuous external nonplanar<br>layers to core surfaces
-              to achieve strength and<br>final main geometry.</div>
-          </div>
-        </div>
-        <div class="video-media-content">
-          <div class="video-aspect-ratio-wrapper">
-            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
-              <source src="short_video/VID2.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            .workflow-arrow-next {
+                right: 28px;
+            }
 
-  <hr>
+            .workflow-arrow-next::before {
+                transform: rotate(45deg);
+            }
 
-  <section id="nonplanar-printing-sequence-3" class="static-content-section">
-    <div class="content-wrapper">
-      <div class="video-layout-container">
-        <div class="video-text-content">
-          <div class="figma-video-layout">
-            <div class="figma-video-marker"></div>
-            <div class="figma-video-title">PRINTING FEATURES</div>
-            <div class="figma-video-description">Machine prints geometrical features in optimal<br>directions.</div>
-          </div>
-        </div>
-        <div class="video-media-content">
-          <div class="video-aspect-ratio-wrapper">
-            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
-              <source src="short_video/VID3.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            .slide-1 .hero-marker {
+                position: absolute;
+                left: 351px;
+                top: 340px;
+                width: 18px;
+                height: 54px;
+                background: #24ba70;
+            }
 
-  <hr>
+            .slide-1 .hero-heading {
+                position: absolute;
+                left: 391px;
+                top: 331px;
+                width: 451px;
+                height: 417px;
+            }
 
-  <section id="nonplanar-printing-sequence-4" class="static-content-section">
-    <div class="content-wrapper">
-      <div class="video-layout-container">
-        <div class="video-text-content">
-          <div class="figma-video-layout">
-            <div class="figma-video-marker"></div>
-            <div class="figma-video-title">FEATURES<br>REINFORCEMENT</div>
-            <div class="figma-video-description">Machine adds reinforcing material to features<br>geometry.</div>
-          </div>
-        </div>
-        <div class="video-media-content">
-          <div class="video-aspect-ratio-wrapper">
-            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
-              <source src="short_video/VID4.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            .slide-1 .hero-title {
+                display: block;
+                color: white;
+                font-size: 60px;
+                font-family: Inter;
+                font-weight: 700;
+                word-wrap: break-word;
+            }
 
-  <hr>
+            .slide-1 .hero-subtitle {
+                display: block;
+                color: white;
+                font-size: 40px;
+                font-family: Inter;
+                font-weight: 700;
+                word-wrap: break-word;
+            }
 
-  <section id="nonplanar-printing-sequence-5" class="static-content-section">
-    <div class="content-wrapper">
-      <div class="video-layout-container">
-        <div class="video-text-content">
-          <div class="figma-video-layout">
-            <div class="figma-video-marker"></div>
-            <div class="figma-video-title">SURFACE SMOOTHING</div>
-            <div class="figma-video-description">Machine makes smooth "top" planar or nonplanar layers on required<br>
-              surfaces.</div>
-          </div>
-        </div>
-        <div class="video-media-content">
-          <div class="video-aspect-ratio-wrapper">
-            <video loop muted playsinline preload="metadata" class="lazy-load-video" autoplay>
-              <source src="short_video/VID5.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            .slide-1 .hero-description {
+                position: absolute;
+                left: 395px;
+                top: 413px;
+                width: 272px;
+                color: white;
+                font-size: 24px;
+                font-family: Inter;
+                font-weight: 600;
+                line-height: 29.2px;
+                word-wrap: break-word;
+            }
 
-  <section id="use-cases-section" class="static-content-section">
-    <div class="use-case-arrow" id="use-case-prev">&lt;</div>
-    <div class="use-case-arrow" id="use-case-next">&gt;</div>
-    <div class="content-wrapper">
-      <div class="use-cases-slider-container">
-        <div class="use-cases-slides-wrapper">
-          <!-- Slide 1: Adapted to Figma Design -->
-          <!-- slide-1 -->
-          <div class="use-case-slide" id="use-case-slide-1">
-            <div class="s1">
-              <span class="s1-m"></span>
-              <h2 class="s1-h">READY FOR INDUSTRY</h2>
-              <p class="s1-sub">Create parts for robotics, aerospace, automotive and other applications –</p>
+            .slide-1 .hero-image {
+                position: absolute;
+                left: 878px;
+                top: -1px;
+                width: 779px;
+                height: 1081px;
+            }
 
-              <img class="s1-i1" src="images/usecase1_1.png" alt="">
-              <img class="s1-i2" src="images/usecase1_3.png" alt="">
-              <img class="s1-i3" src="images/usecase1_5.png" alt="">
-              <img class="s1-i4" src="images/usecase1_4.png" alt="">
-              <img class="s1-i5" src="images/usecase1_2.png" alt="">
-            </div>
-          </div>
+            .slide-white {
+                background: #ffffff;
+            }
 
-          <!-- Slide 2: Adapted to Figma Design -->
-          <div class="use-case-slide" id="use-case-slide-2">
-            <div class="s2">
-              <span class="s2-m"></span>
-              <h2 class="s2-h">READY FOR INDUSTRY</h2>
-              <p class="s2-sub">– like we already do in Kinetronika.</p>
+            .anim-scroll-section {
+                width: 100vw;
+                height: 100vh;
+                min-height: 100vh;
+                position: relative;
+                overflow: hidden;
+                background: #0b0b0b;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+            }
 
-              <img class="s2-i1" src="images/usecase2_1.png" alt="">
-              <img class="s2-i2" src="images/usecase2_2.png" alt="">
-              <img class="s2-i3" src="images/usecase2_3.png" alt="">
-              <img class="s2-i4" src="images/usecase2_4.png" alt="">
-              <img class="s2-i5" src="images/usecase2_5.png" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
+            .anim-stage-frame {
+                width: 100vw;
+                height: 100vh;
+                position: relative;
+                overflow: hidden;
+            }
 
+            .anim-stage {
+                width: 1920px;
+                height: 1080px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                overflow: hidden;
+                transform: translate(-50%, -50%) scale(var(--scale));
+                transform-origin: center center;
+            }
 
-  <section id="section2" class="scroll-section">
-    <div class="frame-container"><img id="frame2" src="video2/0001.jpg" alt=""></div>
-    <div class="section-content">
-      <div class="text-content" id="text2">
-        <p id="text2-p1" class="figma-styled-text-s2">
-          <span class="figma-block-marker-s2"></span>
-          <span class="figma-block-main-title-s2">TRIPLE Z</span>
-          <span class="figma-block-description-s2"><br /><br />Fast Z translation and full-auto buildplate
-            calibration.</span>
-        </p>
-        <p id="text2-p2" class="figma-styled-text-s2">
-          <span class="figma-block-marker-s2"></span>
-          <span class="figma-block-main-title-s2">HARMONIC<br />DRIVES</span>
-          <span class="figma-block-description-s2"><br /><br />Preciese movements of large prints with almost zero
-            backlash</span>
-        </p>
-        <p id="text2-p3" class="figma-styled-text-s2">
-          <span class="figma-block-marker-s2"></span>
-          <span class="figma-block-main-title-s2">RIGID COREXY</span>
-          <span class="figma-block-description-s2"><br /><br />Tailored for multi-axis</span>
-        </p>
-      </div>
-    </div>
-  </section>
+            #section1 .anim-stage {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                transform: none;
+            }
 
-  <!-- External scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-  <script>
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-  </script>
-  <script src="components.js"></script>
-  <script src="animations.js"></script>
-</body>
+            #section1 .frame-container {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+            }
 
+            #section1 .frame-container img {
+                position: absolute;
+                top: 0;
+                left: 30%;
+                width: auto;
+                height: 100%;
+                max-width: none;
+                object-fit: cover;
+                transform: translateX(0);
+            }
+
+            #section1 .text-content {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                overflow: visible;
+            }
+
+            #section1 .text-content p {
+                position: absolute;
+                opacity: 0;
+                transform: translateY(0);
+            }
+
+            #text1-p1.figma-styled-text {
+                left: calc(163 / 1920 * 100vw);
+                top: calc(330 / 1080 * 100vh);
+                width: calc(451 / 1920 * 100vw);
+            }
+
+            #text1-p2.figma-styled-text {
+                left: calc(174 / 1920 * 100vw);
+                top: calc(289 / 1080 * 100vh);
+                width: calc(600 / 1920 * 100vw);
+            }
+
+            #text1-p3.figma-styled-text {
+                left: calc(189 / 1920 * 100vw);
+                top: calc(357 / 1080 * 100vh);
+                width: calc(446 / 1920 * 100vw);
+            }
+
+            #text1-p4.figma-styled-text {
+                left: calc(102 / 1920 * 100vw);
+                top: calc(351 / 1080 * 100vh);
+                width: calc(407 / 1920 * 100vw);
+            }
+
+            #text1-p5.figma-styled-text {
+                left: calc(164 / 1920 * 100vw);
+                top: calc(329 / 1080 * 100vh);
+                width: calc(600 / 1920 * 100vw);
+            }
+
+            #section1 .figma-styled-text {
+                position: relative;
+                font-size: inherit;
+            }
+
+            #section1 .figma-block-marker {
+                position: absolute;
+                left: calc(-40 / 1920 * 100vw);
+                top: calc(9 / 1080 * 100vh);
+                width: calc(18 / 1920 * 100vw);
+                height: calc(54 / 1080 * 100vh);
+                background: #24ba70;
+            }
+
+            #section1 .figma-block-main-title {
+                display: block;
+                color: white;
+                font-family: Inter;
+                font-weight: 700;
+                font-size: calc(60 / 1920 * 100vw);
+                line-height: normal;
+                word-wrap: break-word;
+            }
+
+            #section1 .figma-block-sub-title {
+                display: block;
+                color: white;
+                font-family: Inter;
+                font-weight: 700;
+                font-size: calc(48 / 1920 * 100vw);
+                line-height: 1.2;
+                word-wrap: break-word;
+            }
+
+            #section1 #text1-p1 .figma-block-sub-title {
+                position: absolute;
+                top: calc(214 / 1080 * 100vh);
+                left: 0;
+                width: 100%;
+            }
+
+            #section1 .figma-block-description {
+                position: absolute;
+                display: block;
+                top: calc(80 / 1080 * 100vh);
+                left: calc(4 / 1920 * 100vw);
+                width: calc(324 / 1920 * 100vw);
+                color: white;
+                font-family: Inter;
+                font-weight: 600;
+                font-size: calc(24 / 1920 * 100vw);
+                line-height: calc(29.2 / 24);
+                word-wrap: break-word;
+            }
+
+            #section1 #text1-p2 .figma-block-description {
+                top: calc(210 / 1080 * 100vh);
+                left: 0;
+                width: calc(488 / 1920 * 100vw);
+            }
+
+            #section1 #text1-p3 .figma-block-description {
+                top: calc(177 / 1080 * 100vh);
+                left: 0;
+                width: calc(330 / 1920 * 100vw);
+                line-height: calc(30.16 / 24);
+            }
+
+            #section1 #text1-p4 .figma-block-marker {
+                left: calc(-33 / 1920 * 100vw);
+                width: calc(17 / 1920 * 100vw);
+                height: calc(50 / 1080 * 100vh);
+            }
+
+            #section1 #text1-p4 .figma-block-main-title {
+                font-size: calc(59 / 1920 * 100vw);
+            }
+
+            #section1 #text1-p4 .figma-block-description {
+                top: calc(168 / 1080 * 100vh);
+                left: 0;
+                line-height: calc(30.16 / 24);
+            }
+
+            #section1 #text1-p5 .figma-block-description {
+                top: calc(101 / 1080 * 100vh);
+                left: calc(-40 / 1920 * 100vw);
+                width: calc(488 / 1920 * 100vw);
+            }
+
+            #section2 .anim-stage {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                transform: none;
+            }
+
+            #section2 .frame-container {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+            }
+
+            #section2 .frame-container img {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                height: 100%;
+                width: 100vw;
+                max-width: none;
+                object-fit: cover;
+                transform: translateX(-50%);
+            }
+
+            #section2 .text-content {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                overflow: visible;
+            }
+
+            #section2 .text-content p {
+                position: absolute;
+                opacity: 0;
+                transform: translateY(0);
+            }
+
+            #section2 .figma-styled-text-s2 {
+                position: absolute !important;
+                width: calc(551 / 1920 * 100vw);
+                height: auto;
+            }
+
+            #section2 .figma-block-marker-s2 {
+                position: absolute;
+                left: calc((58 - 87) / 1920 * 100vw);
+                top: calc((540 - 535) / 1080 * 100vh);
+                width: calc(15 / 1920 * 100vw);
+                height: calc(44 / 1080 * 100vh);
+                background: #24ba70;
+            }
+
+            #section2 .figma-block-main-title-s2 {
+                display: block;
+                position: relative;
+                width: calc(511 / 1920 * 100vw);
+                color: white;
+                font-family: Roboto;
+                font-weight: 700;
+                font-size: calc(48 / 1920 * 100vw);
+                line-height: normal;
+                word-wrap: break-word;
+                margin-bottom: calc((540 - (535 + 48 * 1.2)) / 1080 * 100vh);
+            }
+
+            #section2 .figma-block-description-s2 {
+                display: block;
+                position: relative;
+                width: calc(551 / 1920 * 100vw);
+                color: white;
+                font-family: Inter;
+                font-weight: 500;
+                font-size: calc(24 / 1920 * 100vw);
+                line-height: calc(30.16 / 24);
+                word-wrap: break-word;
+            }
+
+            #section2 #text2-p1.figma-styled-text-s2 {
+                left: calc(87 / 1920 * 100vw);
+                top: calc(535 / 1080 * 100vh);
+                width: calc(551 / 1920 * 100vw);
+            }
+
+            #section2 #text2-p2.figma-styled-text-s2 {
+                left: calc(1432 / 1920 * 100vw);
+                top: calc(466 / 1080 * 100vh);
+                width: calc(511 / 1920 * 100vw);
+            }
+
+            #section2 #text2-p2 .figma-block-marker-s2 {
+                left: calc((1404 - 1432) / 1920 * 100vw);
+                top: calc((473 - 466) / 1080 * 100vh);
+            }
+
+            #section2 #text2-p2 .figma-block-main-title-s2 {
+                margin-bottom: calc((519 - (466 + 2 * 48 * 1.2)) / 1080 * 100vh);
+            }
+
+            #section2 #text2-p2 .figma-block-description-s2 {
+                width: calc(381 / 1920 * 100vw);
+            }
+
+            #section2 #text2-p3.figma-styled-text-s2 {
+                left: calc(77 / 1920 * 100vw);
+                top: calc(700 / 1080 * 100vh);
+                width: calc(511 / 1920 * 100vw);
+            }
+
+            #section2 #text2-p3 .figma-block-marker-s2 {
+                left: calc((54 - 77) / 1920 * 100vw);
+                top: calc((811 - 806) / 1080 * 100vh);
+            }
+
+            #section2 #text2-p3 .figma-block-main-title-s2 {
+                margin-bottom: calc((806 - (806 + 48 * 1.2)) / 1080 * 100vh);
+            }
+
+            #section2 #text2-p3 .figma-block-description-s2 {
+                width: calc(381 / 1920 * 100vw);
+                top: 0;
+                left: 0;
+            }
+
+        </style>
+    </head>
+    <body>
+        <main class="slides">
+            <section class="slide-frame">
+                <div class="slide slide-1">
+                    <div class="hero-marker" aria-hidden="true"></div>
+                    <div class="hero-heading">
+                        <span class="hero-title"
+                            >AUTOFIBER-5<br /><br /><br
+                        /></span>
+                        <span class="hero-subtitle">
+                            Pushing <br />composite <br />manufacturing
+                            <br />further.
+                        </span>
+                    </div>
+                    <p class="hero-description">
+                        Complex geometry continous fiber 5 axis 3D printer.
+                    </p>
+                    <video
+                        class="hero-image"
+                        id="slide1-video"
+                        src="pages_v3/assets/1_1.webm"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                    ></video>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-1b">
+                    <div
+                        style="
+                            width: 1920px;
+                            height: 86px;
+                            left: 0px;
+                            top: 0px;
+                            position: absolute;
+                            background: #181818;
+                        "
+                    ></div>
+                    <img
+                        style="
+                            width: 1920px;
+                            height: 1080px;
+                            left: 0px;
+                            top: 0px;
+                            position: absolute;
+                        "
+                        src="pages_v3/assets/1_1.png"
+                        alt=""
+                    />
+                    <div
+                        style="
+                            width: 12px;
+                            height: 51px;
+                            left: 413px;
+                            top: 133px;
+                            position: absolute;
+                            background: #24ba70;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 752px;
+                            height: 181px;
+                            left: 438px;
+                            top: 133px;
+                            position: absolute;
+                            color: white;
+                            font-size: 48px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            word-wrap: break-word;
+                        "
+                    >
+                        New way for composites.
+                    </div>
+                    <div
+                        style="
+                            width: 1077px;
+                            height: 120px;
+                            left: 556px;
+                            top: 1020px;
+                            position: absolute;
+                            color: black;
+                            font-size: 20px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 25.13px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Presented - nonplanary printed lightweight basalt
+                        fiber/termoplastic drone fuselage
+                    </div>
+                    <div
+                        style="
+                            width: 890px;
+                            height: 150px;
+                            left: 438px;
+                            top: 210px;
+                            position: absolute;
+                            color: white;
+                            font-size: 20px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            word-wrap: break-word;
+                        "
+                    >
+                        We believe that future is built with composite materials
+                        - so we created a technology that allowes anyone to use
+                        them for creating parts simply, agile and fast, just as
+                        what additive is. <br />Absolutely zero compromises in
+                        geometry and mechanical properties.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-2">
+                    <img
+                        style="
+                            width: 715px;
+                            height: 1080px;
+                            left: 0px;
+                            top: 0px;
+                            position: absolute;
+                        "
+                        src="pages_v3/assets/2_1.png"
+                        alt=""
+                    />
+                    <div
+                        style="
+                            width: 14px;
+                            height: 34px;
+                            left: 728px;
+                            top: 322px;
+                            position: absolute;
+                            background: #24ba70;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 545px;
+                            height: 239px;
+                            left: 594px;
+                            top: 312px;
+                            position: absolute;
+                            text-align: right;
+                            color: black;
+                            font-size: 48px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Rethink materials.
+                    </div>
+                    <div
+                        style="
+                            width: 983px;
+                            height: 209px;
+                            left: 746px;
+                            top: 431px;
+                            position: absolute;
+                            color: black;
+                            font-size: 20px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Introducing Continouos Fiber Nonplanary Fabrication
+                        (CFNF) - technology for printing composite parts with
+                        complex geometries and very high mechanical properties.
+                        By using any-directional continouos fiber reinforcing,
+                        we are implementing in-part anisotropy control for most
+                        strength in less mass. <br />And yes, we make the way
+                        from sketch to part really fast.<br />What if you
+                        consider composites instead of metals for your next
+                        project? <br />
+                    </div>
+                    <div
+                        style="
+                            width: 648px;
+                            height: 46px;
+                            left: 1157px;
+                            top: 1026px;
+                            position: absolute;
+                            color: black;
+                            font-size: 20px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 25.13px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Presented - nonplanary printed lightweight reinforced
+                        cowl
+                    </div>
+                    <div
+                        style="
+                            width: 478px;
+                            height: 151px;
+                            left: 746px;
+                            top: 361px;
+                            position: absolute;
+                            color: black;
+                            font-size: 24px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 30.16px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Create better.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-3">
+                    <img
+                        style="
+                            width: 1107px;
+                            height: 1080px;
+                            left: 813px;
+                            top: 0px;
+                            position: absolute;
+                        "
+                        src="pages_v3/assets/3_1.png"
+                        alt=""
+                    />
+                    <div
+                        style="
+                            width: 511px;
+                            height: 122px;
+                            left: 293px;
+                            top: 296px;
+                            position: absolute;
+                            color: black;
+                            font-size: 48px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            word-wrap: break-word;
+                        "
+                    >
+                        READY FOR INDUSTRY
+                    </div>
+                    <div
+                        style="
+                            width: 15px;
+                            height: 44px;
+                            left: 260px;
+                            top: 302px;
+                            position: absolute;
+                            background: #24ba70;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 520px;
+                            height: 246px;
+                            left: 293px;
+                            top: 395px;
+                            position: absolute;
+                            color: black;
+                            font-size: 20px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            line-height: 25.13px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Our goal is to make composites better in existing
+                        applications and bring them to products where
+                        technological limitations stopped from using them.<br />Create
+                        functional and strong composite parts for demanding
+                        applications like robotics, aerospace, automotive and
+                        any other projects that are important for you.
+                    </div>
+                    <div
+                        style="
+                            width: 478px;
+                            height: 151px;
+                            left: 293px;
+                            top: 346px;
+                            position: absolute;
+                            color: black;
+                            font-size: 24px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 30.16px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Acessible for everytning.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-4">
+                    <img
+                        style="
+                            width: 1920px;
+                            height: 968px;
+                            left: 0px;
+                            top: 112px;
+                            position: absolute;
+                        "
+                        src="pages_v3/assets/4_1.png"
+                        alt=""
+                    />
+                    <div
+                        style="
+                            width: 542px;
+                            height: 49px;
+                            left: 689px;
+                            top: 1046px;
+                            position: absolute;
+                            color: black;
+                            font-size: 20px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 25.13px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        CFNF Printed carbon fiber/termoplastic drone fuselage
+                    </div>
+                    <div
+                        style="
+                            width: 19px;
+                            height: 37px;
+                            left: 449px;
+                            top: 231px;
+                            position: absolute;
+                            background: #24ba70;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 752px;
+                            height: 181px;
+                            left: 472px;
+                            top: 221px;
+                            position: absolute;
+                            color: black;
+                            font-size: 48px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Overcome limitations.
+                    </div>
+                    <div
+                        style="
+                            width: 1039px;
+                            height: 184px;
+                            left: 472px;
+                            top: 298px;
+                            position: absolute;
+                            color: black;
+                            font-size: 20px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Almost zero geometrical limitations compared to fabric
+                        or prepreg composite technologies - we made matrix/fiber
+                        coextrusion on 5-axis machine to fix material in almost
+                        any geometry and direction. Complex seamless parts with
+                        little features are what we have created the technology
+                        for, with no molds needed in production.<br />Also, our
+                        process results in most effective fiber layout - all the
+                        continouos fiber directions can be pre-engineered on
+                        slicing stage.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-5">
+                    <div class="workflow-carousel" data-workflow-carousel>
+                        <div class="workflow-track">
+                            <div class="workflow-panel">
+                    <img
+                        style="
+                            width: 257px;
+                            height: 328px;
+                            left: 841px;
+                            top: 534px;
+                            position: absolute;
+                        "
+                        src="pages_v3/assets/5_1.png"
+                        alt=""
+                    />
+                    <div
+                        style="
+                            width: 261px;
+                            height: 49px;
+                            left: 432px;
+                            top: 434px;
+                            position: absolute;
+                            text-align: center;
+                            color: black;
+                            font-size: 24px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 29.2px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Design
+                    </div>
+                    <div
+                        style="
+                            width: 261px;
+                            height: 49px;
+                            left: 820px;
+                            top: 435px;
+                            position: absolute;
+                            text-align: center;
+                            color: black;
+                            font-size: 24px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 29.2px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Trace
+                    </div>
+                    <div
+                        style="
+                            width: 261px;
+                            height: 49px;
+                            left: 1208px;
+                            top: 434px;
+                            position: absolute;
+                            text-align: center;
+                            color: black;
+                            font-size: 24px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 29.2px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Print
+                    </div>
+                    <div
+                        style="
+                            width: 229px;
+                            height: 0px;
+                            left: 641px;
+                            top: 452px;
+                            position: absolute;
+                            outline: 0.5px black solid;
+                            outline-offset: -0.25px;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 197px;
+                            height: 0px;
+                            left: 1039px;
+                            top: 452px;
+                            position: absolute;
+                            outline: 0.5px black solid;
+                            outline-offset: -0.25px;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 445px;
+                            height: 112px;
+                            left: 444px;
+                            top: 164px;
+                            position: absolute;
+                            color: black;
+                            font-size: 40px;
+                            font-family: Roboto;
+                            font-weight: 700;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Fast composites workflow.
+                    </div>
+                    <div
+                        style="
+                            width: 15px;
+                            height: 41px;
+                            left: 417px;
+                            top: 168px;
+                            position: absolute;
+                            background: #24ba70;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 10px;
+                            height: 26px;
+                            left: 1272px;
+                            top: 435px;
+                            position: absolute;
+                            background: #24ba70;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 10px;
+                            height: 26px;
+                            left: 879px;
+                            top: 434px;
+                            position: absolute;
+                            background: #24ba70;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 10px;
+                            height: 26px;
+                            left: 483px;
+                            top: 435px;
+                            position: absolute;
+                            background: #24ba70;
+                        "
+                    ></div>
+                    <div
+                        style="
+                            width: 1069px;
+                            height: 86px;
+                            left: 444px;
+                            top: 276px;
+                            position: absolute;
+                            color: black;
+                            font-size: 20px;
+                            font-family: Inter;
+                            font-weight: 600;
+                            line-height: 24.34px;
+                            word-wrap: break-word;
+                        "
+                    >
+                        Classic composite manufacturing workflow is expensive in
+                        time, money and labor work and requires custom molds for
+                        each part. With CFNF we are making composite parts
+                        production fully automated, simple and allowing to cut
+                        part production span from weeks to hours.
+                    </div>
+                    <img
+                        style="
+                            width: 287px;
+                            height: 370px;
+                            left: 1236px;
+                            top: 500px;
+                            position: absolute;
+                        "
+                        src="pages_v3/assets/5_2.png"
+                        alt=""
+                    />
+                    <img
+                        style="
+                            width: 352px;
+                            height: 214px;
+                            left: 393px;
+                            top: 573px;
+                            position: absolute;
+                        "
+                        src="pages_v3/assets/5_3.png"
+                        alt=""
+                    />
+                            </div>
+                            <div class="workflow-panel">
+                                <div
+                                    style="
+                                        width: 14px;
+                                        height: 34px;
+                                        left: 835px;
+                                        top: 338px;
+                                        position: absolute;
+                                        background: #24ba70;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        width: 545px;
+                                        height: 239px;
+                                        left: 857px;
+                                        top: 332px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 40px;
+                                        font-family: Roboto;
+                                        font-weight: 700;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Optimised continuous fiber layout.
+                                </div>
+                                <div
+                                    style="
+                                        width: 711px;
+                                        height: 209px;
+                                        left: 852px;
+                                        top: 447px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Roboto;
+                                        font-weight: 700;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Composite parts are anisotropic - fiber
+                                    directions are crucial in creating part's
+                                    mechanical properties. With CFNF we can
+                                    create custom layout for every single part
+                                    to optimise weight and costs. Here's how it
+                                    works, step by step.
+                                </div>
+                                <div
+                                    style="
+                                        width: 732px;
+                                        height: 46px;
+                                        left: 852px;
+                                        top: 1034px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 600;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Presented - nonplanary printed basalt fiber
+                                    reinforced drone fuselage
+                                </div>
+                                <img
+                                    style="
+                                        width: 748px;
+                                        height: 1080px;
+                                        left: 0px;
+                                        top: 0px;
+                                        position: absolute;
+                                    "
+                                    src="pages_v3/assets/5_2_1.png"
+                                    alt="Optimised continuous fiber layout"
+                                />
+                            </div>
+                            <div class="workflow-panel">
+                                <div
+                                    style="
+                                        width: 499px;
+                                        height: 32px;
+                                        left: 541px;
+                                        top: 779px;
+                                        position: absolute;
+                                        text-align: justify;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 500;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Classic 3-axis printing
+                                </div>
+                                <div
+                                    style="
+                                        width: 613px;
+                                        height: 36px;
+                                        left: 1142px;
+                                        top: 779px;
+                                        position: absolute;
+                                        text-align: justify;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 500;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    5 axis non-planary manufacturing
+                                </div>
+                                <div
+                                    style="
+                                        width: 448px;
+                                        height: 46px;
+                                        left: 536px;
+                                        top: 186px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 40px;
+                                        font-family: Roboto;
+                                        font-weight: 700;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Anisotropy control
+                                </div>
+                                <div
+                                    style="
+                                        width: 114px;
+                                        height: 54px;
+                                        left: -12px;
+                                        top: 401px;
+                                        position: absolute;
+                                        background: white;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        width: 15px;
+                                        height: 41px;
+                                        left: 509px;
+                                        top: 189px;
+                                        position: absolute;
+                                        background: #24ba70;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        width: 860px;
+                                        height: 100px;
+                                        left: 524px;
+                                        top: 276px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 600;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Turntable with rotating printhead allows
+                                    creating nonplanar reinforcing layers to
+                                    significantly increase part's strength in
+                                    several directions.
+                                </div>
+                                <img
+                                    style="
+                                        width: 521.68px;
+                                        height: 326.3px;
+                                        left: 401px;
+                                        top: 423px;
+                                        position: absolute;
+                                        border-radius: 51px;
+                                        border: 1px black solid;
+                                    "
+                                    src="pages_v3/assets/5_3_1.png"
+                                    alt="Classic 3-axis printing"
+                                />
+                                <div
+                                    style="
+                                        width: 36.63px;
+                                        height: 27.85px;
+                                        left: 420px;
+                                        top: 425px;
+                                        position: absolute;
+                                        background: white;
+                                    "
+                                ></div>
+                                <img
+                                    style="
+                                        width: 500.65px;
+                                        height: 326.3px;
+                                        left: 1067.35px;
+                                        top: 425.38px;
+                                        position: absolute;
+                                        border-radius: 62px;
+                                        border: 1px black solid;
+                                    "
+                                    src="pages_v3/assets/5_3_2.png"
+                                    alt="5 axis non-planary manufacturing"
+                                />
+                                <div
+                                    style="
+                                        width: 52.91px;
+                                        height: 14.92px;
+                                        left: 1498px;
+                                        top: 727px;
+                                        position: absolute;
+                                        background: white;
+                                    "
+                                ></div>
+                            </div>
+                            <div class="workflow-panel">
+                                <img
+                                    style="
+                                        width: 507px;
+                                        height: 339px;
+                                        left: 404px;
+                                        top: 409px;
+                                        position: absolute;
+                                    "
+                                    src="pages_v3/assets/5_4_1.png"
+                                    alt="Classic 3-axis printing geometry"
+                                />
+                                <img
+                                    style="
+                                        width: 520px;
+                                        height: 348px;
+                                        left: 1015px;
+                                        top: 400px;
+                                        position: absolute;
+                                    "
+                                    src="pages_v3/assets/5_4_2.png"
+                                    alt="5 axis non-planary manufacturing geometry"
+                                />
+                                <div
+                                    style="
+                                        width: 499px;
+                                        height: 32px;
+                                        left: 547px;
+                                        top: 787px;
+                                        position: absolute;
+                                        text-align: justify;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 500;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Classic 3-axis printing
+                                </div>
+                                <div
+                                    style="
+                                        width: 613px;
+                                        height: 36px;
+                                        left: 1137px;
+                                        top: 787px;
+                                        position: absolute;
+                                        text-align: justify;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 500;
+                                        line-height: 25.13px;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    5 axis non-planary manufacturing
+                                </div>
+                                <div
+                                    style="
+                                        width: 860px;
+                                        height: 100px;
+                                        left: 542px;
+                                        top: 273px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 20px;
+                                        font-family: Inter;
+                                        font-weight: 600;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    No supports needed for hanging structures -
+                                    base printing direction can be adjusted
+                                    during the print.
+                                </div>
+                                <div
+                                    style="
+                                        width: 448px;
+                                        height: 46px;
+                                        left: 542px;
+                                        top: 188px;
+                                        position: absolute;
+                                        color: black;
+                                        font-size: 40px;
+                                        font-family: Roboto;
+                                        font-weight: 700;
+                                        word-wrap: break-word;
+                                    "
+                                >
+                                    Geometry optimisation
+                                </div>
+                                <div
+                                    style="
+                                        width: 15px;
+                                        height: 41px;
+                                        left: 517px;
+                                        top: 188px;
+                                        position: absolute;
+                                        background: #24ba70;
+                                    "
+                                ></div>
+                            </div>
+                        </div>
+                        <button
+                            class="workflow-arrow workflow-arrow-prev"
+                            type="button"
+                            aria-label="Previous workflow slide"
+                            data-workflow-prev
+                        >
+                            &#8249;
+                        </button>
+                        <button
+                            class="workflow-arrow workflow-arrow-next"
+                            type="button"
+                            aria-label="Next workflow slide"
+                            data-workflow-next
+                        >
+                            &#8250;
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section id="section1" class="anim-scroll-section">
+                <div class="anim-stage-frame">
+                    <div class="anim-stage">
+                        <div class="frame-container">
+                            <img id="frame1" src="video1/0001.jpg" alt="" />
+                        </div>
+                        <div class="text-content" id="text1">
+                            <p id="text1-p1" class="figma-styled-text">
+                                <span class="figma-block-marker"></span>
+                                <span class="figma-block-main-title"
+                                    >NONPLANAR-1</span
+                                >
+                                <span class="figma-block-sub-title"
+                                    >To push<br />printing<br />further.</span
+                                >
+                                <span class="figma-block-description"
+                                    >First industry-ready 5 axis nonplanary 3D
+                                    printer.</span
+                                >
+                            </p>
+
+                            <p id="text1-p2" class="figma-styled-text">
+                                <span class="figma-block-marker"></span>
+                                <span class="figma-block-main-title"
+                                    >CHANGE THE WAY<br />YOU CREATE</span
+                                >
+                                <span class="figma-block-description">
+                                    Make industrial-grade prints stronger,
+                                    faster and more efficient in the comparison
+                                    with classical 3-axis FDM machines.
+                                    <br /><br />
+                                    Able to print refractory polymers (PEEK,
+                                    ULTEM).
+                                </span>
+                            </p>
+                            <p id="text1-p3" class="figma-styled-text">
+                                <span class="figma-block-marker"></span>
+                                <span class="figma-block-main-title"
+                                    >BUILT FOR<br />MORE</span
+                                >
+                                <span class="figma-block-description">
+                                    Workspace: diameter 300x700 mm<br />in
+                                    multi-axis mode <br /><br />
+                                    For your big concepts.
+                                </span>
+                            </p>
+                            <p id="text1-p4" class="figma-styled-text">
+                                <span class="figma-block-marker"></span>
+                                <span class="figma-block-main-title"
+                                    >ROBUSTNESS<br />MATTERS</span
+                                >
+                                <span class="figma-block-description">
+                                    Custom 5-axis<br />
+                                    kinematic scheme<br />
+                                    along with precision<br />
+                                    linear and rotational<br />
+                                    drives.
+                                </span>
+                            </p>
+                            <p id="text1-p5" class="figma-styled-text">
+                                <span class="figma-block-marker"></span>
+                                <span class="figma-block-main-title"
+                                    >NO COMPROMISES</span
+                                >
+                                <span class="figma-block-description">
+                                    - Nozzle temperature - up to 500 deg<br />
+                                    - Buildplate temperature - up to 150 deg<br />
+                                    - Active chamber temperature - up to<br />150
+                                    deg<br />
+                                    - Water component cooling,<br />compressed
+                                    air printed model cooling.<br />
+                                    - Full-auto buildplate leveling and<br />temperture
+                                    expansion compensation.<br />
+                                    - Active ringing compensation.<br />
+                                    - Active heated material box.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-8">
+                    <div
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            background: #333333;
+                            overflow: hidden;
+                        "
+                    >
+                        <div
+                            style="
+                                width: 546px;
+                                height: 610px;
+                                left: 473px;
+                                top: 365px;
+                                position: absolute;
+                                color: white;
+                                font-size: 40px;
+                                font-family: Inter;
+                                font-weight: 700;
+                                word-wrap: break-word;
+                            "
+                        >
+                            AUTOCOMPOSITE<br /><br />
+                        </div>
+                        <div
+                            style="
+                                width: 14px;
+                                height: 42px;
+                                left: 448px;
+                                top: 368px;
+                                position: absolute;
+                                background: #24ba70;
+                            "
+                        ></div>
+                        <div
+                            style="
+                                width: 401px;
+                                height: 305px;
+                                left: 474px;
+                                top: 427px;
+                                position: absolute;
+                                color: white;
+                                font-size: 20px;
+                                font-family: Inter;
+                                font-weight: 600;
+                                line-height: 24.34px;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Continuous fiber coextrusion printhead for nonplanar
+                            printing.<br /><br />Max. printing temp - 450C;<br />High-temperature
+                            materials support;<br />Water cooling;<br />Dual gear
+                            extrusion for both materials;<br />Configured for
+                            5-axis nonplanar printing;<br />
+                        </div>
+                        <img
+                            style="
+                                width: 618px;
+                                height: 572px;
+                                left: 944px;
+                                top: 276px;
+                                position: absolute;
+                            "
+                            src="pages_v3/assets/8_1.png"
+                            alt="Autocomposite printhead"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            <section id="section2" class="anim-scroll-section">
+                <div class="anim-stage-frame">
+                    <div class="anim-stage">
+                        <div class="frame-container">
+                            <img id="frame2" src="video2/0001.jpg" alt="" />
+                        </div>
+                        <div class="text-content" id="text2">
+                            <p id="text2-p1" class="figma-styled-text-s2">
+                                <span class="figma-block-marker-s2"></span>
+                                <span class="figma-block-main-title-s2"
+                                    >TRIPLE Z</span
+                                >
+                                <span class="figma-block-description-s2"
+                                    ><br /><br />Fast Z translation and
+                                    full-auto buildplate calibration.</span
+                                >
+                            </p>
+                            <p id="text2-p2" class="figma-styled-text-s2">
+                                <span class="figma-block-marker-s2"></span>
+                                <span class="figma-block-main-title-s2"
+                                    >HARMONIC<br />DRIVES</span
+                                >
+                                <span class="figma-block-description-s2"
+                                    ><br /><br />Preciese movements of large
+                                    prints with almost zero backlash</span
+                                >
+                            </p>
+                            <p id="text2-p3" class="figma-styled-text-s2">
+                                <span class="figma-block-marker-s2"></span>
+                                <span class="figma-block-main-title-s2"
+                                    >RIGID COREXY</span
+                                >
+                                <span class="figma-block-description-s2"
+                                    ><br /><br />Tailored for multi-axis</span
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-6">
+                    <div
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            background: white;
+                            overflow: hidden;
+                        "
+                    >
+                        <video
+                            style="
+                                width: 1920px;
+                                height: 1080px;
+                                left: 0px;
+                                top: 0px;
+                                position: absolute;
+                            "
+                            src="pages_v3/assets/6_1.webm"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                        ></video>
+                        <div
+                            style="
+                                width: 506px;
+                                height: 112px;
+                                left: 1230px;
+                                top: 322px;
+                                position: absolute;
+                                color: black;
+                                font-size: 40px;
+                                font-family: Roboto;
+                                font-weight: 700;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Full multiaxial layering control
+                        </div>
+                        <div
+                            style="
+                                width: 15px;
+                                height: 41px;
+                                left: 1203px;
+                                top: 326px;
+                                position: absolute;
+                                background: #24ba70;
+                            "
+                        ></div>
+                        <div
+                            style="
+                                width: 494px;
+                                height: 226px;
+                                left: 1230px;
+                                top: 434px;
+                                position: absolute;
+                                color: black;
+                                font-size: 20px;
+                                font-family: Inter;
+                                font-weight: 600;
+                                line-height: 24.34px;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Nonplanar slicing is implemented to create fiber
+                            parts with CFNF.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide slide-7">
+                    <div
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            background: #f2f2f2;
+                            overflow: hidden;
+                        "
+                    >
+                        <img
+                            style="
+                                width: 1581px;
+                                height: 845px;
+                                left: 339px;
+                                top: 236px;
+                                position: absolute;
+                            "
+                            src="pages_v3/assets/7_1.png"
+                            alt=""
+                        />
+                        <div
+                            style="
+                                width: 506px;
+                                height: 112px;
+                                left: 430px;
+                                top: 198px;
+                                position: absolute;
+                                color: black;
+                                font-size: 40px;
+                                font-family: Roboto;
+                                font-weight: 700;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Klipper-based control
+                        </div>
+                        <div
+                            style="
+                                width: 15px;
+                                height: 41px;
+                                left: 403px;
+                                top: 202px;
+                                position: absolute;
+                                background: #24ba70;
+                            "
+                        ></div>
+                        <div
+                            style="
+                                width: 416px;
+                                height: 226px;
+                                left: 430px;
+                                top: 268px;
+                                position: absolute;
+                                color: black;
+                                font-size: 20px;
+                                font-family: Inter;
+                                font-weight: 600;
+                                line-height: 24.34px;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Speed and precision in any printing directions.
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="slide-frame">
+                <div class="slide slide-9">
+                    <div
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            background: white;
+                            overflow: hidden;
+                        "
+                    >
+                        <img
+                            style="
+                                width: 1920px;
+                                height: 1080px;
+                                left: 0px;
+                                top: 0px;
+                                position: absolute;
+                            "
+                            src="pages_v3/assets/9_1.png"
+                            alt=""
+                        />
+                        <div
+                            style="
+                                width: 622px;
+                                height: 120px;
+                                left: 58px;
+                                top: 1030px;
+                                position: absolute;
+                                color: white;
+                                font-size: 20px;
+                                font-family: Inter;
+                                font-weight: 600;
+                                line-height: 25.13px;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Nonplanary printed part
+                        </div>
+                        <div
+                            style="
+                                width: 343px;
+                                height: 167px;
+                                left: 279px;
+                                top: 174px;
+                                position: absolute;
+                                color: black;
+                                font-size: 40px;
+                                font-family: Inter;
+                                font-weight: 900;
+                                word-wrap: break-word;
+                            "
+                        >
+                            Contact us
+                        </div>
+                        <div
+                            style="
+                                width: 708px;
+                                height: 167px;
+                                left: 279px;
+                                top: 255px;
+                                position: absolute;
+                                color: black;
+                                font-size: 40px;
+                                font-family: Inter;
+                                font-weight: 700;
+                                word-wrap: break-word;
+                            "
+                        >
+                            esatalov868@gmail.com
+                        </div>
+                        <div
+                            style="
+                                width: 8px;
+                                height: 33px;
+                                left: 265px;
+                                top: 180px;
+                                position: absolute;
+                                background: #24ba70;
+                            "
+                        ></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script>
+            const DESIGN_WIDTH = 1920;
+            const DESIGN_HEIGHT = 1080;
+
+            function updateScale() {
+                const scale = Math.max(
+                    document.documentElement.clientWidth / DESIGN_WIDTH,
+                    document.documentElement.clientHeight / DESIGN_HEIGHT,
+                );
+                document.documentElement.style.setProperty(
+                    "--scale",
+                    scale.toString(),
+                );
+            }
+
+            window.addEventListener("resize", updateScale);
+            updateScale();
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+        <script>
+            gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+            window.ANIMATIONS_BASE_PATH = "";
+            window.ANIMATIONS_DISABLE_SCROLL_LOCK = true;
+            window.ANIMATIONS_SCRUB = true;
+            window.ANIMATIONS_SECTION2_PAUSE_DURATION = 3.2;
+            window.ANIMATIONS_SECTION2_END_PAUSE_DURATION = 1.6;
+            window.ANIMATIONS_SECTION2_SCROLL_SPAN = 280;
+        </script>
+        <script src="animations.js"></script>
+        <script>
+            (function () {
+                const carousels = document.querySelectorAll(
+                    "[data-workflow-carousel]",
+                );
+                if (!carousels.length) {
+                    return;
+                }
+
+                carousels.forEach((carousel) => {
+                    const track = carousel.querySelector(".workflow-track");
+                    const panels = carousel.querySelectorAll(".workflow-panel");
+                    const prevButton =
+                        carousel.querySelector("[data-workflow-prev]");
+                    const nextButton =
+                        carousel.querySelector("[data-workflow-next]");
+                    if (
+                        !track ||
+                        !panels.length ||
+                        !prevButton ||
+                        !nextButton
+                    ) {
+                        return;
+                    }
+
+                    let currentIndex = 0;
+                    const panelCount = panels.length;
+
+                    function updateCarousel() {
+                        const panelWidth = panels[0].offsetWidth || 1920;
+                        track.style.transform = `translateX(${-currentIndex * panelWidth}px)`;
+                        prevButton.disabled = currentIndex === 0;
+                        nextButton.disabled = currentIndex >= panelCount - 1;
+                    }
+
+                    function isVisible() {
+                        const rect = carousel.getBoundingClientRect();
+                        const vh =
+                            window.innerHeight ||
+                            document.documentElement.clientHeight;
+                        return rect.top < vh * 0.7 && rect.bottom > vh * 0.3;
+                    }
+
+                    prevButton.addEventListener("click", () => {
+                        if (currentIndex <= 0) {
+                            return;
+                        }
+                        currentIndex -= 1;
+                        updateCarousel();
+                    });
+
+                    nextButton.addEventListener("click", () => {
+                        if (currentIndex >= panelCount - 1) {
+                            return;
+                        }
+                        currentIndex += 1;
+                        updateCarousel();
+                    });
+
+                    document.addEventListener("keydown", (event) => {
+                        if (!isVisible()) {
+                            return;
+                        }
+                        if (
+                            event.key === "ArrowRight" &&
+                            currentIndex < panelCount - 1
+                        ) {
+                            currentIndex += 1;
+                            updateCarousel();
+                        }
+                        if (event.key === "ArrowLeft" && currentIndex > 0) {
+                            currentIndex -= 1;
+                            updateCarousel();
+                        }
+                    });
+
+                    window.addEventListener("resize", updateCarousel);
+                    updateCarousel();
+                });
+            })();
+        </script>
+    </body>
 </html>
+
