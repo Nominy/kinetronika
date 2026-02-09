@@ -2,6 +2,9 @@
 
 // Cache for image preloading
 const imageCache = new Map();
+const ANIMATIONS_BASE_PATH = window.ANIMATIONS_BASE_PATH || "";
+const ANIMATIONS_SCRUB =
+  typeof window.ANIMATIONS_SCRUB === "undefined" ? 0.1 : window.ANIMATIONS_SCRUB;
 
 // Utilities for frame loading
 class FrameLoader {
@@ -50,8 +53,10 @@ class FrameLoader {
     const framePaths = this.createFramePaths(basePath, frameCount);
     let loadedCount = 0;
 
-    // Prevent scrolling until all initial frames are loaded
-    document.body.style.overflow = 'hidden';
+    // Prevent scrolling until all initial frames are loaded (optional).
+    if (!window.ANIMATIONS_DISABLE_SCROLL_LOCK) {
+      document.body.style.overflow = 'hidden';
+    }
 
     // Fire all loads in parallel and collect promises
     const promises = framePaths.map(src => {
@@ -98,10 +103,12 @@ class FrameLoader {
     }
     
     // Allow scrolling
-    document.body.style.overflow = '';
+    if (!window.ANIMATIONS_DISABLE_SCROLL_LOCK) {
+      document.body.style.overflow = '';
+    }
     
     // Preload second animation in the background
-    this.preloadBackgroundAnimation('video2/', 180);
+    this.preloadBackgroundAnimation(`${ANIMATIONS_BASE_PATH}video2/`, 180);
 
     // Initialize other components now that critical frames are loaded
     if (window.gsap) {
@@ -129,10 +136,16 @@ function initAnimations() {
     ignoreMobileResize: true
   });
 
+  const frameLoader = new FrameLoader();
+
   const section1 = document.querySelector('#section1');
   const section2 = document.querySelector('#section2');
   const frame1 = document.querySelector('#section1 .frame-container img');
   const frame2 = document.querySelector('#section2 .frame-container img');
+
+  if (!section1 || !frame1) {
+    return;
+  }
 
   // Apply larger font size to paragraphs with less text in section1
   gsap.set("#text1-p1", { fontSize: "2rem" });  // Main title - larger
@@ -146,16 +159,23 @@ function initAnimations() {
 
   // First animation timeline
   const obj1 = { frame: 0 };
-  const tl1 = gsap.timeline({
+  let tl1;
+  tl1 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section1",
       start: "top top",
       end: "+=250%", // This might need adjustment if 15s feels too short/long for 250% scroll
-      scrub: 0.1,
+      scrub: ANIMATIONS_SCRUB,
       pin: true,
       anticipatePin: 0,
       fastScrollEnd: true,
       preventOverlaps: true,
+      id: "section1",
+      onUpdate: (self) => {
+        if (typeof window.section1OnUpdate === "function") {
+          window.section1OnUpdate(self, tl1);
+        }
+      }
     }
   });
 
@@ -165,9 +185,18 @@ function initAnimations() {
 
   const updateFrame1 = function () {
     const frameIndex = Math.round(obj1.frame);
-    const src = `video1/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
+    const src = `${ANIMATIONS_BASE_PATH}video1/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
     if (imageCache.has(src)) {
       frame1.src = src;
+      return;
+    }
+
+    // Allow rendering even if not preloaded (useful when scroll-lock preload is disabled).
+    frame1.src = src;
+    frameLoader.loadImage(src);
+    const preloadIndex = frameIndex + 5;
+    if (preloadIndex < 240) {
+      frameLoader.loadImage(`${ANIMATIONS_BASE_PATH}video1/${String(preloadIndex + 1).padStart(4, '0')}.jpg`);
     }
   };
 
@@ -184,6 +213,8 @@ function initAnimations() {
 
   // Pause after 60th frame is reached
   videoTime += pauseDuration;
+  // First "checkpoint": lock on the second text stage (p2) after fade-in.
+  tl1.addLabel("checkpoint1", 3.8);
 
   // Segment 2: Animate frames 59-119 (displays 60th to 120th image)
   tl1.to(obj1, {
@@ -308,12 +339,18 @@ function initAnimations() {
 
   // Second animation timeline
   const obj2 = { frame: 0 };
+  if (!section2 || !frame2) {
+    window.section1Timeline = tl1;
+    window.section1ScrollTrigger = tl1.scrollTrigger;
+    return;
+  }
+
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section2",
       start: "top top",
       end: "+=200%",
-      scrub: 0.1,
+      scrub: ANIMATIONS_SCRUB,
       pin: true,
       anticipatePin: 0,
       fastScrollEnd: true,
@@ -321,7 +358,7 @@ function initAnimations() {
       onEnter: () => {
         // When entering section 2, ensure we start preloading if not already
         if (!window.section2Loading) {
-          new FrameLoader().preloadBackgroundAnimation('video2/', 180);
+          new FrameLoader().preloadBackgroundAnimation(`${ANIMATIONS_BASE_PATH}video2/`, 180);
           window.section2Loading = true;
         }
       },
@@ -331,15 +368,15 @@ function initAnimations() {
   // Replace continuous frame animation with two segments and a pause
   const updateFrame2 = () => {
     const frameIndex = Math.round(obj2.frame);
-    const src = `video2/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
+    const src = `${ANIMATIONS_BASE_PATH}video2/${String(frameIndex + 1).padStart(4, '0')}.jpg`;
     if (imageCache.has(src)) {
       frame2.src = src;
     } else {
       frame2.src = src;
-      new FrameLoader().loadImage(src);
+      frameLoader.loadImage(src);
       const preloadIndex = frameIndex + 5;
       if (preloadIndex < 180) {
-        new FrameLoader().loadImage(`video2/${String(preloadIndex + 1).padStart(4, '0')}.jpg`);
+        frameLoader.loadImage(`${ANIMATIONS_BASE_PATH}video2/${String(preloadIndex + 1).padStart(4, '0')}.jpg`);
       }
     }
   };
@@ -432,6 +469,9 @@ function initAnimations() {
   
   // tl2.totalDuration(segmentDuration2 * 2 + pauseDuration2); // Ensure total duration is correct (already set)
 
+  window.section1Timeline = tl1;
+  window.section1ScrollTrigger = tl1.scrollTrigger;
+
   // Handle window resize - use debounced refresh for better performance
   let resizeTimeout;
   window.addEventListener('resize', () => {
@@ -445,7 +485,24 @@ function initAnimations() {
 // Start the animation process when document is loaded
 document.addEventListener('DOMContentLoaded', () => {
   const loader = new FrameLoader();
-  loader.preloadFirstAnimation('video1/', 240);
+
+  // In pages like new_pages/index.html we don't want a long, blocking preload.
+  // Initialize immediately and lazy-load frames as needed.
+  if (window.ANIMATIONS_DISABLE_SCROLL_LOCK) {
+    if (!window.animationsInitialized) {
+      initAnimations();
+      window.animationsInitialized = true;
+    }
+
+    if (loader.loadingIndicator) {
+      loader.loadingIndicator.hide();
+    }
+
+    loader.preloadBackgroundAnimation(`${ANIMATIONS_BASE_PATH}video1/`, 240);
+    return;
+  }
+
+  loader.preloadFirstAnimation(`${ANIMATIONS_BASE_PATH}video1/`, 240);
 }); 
 
 // Use Cases Slider Logic
