@@ -150,29 +150,35 @@
                 background: #ffffff;
             }
 
-            .slide-comparison {
-                background: #ffffff;
+            .comparison-section {
+                width: 100%;
                 position: relative;
-                overflow: hidden;
+                background: #f2f2f2;
             }
 
             .comparison-structured-block {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 1920px;
-                height: 746px;
+                position: relative;
+                width: 100%;
+                height: max(calc(680 / 1920 * 100vw), 100vh);
                 background: #f2f2f2;
                 overflow: hidden;
+                display: flex;
+                align-items: center;
+            }
+
+            .comparison-structured-content {
+                position: relative;
+                width: 100%;
+                height: calc(680 / 1920 * 100vw);
             }
 
             .comparison-structured-title {
                 position: absolute;
-                left: 444px;
-                top: 113px;
-                width: 658px;
+                left: calc(444 / 1920 * 100vw);
+                top: calc(50 / 1920 * 100vw);
+                width: calc(658 / 1920 * 100vw);
                 color: #000;
-                font-size: 40px;
+                font-size: calc(40 / 1920 * 100vw);
                 font-family: Roboto;
                 font-weight: 700;
                 line-height: 1.2;
@@ -181,20 +187,20 @@
 
             .comparison-structured-marker {
                 position: absolute;
-                left: 417px;
-                top: 117px;
-                width: 15px;
-                height: 41px;
+                left: calc(417 / 1920 * 100vw);
+                top: calc(54 / 1920 * 100vw);
+                width: calc(15 / 1920 * 100vw);
+                height: calc(41 / 1920 * 100vw);
                 background: #24ba70;
             }
 
             .comparison-structured-image {
                 position: absolute;
-                left: 304px;
-                top: 258px;
-                width: 1347px;
-                height: 356px;
-                object-fit: cover;
+                left: calc(287 / 1920 * 100vw);
+                top: calc(176 / 1920 * 100vw);
+                width: calc(1347 / 1920 * 100vw);
+                height: calc(440 / 1920 * 100vw);
+                object-fit: contain;
                 display: block;
             }
 
@@ -1587,9 +1593,9 @@
                     </div>
                 </div>
             </section>
-            <section class="slide-frame">
-                <div class="slide slide-comparison">
-                    <div class="comparison-structured-block">
+            <section class="comparison-section">
+                <div class="comparison-structured-block">
+                    <div class="comparison-structured-content">
                         <div class="comparison-structured-title">
                             CFNF In numbers, <br />compared to other
                             technologies
