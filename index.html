@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -148,6 +148,54 @@
 
             .slide-9 {
                 background: #ffffff;
+            }
+
+            .slide-comparison {
+                background: #ffffff;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .comparison-structured-block {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 1920px;
+                height: 746px;
+                background: #f2f2f2;
+                overflow: hidden;
+            }
+
+            .comparison-structured-title {
+                position: absolute;
+                left: 444px;
+                top: 113px;
+                width: 658px;
+                color: #000;
+                font-size: 40px;
+                font-family: Roboto;
+                font-weight: 700;
+                line-height: 1.2;
+                word-wrap: break-word;
+            }
+
+            .comparison-structured-marker {
+                position: absolute;
+                left: 417px;
+                top: 117px;
+                width: 15px;
+                height: 41px;
+                background: #24ba70;
+            }
+
+            .comparison-structured-image {
+                position: absolute;
+                left: 304px;
+                top: 258px;
+                width: 1347px;
+                height: 356px;
+                object-fit: cover;
+                display: block;
             }
 
             .slide-1b {
@@ -618,6 +666,8 @@
                 </div>
             </div>
         </div>
+        <site-header></site-header>
+        <div id="top"></div>
         <main class="slides">
             <section class="slide-frame">
                 <div class="slide slide-1">
@@ -1537,6 +1587,25 @@
                     </div>
                 </div>
             </section>
+            <section class="slide-frame">
+                <div class="slide slide-comparison">
+                    <div class="comparison-structured-block">
+                        <div class="comparison-structured-title">
+                            CFNF In numbers, <br />compared to other
+                            technologies
+                        </div>
+                        <div
+                            class="comparison-structured-marker"
+                            aria-hidden="true"
+                        ></div>
+                        <img
+                            class="comparison-structured-image"
+                            src="assets/comparison_table.png"
+                            alt="Comparison table for CFNF printed composites"
+                        />
+                    </div>
+                </div>
+            </section>
             <section id="section1" class="anim-scroll-section">
                 <div class="anim-stage-frame">
                     <div class="anim-stage">
@@ -1938,8 +2007,58 @@
                                 word-wrap: break-word;
                             "
                         >
-                            esatalov868@gmail.com
+                            kinetronika@gmail.com
                         </div>
+                        <a
+                            href="https://www.youtube.com/@Kinetronika"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Kinetronika YouTube"
+                            style="
+                                width: 100px;
+                                height: 100px;
+                                left: 279px;
+                                top: 310px;
+                                position: absolute;
+                                display: block;
+                            "
+                        >
+                            <img
+                                src="assets/youtube.png"
+                                alt="YouTube"
+                                style="
+                                    width: 100%;
+                                    height: 100%;
+                                    display: block;
+                                    object-fit: contain;
+                                "
+                            />
+                        </a>
+                        <a
+                            href="https://x.com/Kinetronika"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Kinetronika on X"
+                            style="
+                                width: 100px;
+                                height: 100px;
+                                left: 399px;
+                                top: 310px;
+                                position: absolute;
+                                display: block;
+                            "
+                        >
+                            <img
+                                src="assets/x.png"
+                                alt="X"
+                                style="
+                                    width: 100%;
+                                    height: 100%;
+                                    display: block;
+                                    object-fit: contain;
+                                "
+                            />
+                        </a>
                         <div
                             style="
                                 width: 8px;
@@ -1984,6 +2103,7 @@
             window.ANIMATIONS_SECTION2_END_PAUSE_DURATION = 1.6;
             window.ANIMATIONS_SECTION2_SCROLL_SPAN = 280;
         </script>
+        <script src="components.js"></script>
         <script>
             (function () {
                 const loaderEl = document.getElementById("page-loader");

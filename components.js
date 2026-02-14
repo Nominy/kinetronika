@@ -12,6 +12,60 @@ class SiteHeader extends HTMLElement {
     const linkElem = document.createElement('link');
     linkElem.setAttribute('rel', 'stylesheet');
     linkElem.setAttribute('href', 'styles.css');
+
+    const hostStyle = document.createElement('style');
+    hostStyle.textContent = `
+      :host {
+        --header-bg: #1a1a1a;
+        --header-text: #ffffff;
+        --header-accent: #14d58c;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+        z-index: 1000;
+        background: var(--header-bg);
+      }
+
+      .header-content {
+        background: var(--header-bg);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 28px;
+      }
+
+      .logo,
+      .brand,
+      .tagline,
+      .nav-links a {
+        color: var(--header-text);
+      }
+
+      .slash {
+        color: var(--header-accent);
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        font-weight: 700;
+        padding: 5px 15px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+      }
+
+      .slash,
+      .brand,
+      .tagline {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    `;
     
     this.shadowRoot.innerHTML = `
       <div class="header-content">
@@ -23,15 +77,14 @@ class SiteHeader extends HTMLElement {
         </a>
         
         <nav class="nav-links">
-          <a href="#section1">Section&nbsp;1</a>
-          <a href="#section2">Section&nbsp;2</a>
-          <a href="#after">After</a>
+          <a href="#top">AUTOFIBER-5</a>
         </nav>
       </div>
     `;
     
     // Add external stylesheet to shadow DOM
     this.shadowRoot.prepend(linkElem);
+    this.shadowRoot.appendChild(hostStyle);
     
     // Set up event listeners
     const logo = this.shadowRoot.getElementById('logo');
@@ -60,10 +113,6 @@ class SiteHeader extends HTMLElement {
       });
     });
     
-    // Trigger logo animation after a short delay
-    setTimeout(() => {
-      this.shadowRoot.querySelector('.logo').classList.add('logo-loaded');
-    }, 500);
   }
 }
 
