@@ -154,6 +154,60 @@
                 background: #ffffff;
             }
 
+            .comparison-section {
+                width: 100%;
+                position: relative;
+                background: #f2f2f2;
+            }
+
+            .comparison-structured-block {
+                position: relative;
+                width: 100%;
+                height: max(calc(680 / 1920 * 100vw), 100vh);
+                background: #f2f2f2;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+            }
+
+            .comparison-structured-content {
+                position: relative;
+                width: 100%;
+                height: calc(680 / 1920 * 100vw);
+            }
+
+            .comparison-structured-title {
+                position: absolute;
+                left: calc(444 / 1920 * 100vw);
+                top: calc(50 / 1920 * 100vw);
+                width: calc(658 / 1920 * 100vw);
+                color: #000;
+                font-size: calc(40 / 1920 * 100vw);
+                font-family: Roboto;
+                font-weight: 700;
+                line-height: 1.2;
+                word-wrap: break-word;
+            }
+
+            .comparison-structured-marker {
+                position: absolute;
+                left: calc(417 / 1920 * 100vw);
+                top: calc(54 / 1920 * 100vw);
+                width: calc(15 / 1920 * 100vw);
+                height: calc(41 / 1920 * 100vw);
+                background: #24ba70;
+            }
+
+            .comparison-structured-image {
+                position: absolute;
+                left: calc(287 / 1920 * 100vw);
+                top: calc(176 / 1920 * 100vw);
+                width: calc(1347 / 1920 * 100vw);
+                height: calc(440 / 1920 * 100vw);
+                object-fit: contain;
+                display: block;
+            }
+
             .slide-1b {
                 background: #0b0b0b;
             }
@@ -1761,6 +1815,25 @@
                             Parts printed automatically in one sequence with no
                             molds needed
                         </div>
+                    </div>
+                </div>
+            </section>
+            <section class="comparison-section">
+                <div class="comparison-structured-block">
+                    <div class="comparison-structured-content">
+                        <div class="comparison-structured-title">
+                            CFNF In numbers, <br />compared to other
+                            technologies
+                        </div>
+                        <div
+                            class="comparison-structured-marker"
+                            aria-hidden="true"
+                        ></div>
+                        <img
+                            class="comparison-structured-image"
+                            src="assets/comparison_table.png"
+                            alt="Comparison table for CFNF printed composites"
+                        />
                     </div>
                 </div>
             </section>
