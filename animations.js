@@ -158,9 +158,13 @@ function initAnimations() {
   gsap.set("#text1-p4", { fontSize: "1.8rem" }); // Printing speed - larger
   gsap.set("#text1-p5", { fontSize: "1.7rem" }); // Temperature specs - slightly larger
   
-  // Enhance section titles and markers
-  gsap.set(".section-title", { fontSize: "2.2rem", fontWeight: "800" });
-  gsap.set(".marker", { fontSize: "2.2rem" });
+  // Enhance optional legacy section titles and markers when those nodes exist.
+  if (document.querySelector(".section-title")) {
+    gsap.set(".section-title", { fontSize: "2.2rem", fontWeight: "800" });
+  }
+  if (document.querySelector(".marker")) {
+    gsap.set(".marker", { fontSize: "2.2rem" });
+  }
 
   // First animation timeline
   const obj1 = { frame: 0 };
@@ -414,14 +418,16 @@ function initAnimations() {
 
   // Text animations for section 2 - Apple-style with vertical sliding
   // Initialize all paragraphs - position for vertical centering
-  tl2.set("#section2 .text-content p:not(.figma-styled-text-s2)", { 
-    position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
-    width: "100%",
-    opacity: 0,
-    y: -30, // Start above center
-  }, 0);
+  if (document.querySelector("#section2 .text-content p:not(.figma-styled-text-s2)")) {
+    tl2.set("#section2 .text-content p:not(.figma-styled-text-s2)", {
+      position: "absolute",
+      top: "50%",
+      transform: "translateY(-50%)",
+      width: "100%",
+      opacity: 0,
+      y: -30, // Start above center
+    }, 0);
+  }
 
   // For the Figma-styled paragraph, only set initial animation properties
   tl2.set("#section2 .text-content p.figma-styled-text-s2", { 
@@ -480,6 +486,8 @@ function initAnimations() {
 
   window.section1Timeline = tl1;
   window.section1ScrollTrigger = tl1.scrollTrigger;
+  window.section2Timeline = tl2;
+  window.section2ScrollTrigger = tl2.scrollTrigger;
 
   // Handle window resize - use debounced refresh for better performance
   let resizeTimeout;
@@ -517,6 +525,17 @@ document.addEventListener('DOMContentLoaded', () => {
     loader.preloadFirstAnimation(`${ANIMATIONS_BASE_PATH}video1/`, 240);
   };
 
+  window.startPrinterAnimations = () => {
+    startAnimations();
+  };
+
+  if (window.ANIMATIONS_MANUAL_INIT) {
+    if (document.body.dataset.page === 'printer') {
+      window.startPrinterAnimations();
+    }
+    return;
+  }
+
   const assetsReadyPromise = window.ASSETS_READY_PROMISE;
   if (assetsReadyPromise && typeof assetsReadyPromise.then === 'function') {
     assetsReadyPromise.finally(startAnimations);
@@ -534,7 +553,6 @@ function initUseCasesSlider() {
   const slides = document.querySelectorAll('.use-case-slide');
 
   if (!slidesWrapper || !prevButton || !nextButton || slides.length === 0) {
-    console.warn('Use cases slider elements not found. Slider not initialized.');
     return;
   }
 
@@ -603,7 +621,6 @@ function initLazyLoadVideos() {
   const videos = document.querySelectorAll('.lazy-load-video');
 
   if (!videos.length) {
-    console.warn('No videos found for lazy loading.');
     return;
   }
 
