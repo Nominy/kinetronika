@@ -15,7 +15,7 @@ class SiteHeader extends HTMLElement {
     
     this.shadowRoot.innerHTML = `
       <div class="header-content">
-        <a href="#top" class="logo" id="logo">
+        <a href="../../index.html" class="logo" id="logo">
           <span class="row">
             <span class="slash">/</span><span class="brand">KINETRONIKA</span>
           </span>
@@ -23,9 +23,8 @@ class SiteHeader extends HTMLElement {
         </a>
         
         <nav class="nav-links">
-          <a href="#section1">Section&nbsp;1</a>
-          <a href="#section2">Section&nbsp;2</a>
-          <a href="#after">After</a>
+          <a href="../../index.html">CFNF printing</a>
+          <a href="../../printer.html">AUTOFIBER-5 printer</a>
         </nav>
       </div>
     `;
@@ -36,6 +35,9 @@ class SiteHeader extends HTMLElement {
     // Set up event listeners
     const logo = this.shadowRoot.getElementById('logo');
     logo.addEventListener('click', e => {
+      if (!logo.getAttribute('href').startsWith('#')) {
+        return;
+      }
       e.preventDefault();
       gsap.to(window, {
         duration: 1,
@@ -47,8 +49,12 @@ class SiteHeader extends HTMLElement {
     const links = this.shadowRoot.querySelectorAll('.nav-links a');
     links.forEach(link => {
       link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) {
+          return;
+        }
         e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
+        const target = document.querySelector(href);
         if (!target) return;
     
         gsap.to(window, {
@@ -190,4 +196,4 @@ class LoadingIndicator extends HTMLElement {
 // Register custom elements
 customElements.define('site-header', SiteHeader);
 customElements.define('scroll-section', ScrollSection);
-customElements.define('loading-indicator', LoadingIndicator); 
+customElements.define('loading-indicator', LoadingIndicator);
