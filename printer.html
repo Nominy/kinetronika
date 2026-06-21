@@ -126,6 +126,25 @@
                 transform-origin: center center;
             }
 
+            .printer-final-frame {
+                width: 100vw;
+                height: calc(1411 / 1920 * 100vw);
+                position: relative;
+                overflow: hidden;
+                margin: 0;
+            }
+
+            .printer-final-slide {
+                width: 1920px;
+                height: 1411px;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                overflow: hidden;
+                transform: translateX(-50%) scale(var(--scale));
+                transform-origin: top center;
+            }
+
             .slide-1 {
                 background: #0b0b0b;
             }
@@ -1076,7 +1095,7 @@
             </section>
 
             <section class="slide-frame">
-                <div class="slide figma-slide charcoal" data-node-id="8103:106">
+                <div class="slide figma-slide charcoal" data-node-id="8112:575">
                     <div class="figma-marker" style="left: 448px; top: 368px; width: 14px; height: 42px" aria-hidden="true"></div>
                     <p class="figma-text figma-inter-bold section-title-40" style="left: 473px; top: 365px; width: 546px; height: 610px; color: #fff">AUTOCOMPOSITE</p>
                     <div class="figma-text body-20-inter" style="left: 474px; top: 427px; width: 401px; height: 305px; color: #fff">
@@ -1119,12 +1138,20 @@
                 </div>
             </section>
 
-            <section class="slide-frame">
-                <div class="slide figma-slide soft" data-node-id="8103:55">
-                    <img class="figma-img figma-fill" src="assets/figma/printer-image-255.png" alt="" style="left: 319px; top: 235px; width: 1581px; height: 845px" />
-                    <div class="figma-marker" style="left: 403px; top: 202px; width: 15px; height: 41px" aria-hidden="true"></div>
-                    <p class="figma-text figma-roboto section-title-40" style="left: 430px; top: 198px; width: 506px; height: 112px">Klipper-based control</p>
-                    <p class="figma-text body-20-inter" style="left: 430px; top: 268px; width: 416px; height: 226px">Speed and precision in any printing direction.</p>
+            <section class="printer-final-frame">
+                <div class="printer-final-slide" data-node-id="8112:537+8112:611">
+                    <div class="figma-slide soft" style="position: absolute; left: 0; top: 0; width: 1920px; height: 1080px" data-node-id="8112:537">
+                        <img class="figma-img figma-fill" src="assets/figma/printer-image-255.png" alt="" style="left: 176px; top: 254px; width: 1546px; height: 826px" />
+                        <div class="figma-marker" style="left: 757px; top: 112px; width: 15px; height: 41px" aria-hidden="true"></div>
+                        <p class="figma-text figma-roboto section-title-40" style="left: 784px; top: 108px; width: 506px; height: 112px">Klipper-based control</p>
+                        <p class="figma-text body-20-inter" style="left: 784px; top: 178px; width: 416px; height: 226px">Speed and precision in any printing direction.</p>
+                    </div>
+                    <footer class="figma-footer" style="top: 1080px; height: 331px">
+                        <a href="mailto:kinetronika@gmail.com" style="left: 302px; top: 104px; width: 228px; height: 24px">kinetronika@gmail.com</a>
+                        <p style="left: 302px; top: 153px; width: 183px; height: 24px">Autofiber-5 printer</p>
+                        <p style="left: 302px; top: 202px; width: 167px; height: 24px">CFNF technology</p>
+                        <p style="left: 1396px; top: 254px; width: 235px; height: 32px"><span class="figma-green">/ </span>KINETRONIKA</p>
+                    </footer>
                 </div>
             </section>
         </main>
