@@ -1,0 +1,1314 @@
+---
+import heroBackground from "../assets/landing/hero_background.png";
+import thermoplastic from "../assets/landing/thermoplastic_composite.png";
+import metalMatrix from "../assets/landing/metal_matrix_composite.png";
+import ceramicMatrix from "../assets/landing/ceramic_matrix_composite.png";
+import structureOptimisation from "../assets/landing/structure_optimisation.png";
+import slicingSimulation from "../assets/landing/slicing_simulation.png";
+import fabricationMachine from "../assets/landing/fabrication_machine.png";
+import filamentSpool from "../assets/landing/filament_spool.png";
+import printedDrone from "../assets/landing/printed_drone.png";
+import droneOptimised from "../assets/landing/image_drone_optimised.png";
+import printerWireframe from "../assets/landing/printer_wireframe.png";
+
+const img = (asset) => (typeof asset === "string" ? asset : asset.src);
+
+const materials = [
+  {
+    key: "thermoplastic",
+    title: "Thermoplastic Polymer Matrix Composites",
+    image: img(thermoplastic),
+    alt: "Thermoplastic polymer matrix composites",
+  },
+  {
+    key: "metal",
+    title: "Metal Matrix Composites",
+    image: img(metalMatrix),
+    alt: "Metal matrix composites",
+  },
+  {
+    key: "ceramic",
+    title: "Ceramic Matrix Composites",
+    image: img(ceramicMatrix),
+    alt: "Ceramic matrix composites",
+  },
+];
+
+const platformItems = [
+  {
+    title: "1. Structure development/optimising software",
+    text: "Developing algorithms to optimise part's internal fiber structure based on our tech process.",
+    image: img(structureOptimisation),
+    alt: "Structure development and optimising software",
+  },
+  {
+    title: "2. Slicing and simulation software",
+    text: "Adaptive nonplanar slicing for our machines made to create structure-optimised parts with fiber density control.",
+    image: img(slicingSimulation),
+    alt: "Slicing and simulation software",
+  },
+  {
+    title: "3. Fabrication machines and tools",
+    text: "Multi-axis printers and robots equipped with our highly productive tooling to make your workflow agile and fast.",
+    image: img(fabricationMachine),
+    alt: "Fabrication machines and tools",
+  },
+  {
+    title: "4. Physical and digital material library",
+    text: "Filament and fibers line formed into a library with ready-made applications tested in our lab for best production results.",
+    image: img(filamentSpool),
+    alt: "Physical and digital material library",
+  },
+];
+
+const specs = [
+  {
+    key: "thermoplastic",
+    title: "Thermoplastic Polymer Matrix",
+    text: "Thermoplastic matrix composites combine high toughness with fast cycle times and recyclability. Our continuous fiber co-extrusion technology embeds continuous carbon fibers directly into high-performance polymers such as PEEK, PEKK, and nylon.",
+    metrics: [
+      ["Tensile strength", "650 - 950 MPa"],
+      ["Density", "1.45 g/cm3"],
+      ["Service temp", "Up to 240C"],
+      ["Fiber fraction", "Up to 45% Vol"],
+    ],
+  },
+  {
+    key: "metal",
+    title: "Metal Matrix Composites (MMC)",
+    text: "By embedding continuous boron, silicon carbide, or carbon fibers into a lightweight metal matrix such as aluminum or titanium, we achieve materials with exceptional stiffness-to-weight ratios and very low thermal expansion.",
+    metrics: [
+      ["Tensile strength", "900 - 1700 MPa"],
+      ["Density", "2.7 - 4.4 g/cm3"],
+      ["Service temp", "Up to 650C"],
+      ["Thermal expansion", "~1.2 x 10^-6/K"],
+    ],
+  },
+  {
+    key: "ceramic",
+    title: "Ceramic Matrix Composites (CMC)",
+    text: "Designed for extreme thermal and mechanical environments. CMCs reinforce a ceramic matrix such as silicon carbide or alumina with continuous ceramic or carbon fibers, preventing catastrophic brittle failure in jet engines and space systems.",
+    metrics: [
+      ["Tensile strength", "360 - 800 MPa"],
+      ["Density", "2.1 - 2.8 g/cm3"],
+      ["Max temp", "Up to 1650C"],
+      ["Toughness K1C", "22 - 30 MPa*m^0.5"],
+    ],
+  },
+];
+
+const landingPreloadAssets = [
+  img(heroBackground),
+  ...materials.map((material) => material.image),
+  ...platformItems.map((item) => item.image),
+  img(printedDrone),
+  img(droneOptimised),
+  img(printerWireframe),
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kinetronika</title>
+    <meta
+      name="description"
+      content="Kinetronika builds a multiaxial additive fabrication platform for next-generation continuous composite materials."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-page="home">
+    <div id="page-loader" aria-live="polite" aria-label="Loading assets">
+      <div class="page-loader-content">
+        <div class="page-loader-value" id="page-loader-value">0%</div>
+        <div class="page-loader-track">
+          <div class="page-loader-bar" id="page-loader-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="site-navbar" aria-label="Primary">
+      <div class="site-navbar-inner">
+        <a class="site-nav-link site-brand" aria-current="page" href="index.html"><span class="figma-green">/ </span>KINETRONIKA</a>
+        <a class="site-nav-link site-nav-item site-nav-cfnf" href="cfnf.html">CFNF printing</a>
+        <a class="site-nav-link site-nav-item site-nav-printer" href="printer.html">AUTOFIBER-5 printer</a>
+      </div>
+    </nav>
+
+    <main class="site-pages">
+      <section class="hero-section">
+        <img
+          class="hero-background"
+          src={img(heroBackground)}
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="grid-overlay" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <h1>
+              Building <span>fabrication platform</span><br />
+              for materials of future
+            </h1>
+            <p>
+              We have created multiaxial additive system for printing next
+              generation parts in <strong>continuous composite</strong>
+              materials:
+            </p>
+          </div>
+
+          <div class="material-grid" aria-label="Composite material families">
+            {
+              materials.map((material) => (
+                <button
+                  class="material-card"
+                  type="button"
+                  data-open-spec={material.key}
+                >
+                  <span class="material-image-wrap">
+                    <img src={material.image} alt={material.alt} loading="eager" />
+                    <span class="material-inspect">Inspect specifications</span>
+                  </span>
+                  <span class="material-title">{material.title}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-white" id="our-platform">
+        <div class="section-inner">
+          <h2 class="section-title"><span></span>Our platform</h2>
+
+          <div class="platform-list">
+            {
+              platformItems.map((item, index) => (
+                <article class={`platform-row ${index % 2 === 1 ? "is-reversed" : ""}`}>
+                  <div class="platform-copy">
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                  <figure class="platform-media">
+                    <img src={item.image} alt={item.alt} loading="lazy" />
+                  </figure>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="printed-by-us">
+        <div class="section-inner section-wide">
+          <h2 class="section-title"><span></span>Printed by us</h2>
+          <div class="showcase-grid">
+            <figure class="showcase-image">
+              <img
+                src={img(printedDrone)}
+                alt="Printed composite aerospace drone fuselage, wings, and propeller"
+                loading="lazy"
+              />
+            </figure>
+            <div class="showcase-copy">
+              <h3>CBF+PETG aerospace fuselage, wings and propeller</h3>
+              <p>Tensile strength - 700+MPa in multiple directions</p>
+              <p>Stronger than Aluminum 2024</p>
+              <p>Only 1.5g/cm3 density</p>
+              <button class="button-dark" type="button" data-open-contact>
+                Consult on aerospace manufacturing
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-white tech-section" id="why-choose-us">
+        <div class="grid-overlay grid-overlay-light" aria-hidden="true"></div>
+        <div class="section-inner section-wide">
+          <h2 class="section-title"><span></span>Tech advantages</h2>
+          <div class="tech-grid">
+            <figure class="tech-image">
+              <img
+                src={img(droneOptimised)}
+                alt="Optimised drone fuselage with nonplanar fiber layout"
+                loading="lazy"
+              />
+            </figure>
+            <div class="advantage-list">
+              <article class="advantage-card">
+                <div class="advantage-number">01</div>
+                <div>
+                  <h3>Custom-Aligned Directional Strength</h3>
+                  <p>
+                    Classic printed layers are isotropic in vertical direction and
+                    fail under shear loads. We lay fibers along specified 3D load
+                    axes, providing custom-aligned directional strength that
+                    matches stress lines perfectly.
+                  </p>
+                </div>
+              </article>
+              <article class="advantage-card">
+                <div class="advantage-number">02</div>
+                <div>
+                  <h3>Coordinated 5-Axis Nonplanar Geometry</h3>
+                  <p>
+                    By pairing matrix/fiber coextrusion with a fully coordinated
+                    5-axis machine, we eliminate layer-stepping weaknesses
+                    entirely, supporting complex nonplanar geometries in
+                    production.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="landing-footer" id="contact">
+        <div class="section-inner">
+          <div class="footer-grid">
+            <div class="footer-copy">
+              <p>
+                Combining our engineering and software research, we have created
+                world's first nonplanar continuous composite 3D printer.
+              </p>
+              <p>
+                We are aimed for fabricating optimised parts with ultimate
+                properties to accelerate your tech projects of future.
+              </p>
+              <p>
+                We are currently testing, searching for pilot projects and
+                industrial partnership.
+              </p>
+              <p>
+                If you have a project to build with our technology,
+                <button type="button" data-open-contact>contact us</button>.
+              </p>
+
+              <div class="footer-links">
+                <a href="cfnf.html">Learn about <span>technology</span> &gt;</a>
+                <a href="printer.html">Learn about <span>machine</span> &gt;</a>
+              </div>
+            </div>
+            <figure class="footer-media">
+              <img
+                src={img(printerWireframe)}
+                alt="Multi-axis 3D printer schematic layout blueprint"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="footer-contact">
+              <div class="social-links">
+                <a href="https://www.youtube.com/@EgorKinetronika" target="_blank" rel="noreferrer">YouTube</a>
+                <span>/</span>
+                <a href="https://x.com/Kinetronika" target="_blank" rel="noreferrer">X</a>
+              </div>
+              <button type="button" data-open-contact>kinetronika@gmail.com</button>
+              <p>Autofiber-5 printer</p>
+              <p>CFNF technology</p>
+            </div>
+            <div class="footer-brand"><span>/</span>KINETRONIKA</div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <div class="modal" id="spec-modal" hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-panel modal-panel-wide" role="dialog" aria-modal="true" aria-labelledby="spec-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close specifications">Close</button>
+        {
+          specs.map((spec) => (
+            <section class="spec-content" data-spec-panel={spec.key} hidden>
+              <div class="modal-heading">
+                <span></span>
+                <h2 id={spec.key === "thermoplastic" ? "spec-title" : undefined}>{spec.title}</h2>
+              </div>
+              <p>{spec.text}</p>
+              <div class="metric-grid">
+                {
+                  spec.metrics.map(([label, value]) => (
+                    <div class="metric">
+                      <span>{label}</span>
+                      <strong>{value}</strong>
+                    </div>
+                  ))
+                }
+              </div>
+              <button class="button-green" type="button" data-close-modal>
+                Close specifications
+              </button>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="modal" id="contact-modal" hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Close contact modal">Close</button>
+        <div class="modal-heading modal-heading-compact">
+          <span>/</span>
+          <h2 id="contact-title">Contact Kinetronika</h2>
+        </div>
+        <h3>Direct Engineering Channel</h3>
+        <p>
+          Connect directly with our materials research and production
+          manufacturing specialists.
+        </p>
+        <label class="contact-label" for="contact-email">Our Contact Address</label>
+        <div class="email-box">
+          <span id="contact-email">kinetronika@gmail.com</span>
+          <button type="button" data-copy-email>Copy</button>
+        </div>
+        <span class="copy-status" aria-live="polite"></span>
+        <a class="button-green button-full" href="mailto:kinetronika@gmail.com">Open in Mail App</a>
+        <button class="button-muted button-full" type="button" data-close-modal>Dismiss</button>
+        <div class="modal-foot">
+          <span>DIRECT SECURE ROUTE</span>
+          <span>SYS_SIGNAL: ONLINE</span>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      const DESIGN_WIDTH = 1920;
+      const DESIGN_HEIGHT = 1080;
+      const NAV_DESIGN_HEIGHT = 86;
+
+      function updateScale() {
+        const viewportWidth = window.innerWidth;
+        const navScale = Math.min(1, viewportWidth / DESIGN_WIDTH);
+        const navHeight = NAV_DESIGN_HEIGHT * navScale;
+        const scale = Math.max(0.05, viewportWidth / DESIGN_WIDTH);
+        document.documentElement.style.setProperty("--scale", scale.toString());
+        document.documentElement.style.setProperty("--nav-scale", navScale.toString());
+        document.documentElement.style.setProperty("--nav-height", `${navHeight}px`);
+      }
+
+      window.addEventListener("resize", updateScale);
+      updateScale();
+    </script>
+
+    <script define:vars={{ landingPreloadAssets }}>
+      window.ASSETS_PRELOAD_URLS = landingPreloadAssets;
+    </script>
+    <script is:inline src="assets-preloader.js"></script>
+
+    <script is:inline>
+      (() => {
+        const specModal = document.getElementById("spec-modal");
+        const contactModal = document.getElementById("contact-modal");
+        const copyStatus = document.querySelector(".copy-status");
+        let previousFocus = null;
+
+        function setModalOpen(modal, isOpen) {
+          if (!modal) return;
+          modal.hidden = !isOpen;
+          document.body.classList.toggle("modal-open", isOpen);
+          if (isOpen) {
+            previousFocus = document.activeElement;
+            const closeButton = modal.querySelector("[data-close-modal]");
+            closeButton?.focus();
+          } else if (previousFocus && typeof previousFocus.focus === "function") {
+            previousFocus.focus();
+          }
+        }
+
+        document.querySelectorAll("[data-open-spec]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const key = button.getAttribute("data-open-spec");
+            specModal
+              ?.querySelectorAll("[data-spec-panel]")
+              .forEach((panel) => {
+                panel.hidden = panel.getAttribute("data-spec-panel") !== key;
+              });
+            setModalOpen(specModal, true);
+          });
+        });
+
+        document.querySelectorAll("[data-open-contact]").forEach((button) => {
+          button.addEventListener("click", () => setModalOpen(contactModal, true));
+        });
+
+        document.querySelectorAll("[data-close-modal]").forEach((button) => {
+          button.addEventListener("click", () => {
+            setModalOpen(specModal, false);
+            setModalOpen(contactModal, false);
+          });
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            setModalOpen(specModal, false);
+            setModalOpen(contactModal, false);
+          }
+        });
+
+        document.querySelector("[data-copy-email]")?.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText("kinetronika@gmail.com");
+            if (copyStatus) copyStatus.textContent = "Copied to clipboard";
+          } catch {
+            if (copyStatus) copyStatus.textContent = "Copy failed";
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --green: #24ba70;
+    --bright-green: #00e575;
+    --dark: #080808;
+    --ink: #111111;
+    --muted: #6b7280;
+    --nav-height: 86px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--dark);
+    color: #ffffff;
+    font-family: Roboto, Inter, Arial, sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  body.is-loading {
+    overflow: hidden !important;
+  }
+
+  #page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: #0b0b0b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.35s ease;
+  }
+
+  #page-loader.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .page-loader-content {
+    width: min(420px, 80vw);
+  }
+
+  .page-loader-value {
+    color: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 12px;
+  }
+
+  .page-loader-track {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .page-loader-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--green);
+    transition: width 0.2s ease;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  a {
+    font: inherit;
+  }
+
+  button {
+    border: 0;
+  }
+
+  .figma-green {
+    color: var(--green);
+  }
+
+  .site-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: #181818;
+    overflow: hidden;
+    z-index: 10000;
+  }
+
+  .site-navbar-inner {
+    position: relative;
+    width: 100%;
+    height: var(--nav-height);
+  }
+
+  .site-nav-link {
+    position: absolute;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-brand {
+    left: min(24px, 1.25vw);
+    top: min(23px, 1.1979167vw);
+    width: min(308px, 16.0416667vw);
+    height: min(38px, 1.9791667vw);
+    font-family: Roboto, sans-serif;
+    font-size: min(31px, 1.6145833vw);
+    font-weight: 700;
+    line-height: min(38px, 1.9791667vw);
+  }
+
+  .site-nav-item {
+    top: min(28px, 1.4583333vw);
+    height: min(30px, 1.5625vw);
+    font-family: Inter, sans-serif;
+    font-size: min(24px, 1.25vw);
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .site-nav-cfnf {
+    left: min(281px, 14.6354167vw);
+    width: min(184px, 9.5833333vw);
+  }
+
+  .site-nav-printer {
+    left: min(482px, 25.1041667vw);
+    width: min(296px, 15.4166667vw);
+  }
+
+  .site-pages {
+    padding-top: var(--nav-height, 86px);
+  }
+
+  .hero-section {
+    position: relative;
+    min-height: calc(100vh - var(--nav-height));
+    overflow: hidden;
+    background: #030303;
+    border-bottom: 1px solid #171717;
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.96));
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .grid-overlay-light {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 3;
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: clamp(96px, 14vh, 176px) 0 clamp(80px, 11vh, 132px);
+    text-align: center;
+  }
+
+  .hero-copy {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  .hero-copy h1 {
+    font-family: Roboto, sans-serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.12;
+    color: #ffffff;
+  }
+
+  .hero-copy h1 span,
+  .hero-copy strong,
+  .footer-links span {
+    color: var(--bright-green);
+  }
+
+  .hero-copy p {
+    max-width: 680px;
+    margin: 28px auto 0;
+    color: #d1d5db;
+    font-size: clamp(16px, 1.55vw, 20px);
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: 0;
+  }
+
+  .material-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 3vw, 34px);
+    margin-top: clamp(52px, 7vh, 76px);
+  }
+
+  .material-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 0;
+    color: #ffffff;
+    background: transparent;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .material-image-wrap {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #000000;
+  }
+
+  .material-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+  }
+
+  .material-inspect {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 24px 18px 18px;
+    color: var(--bright-green);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.82));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .material-card:hover img,
+  .material-card:focus-visible img {
+    transform: scale(1.035);
+  }
+
+  .material-card:hover .material-inspect,
+  .material-card:focus-visible .material-inspect {
+    opacity: 1;
+  }
+
+  .material-title {
+    display: block;
+    font-family: Roboto, sans-serif;
+    font-size: clamp(16px, 1.55vw, 22px);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .section {
+    padding: clamp(78px, 9vw, 116px) 24px;
+  }
+
+  .section-white {
+    background: #ffffff;
+    color: var(--ink);
+  }
+
+  .section-soft {
+    background: #f5f5f5;
+    color: var(--ink);
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .section-inner {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+  }
+
+  .section-wide {
+    width: min(1280px, 100%);
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: clamp(52px, 7vw, 78px);
+    color: #111827;
+    font-family: Roboto, sans-serif;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .section-title span,
+  .modal-heading span {
+    width: 12px;
+    height: 36px;
+    flex: 0 0 auto;
+    background: var(--green);
+  }
+
+  .platform-list {
+    display: grid;
+    gap: clamp(58px, 7vw, 86px);
+  }
+
+  .platform-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 338px);
+    gap: clamp(36px, 5vw, 76px);
+    align-items: center;
+  }
+
+  .platform-row.is-reversed {
+    grid-template-columns: minmax(220px, 290px) minmax(0, 1fr);
+  }
+
+  .platform-row.is-reversed .platform-copy {
+    order: 2;
+  }
+
+  .platform-copy h3,
+  .showcase-copy h3,
+  .advantage-card h3 {
+    color: #111827;
+    font-family: Roboto, sans-serif;
+    font-size: clamp(22px, 2.3vw, 30px);
+    font-weight: 800;
+    line-height: 1.18;
+  }
+
+  .platform-copy p,
+  .showcase-copy p,
+  .advantage-card p {
+    margin-top: 14px;
+    color: #6b7280;
+    font-size: clamp(15px, 1.35vw, 18px);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .platform-media {
+    margin: 0;
+    border: 1px solid #f0f0f0;
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  .platform-media img {
+    width: 100%;
+    height: auto;
+  }
+
+  .showcase-grid,
+  .tech-grid,
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: clamp(44px, 5vw, 72px);
+    align-items: center;
+  }
+
+  .showcase-image {
+    margin: 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    box-shadow: 0 18px 52px rgba(0, 0, 0, 0.07);
+  }
+
+  .showcase-image img {
+    width: 100%;
+    max-height: 760px;
+    object-fit: contain;
+  }
+
+  .showcase-copy {
+    display: grid;
+    gap: 6px;
+  }
+
+  .button-dark,
+  .button-green,
+  .button-muted {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 22px;
+    margin-top: 26px;
+    cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .button-dark {
+    width: fit-content;
+    background: #111827;
+    color: #ffffff;
+  }
+
+  .button-dark:hover {
+    background: #000000;
+  }
+
+  .tech-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tech-section .section-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tech-image {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+  }
+
+  .tech-image img {
+    max-height: 760px;
+    object-fit: contain;
+  }
+
+  .advantage-list {
+    display: grid;
+    gap: 26px;
+  }
+
+  .advantage-card {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 26px;
+    padding: clamp(28px, 3vw, 38px);
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+  }
+
+  .advantage-number {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    color: var(--green);
+    background: rgba(36, 186, 112, 0.11);
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+  }
+
+  .landing-footer {
+    padding: clamp(78px, 9vw, 112px) 24px;
+    background: #000000;
+    color: #ffffff;
+    border-top: 1px solid #111111;
+  }
+
+  .footer-grid {
+    padding-bottom: 62px;
+    border-bottom: 1px solid #111827;
+  }
+
+  .footer-copy {
+    display: grid;
+    gap: 20px;
+    color: #d1d5db;
+    font-size: clamp(15px, 1.35vw, 18px);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .footer-copy button,
+  .footer-contact button {
+    padding: 0;
+    color: var(--bright-green);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .footer-links {
+    display: grid;
+    gap: 18px;
+    margin-top: 24px;
+  }
+
+  .footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 800;
+  }
+
+  .footer-media {
+    margin: 0;
+    background: #000000;
+  }
+
+  .footer-media img {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: flex-end;
+    padding-top: 44px;
+  }
+
+  .footer-contact {
+    display: grid;
+    gap: 10px;
+    color: #6b7280;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .social-links a {
+    color: #9ca3af;
+    text-decoration: none;
+  }
+
+  .social-links a:hover,
+  .footer-links a:hover {
+    color: var(--bright-green);
+  }
+
+  .footer-brand {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-brand span {
+    margin-right: 8px;
+    color: var(--bright-green);
+  }
+
+  .modal[hidden],
+  .spec-content[hidden] {
+    display: none !important;
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    display: grid;
+    place-items: center;
+    padding: 22px;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(10px);
+  }
+
+  .modal-panel {
+    position: relative;
+    width: min(100%, 480px);
+    max-height: min(720px, calc(100vh - 44px));
+    overflow: auto;
+    padding: clamp(28px, 4vw, 38px);
+    background: #000000;
+    border: 1px solid #1f2937;
+    color: #ffffff;
+  }
+
+  .modal-panel-wide {
+    width: min(100%, 720px);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 8px;
+    color: #9ca3af;
+    background: transparent;
+    cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  .modal-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-right: 64px;
+  }
+
+  .modal-heading-compact {
+    padding-bottom: 18px;
+    border-bottom: 1px solid #111827;
+  }
+
+  .modal-heading-compact span {
+    width: auto;
+    height: auto;
+    color: var(--bright-green);
+    background: transparent;
+    font-size: 24px;
+    font-weight: 900;
+  }
+
+  .modal-heading h2,
+  .modal-panel h3 {
+    color: #ffffff;
+    font-family: Roboto, sans-serif;
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.16;
+  }
+
+  .modal-panel p {
+    color: #d1d5db;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #111827;
+  }
+
+  .metric {
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid #111827;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .metric span,
+  .contact-label,
+  .modal-foot {
+    color: #6b7280;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  .metric strong {
+    color: #ffffff;
+    font-size: 17px;
+  }
+
+  .button-green {
+    background: var(--bright-green);
+    color: #000000;
+  }
+
+  .button-green:hover {
+    background: #00c564;
+  }
+
+  .button-muted {
+    background: #111827;
+    color: #d1d5db;
+    border: 1px solid #1f2937;
+  }
+
+  .button-full {
+    width: 100%;
+  }
+
+  .contact-label {
+    display: block;
+    margin-top: 26px;
+    margin-bottom: 8px;
+  }
+
+  .email-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px;
+    border: 1px solid #1f2937;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .email-box span {
+    color: #ffffff;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+
+  .email-box button {
+    padding: 8px 10px;
+    color: #d1d5db;
+    background: #111827;
+    border: 1px solid #1f2937;
+    cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  .copy-status {
+    display: block;
+    min-height: 18px;
+    margin-top: 8px;
+    color: var(--bright-green);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-align: right;
+  }
+
+  .modal-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid #111827;
+  }
+
+  @media (max-width: 860px) {
+    .material-grid,
+    .platform-row,
+    .platform-row.is-reversed,
+    .showcase-grid,
+    .tech-grid,
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .platform-row.is-reversed .platform-copy {
+      order: 0;
+    }
+
+    .advantage-card {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .hero-inner,
+    .section {
+      width: 100%;
+    }
+
+    .metric-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .email-box {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .email-box button {
+      width: 100%;
+    }
+  }
+</style>

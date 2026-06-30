@@ -1,2 +1,6 @@
 .aider*
 .env
+node_modules/
+dist/
+.astro/
+react-main-page/

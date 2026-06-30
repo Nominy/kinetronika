@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Kinetronika | AUTOFIBER-5 printer</title>
+        <title>Kinetronika</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -124,25 +124,6 @@
                 overflow: hidden;
                 transform: translate(-50%, -50%) scale(var(--scale));
                 transform-origin: center center;
-            }
-
-            .printer-final-frame {
-                width: 100vw;
-                height: calc(1411 / 1920 * 100vw);
-                position: relative;
-                overflow: hidden;
-                margin: 0;
-            }
-
-            .printer-final-slide {
-                width: 1920px;
-                height: 1411px;
-                position: absolute;
-                top: 0;
-                left: 50%;
-                overflow: hidden;
-                transform: translateX(-50%) scale(var(--scale));
-                transform-origin: top center;
             }
 
             .slide-1 {
@@ -1015,7 +996,7 @@
 
         </style>
     </head>
-    <body data-page="printer">
+    <body data-page="cfnf">
         <div id="page-loader" aria-live="polite" aria-label="Loading assets">
             <div class="page-loader-content">
                 <div class="page-loader-value" id="page-loader-value">0%</div>
@@ -1028,125 +1009,148 @@
         <nav class="site-navbar" aria-label="Primary">
             <div class="site-navbar-inner">
                 <a class="site-nav-link site-brand" href="index.html"><span class="figma-green">/ </span>KINETRONIKA</a>
-                <a class="site-nav-link site-nav-item site-nav-cfnf" href="cfnf.html">CFNF printing</a>
-                <a class="site-nav-link site-nav-item site-nav-printer" aria-current="page" href="printer.html">AUTOFIBER-5 printer</a>
+                <a class="site-nav-link site-nav-item site-nav-cfnf" aria-current="page" href="cfnf.html">CFNF printing</a>
+                <a class="site-nav-link site-nav-item site-nav-printer" href="printer.html">AUTOFIBER-5 printer</a>
             </div>
         </nav>
         <div class="site-pages">
-        
+        <main class="slides figma-site" id="cfnf-page">
+            <section class="slide-frame">
+                <div class="slide figma-slide dark" data-node-id="8112:516">
+                    <video
+                        class="figma-img figma-cover"
+                        src="assets/1_1.webm"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        style="left: 878px; top: -1px; width: 779px; height: 1081px"
+                    ></video>
+                    <div class="figma-marker" style="left: 345px; top: 310px; width: 18px; height: 50px" aria-hidden="true"></div>
+                    <div class="figma-text hero-main-title">NONPLANAR<br />COMPOSITE<br />FABRICATION</div>
+                    <p class="figma-text hero-description-target">Continous fiber 5 axis 3D printing for parts with complex geometry</p>
+                    <div class="figma-text hero-subtitle-target">Pushing <br />composite <br />manufacturing <br />further.</div>
+                </div>
+            </section>
 
-        <main class="slides figma-site printer-page" id="autofiber-printer" aria-label="AUTOFIBER-5 printer">
-            <section id="section1" class="anim-scroll-section">
-                <div class="anim-stage-frame">
-                    <div class="anim-stage">
-                        <div class="frame-container">
-                            <img id="frame1" src="video1/0001.jpg" alt="" />
-                        </div>
-                        <div class="text-content" id="text1">
-                            <p id="text1-p1" class="figma-styled-text">
-                                <span class="figma-block-marker"></span>
-                                <span class="figma-block-main-title">AUTOFIBER-5</span>
-                                <span class="figma-block-sub-title">To push<br />printing<br />further.</span>
-                                <span class="figma-block-description">Our 5-axis tailor for your composite parts</span>
-                            </p>
+            <section class="slide-frame" id="cfnf-printing">
+                <div class="slide figma-slide" data-node-id="8112:542">
+                    <img class="figma-img figma-fill" src="assets/figma/limitations-photo-highres.png" alt="" style="left: 0; top: 0; width: 1920px; height: 1080px" />
+                    <div style="position: absolute; left: 0; top: 0; width: 1920px; height: 228px; background: rgba(0, 0, 0, 0.6)" aria-hidden="true"></div>
+                    <div class="figma-marker" style="left: 688px; top: 39px; width: 12px; height: 34px" aria-hidden="true"></div>
+                    <p class="figma-text figma-roboto section-title-48" style="left: 708px; top: 29px; width: 752px; height: 181px; color: #fff">New way for composites</p>
+                    <p class="figma-text body-20-roboto" style="left: 533px; top: 107px; width: 890px; height: 150px; color: #fff; text-align: center"><span class="figma-green">We believe that future is built with composite materials</span> - so we created a technology that can reveal their true potential. With speed and agility of additive technology, allowing to create parts with absolutely zero compromises in geometry and mechanical properties.</p>
+                    <p class="figma-text body-20-roboto" style="left: 155px; top: 846px; width: 256px; height: 82px; color: #fff; font-size: 24px; line-height: 1.257">Planar base</p>
+                    <p class="figma-text body-20-roboto" style="left: 533px; top: 834px; width: 320px; height: 82px; color: #fff; font-size: 24px; line-height: 1.257; text-align: center">Nonplanar fiber reinforcement</p>
+                    <p class="figma-text body-20-roboto" style="left: 1271px; top: 938px; width: 272px; height: 109px; color: #fff; font-size: 24px; line-height: 1.257; text-align: center">Nonplanar top smooth polymer layers</p>
+                    <div class="rethink-line" style="left: 293px; top: 257px; width: 582px; transform: rotate(97.1deg)" aria-hidden="true"></div>
+                    <div class="rethink-line" style="left: 716px; top: 540px; width: 290px; transform: rotate(94.55deg)" aria-hidden="true"></div>
+                    <div class="rethink-line" style="left: 1407px; top: 802px; width: 126px; transform: rotate(90deg)" aria-hidden="true"></div>
+                </div>
+            </section>
 
-                            <p id="text1-p2" class="figma-styled-text">
-                                <span class="figma-block-marker"></span>
-                                <span class="figma-block-main-title">CHANGE THE WAY<br />YOU CREATE</span>
-                                <span class="figma-block-description">
-                                    Make industrial-grade continuous composites in one process.
-                                    <br /><br />
-                                    Able to print refractory polymers (PEEK, ULTEM).
-                                </span>
-                            </p>
-                            <p id="text1-p3" class="figma-styled-text">
-                                <span class="figma-block-marker"></span>
-                                <span class="figma-block-main-title">BUILT FOR<br />MORE</span>
-                                <span class="figma-block-description">
-                                    Workspace: diameter 300x700 mm<br />in multi-axis mode
-                                    <br /><br />
-                                    For your big concepts.
-                                </span>
-                            </p>
-                            <p id="text1-p4" class="figma-styled-text">
-                                <span class="figma-block-marker"></span>
-                                <span class="figma-block-main-title">ROBUSTNESS<br />MATTERS</span>
-                                <span class="figma-block-description">
-                                    Custom 5-axis<br />
-                                    kinematic scheme<br />
-                                    along with precision<br />
-                                    linear and rotational<br />
-                                    drives.
-                                </span>
-                            </p>
-                            <p id="text1-p5" class="figma-styled-text">
-                                <span class="figma-block-marker"></span>
-                                <span class="figma-block-main-title">NO COMPROMISES</span>
-                                <span class="figma-block-description">
-                                    - Water component cooling,<br />compressed air printed model cooling.<br />
-                                    - Full-auto buildplate leveling and<br />temperture expansion compensation.<br />
-                                    - Active ringing compensation.<br />
-                                    - Active heated material box.
-                                </span>
-                            </p>
+            <section class="slide-frame">
+                <div class="slide figma-slide" data-node-id="8112:503">
+                    <div style="position: absolute; inset: 0; background: #fff; overflow: hidden" aria-hidden="true">
+                        <div class="limitations-photo-stage" style="top: 262px; height: 818px">
+                            <div class="limitations-photo-rotated" style="width: 818px">
+                                <img src="assets/figma/limitations-img-0491.png" alt="" style="left: -0.68%; width: 107.96%" />
+                            </div>
                         </div>
+                        <div style="position: absolute; left: 0; top: 0; width: 1920px; height: 262px; background: linear-gradient(101.26deg, rgb(51, 54, 63) 15.595%, rgb(27, 27, 29) 98.319%)"></div>
+                    </div>
+                    <div class="figma-marker" style="left: 738px; top: 70px; width: 14px; height: 34px" aria-hidden="true"></div>
+                    <p class="figma-text figma-roboto section-title-48" style="left: 594px; top: 60px; width: 545px; height: 239px; color: #fff; text-align: right">Rethink materials</p>
+                    <p class="figma-text body-20-roboto" style="left: 448px; top: 138px; width: 1023px; height: 209px; color: #fff; text-align: center">Introducing <span class="figma-green">Continuous Fiber Nonplanary Fabrication (CFNF)</span> - an additive way to create complex parts with super properties, no need of custom molds and weeks of waiting. By using 5-axis continuous fiber reinforcing, we are implementing any-directional in-part anisotropy control for most strength in less mass.</p>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide figma-slide dark" data-node-id="8112:525" style="background: linear-gradient(180deg, #2f261f 0%, #302822 3%, #312c29 9%, #333333 20%, #333333 100%)">
+                    <img class="figma-img figma-cover" src="assets/figma/new-way-image-479.png" alt="" style="left: 416px; top: 391px; width: 1088px; height: 649px" />
+                    <div class="figma-marker" style="left: 695px; top: 125px; width: 15px; height: 37px" aria-hidden="true"></div>
+                    <p class="figma-text figma-roboto section-title-48" style="left: 718px; top: 118px; width: 752px; height: 181px; color: #fff">Overcome limitations</p>
+                    <div class="figma-text body-20-roboto" style="left: 440px; top: 207px; width: 1039px; height: 184px; color: #fff; text-align: center">
+                        <p>Almost <span class="figma-green">zero geometrical limitations</span> compared to fabric or AFP technologies - we made matrix/fiber coextrusion on 5-axis machine to fix material in almost any geometry and direction. Complex nonplanar parts are what we created technology for.</p>
+                        <p>Our process results in most effective fiber layout - all the continuous fiber directions can be pre-engineered on slicing stage.</p>
                     </div>
                 </div>
             </section>
 
             <section class="slide-frame">
-                <div class="slide figma-slide charcoal" data-node-id="8112:575">
-                    <div class="figma-marker" style="left: 448px; top: 368px; width: 14px; height: 42px" aria-hidden="true"></div>
-                    <p class="figma-text figma-inter-bold section-title-40" style="left: 473px; top: 365px; width: 546px; height: 610px; color: #fff">AUTOCOMPOSITE</p>
-                    <div class="figma-text body-20-inter" style="left: 474px; top: 427px; width: 401px; height: 305px; color: #fff">
-                        <p>Continuous fiber coextrusion printhead for nonplanar printing.</p>
+                <div class="slide figma-slide" data-node-id="8112:532">
+                    <img class="figma-img figma-fill" src="assets/figma/layering-image-421.png" alt="" style="left: 0; top: 0; width: 1920px; height: 1080px" />
+                    <p class="figma-text figma-roboto section-title-40" style="left: 1230px; top: 322px; width: 506px; height: 112px">Full multiaxial layering control</p>
+                    <div class="figma-marker" style="left: 1203px; top: 326px; width: 15px; height: 41px" aria-hidden="true"></div>
+                    <p class="figma-text body-20-inter" style="left: 1230px; top: 434px; width: 494px; height: 226px">Get prints ready in nonplanar slicer - set optimal printing directions and simulate the result.</p>
+                </div>
+            </section>
+
+            <section class="slide-frame" id="high-demands">
+                <div class="slide figma-slide" data-node-id="8112:497">
+                    <p class="figma-text figma-roboto section-title-48" style="left: 305px; top: 340px; width: 575px; height: 122px">Made for high demands</p>
+                    <div class="figma-marker" style="left: 281px; top: 344px; width: 15px; height: 44px" aria-hidden="true"></div>
+                    <div class="figma-text body-20-roboto" style="left: 305px; top: 439px; width: 546px; height: 246px; line-height: 1.257">
+                        <p>Our goal is to make composites better in existing applications and bring them to places where technological limitations stopped from using them.</p>
                         <p style="height: 25px"></p>
-                        <p>Max. printing temp - 450C;</p>
-                        <p>High-temperature materials support;</p>
-                        <p>Water cooling;</p>
-                        <p>Dual gear extrusion for both materials;</p>
-                        <p>Configured for 5-axis nonplanar printing;</p>
+                        <p>Create functional parts for your important projects in one, reliable, full-automated process.</p>
                     </div>
-                    <img class="figma-img figma-cover" src="assets/figma/printer-image-420.png" alt="" style="left: 944px; top: 276px; width: 618px; height: 572px" />
+                    <img class="figma-img figma-cover" src="assets/figma/made-image-482.png" alt="" style="left: 1009px; top: 166px; width: 663px; height: 750px" />
                 </div>
             </section>
 
-            <section id="section2" class="anim-scroll-section">
-                <div class="anim-stage-frame">
-                    <div class="anim-stage">
-                        <div class="frame-container">
-                            <img id="frame2" src="video2/0001.jpg" alt="" />
-                        </div>
-                        <div class="text-content" id="text2">
-                            <p id="text2-p1" class="figma-styled-text-s2">
-                                <span class="figma-block-marker-s2"></span>
-                                <span class="figma-block-main-title-s2">TRIPLE Z</span>
-                                <span class="figma-block-description-s2"><br /><br />Fast Z translation and full-auto buildplate calibration.</span>
-                            </p>
-                            <p id="text2-p2" class="figma-styled-text-s2">
-                                <span class="figma-block-marker-s2"></span>
-                                <span class="figma-block-main-title-s2">HARMONIC<br />DRIVES</span>
-                                <span class="figma-block-description-s2"><br /><br />Preciese movements of large prints with almost zero backlash.</span>
-                            </p>
-                            <p id="text2-p3" class="figma-styled-text-s2">
-                                <span class="figma-block-marker-s2"></span>
-                                <span class="figma-block-main-title-s2">RIGID COREXY</span>
-                                <span class="figma-block-description-s2"><br /><br />Tailored for multi-axis.</span>
-                            </p>
-                        </div>
-                    </div>
+            <section class="slide-frame">
+                <div class="slide figma-slide" data-node-id="8112:558">
+                    <p class="figma-text figma-roboto section-title-40" style="left: 763px; top: 114px; width: 445px; height: 112px; text-align: center">Fast composites workflow</p>
+                    <div class="figma-marker" style="left: 823px; top: 122px; width: 10px; height: 29px" aria-hidden="true"></div>
+                    <p class="figma-text body-20-inter" style="left: 444px; top: 270px; width: 1069px; height: 86px; text-align: center">Classic composite manufacturing workflow is expensive in time, money and labor work and requires custom molds for each part. With <span class="figma-green">CFNF</span> we are cutting part production cycle from weeks to hours.</p>
+                    <div class="figma-numbered-step" style="left: 432px; top: 434px">1. Design</div>
+                    <div class="figma-numbered-step" style="left: 820px; top: 435px">2. Slice</div>
+                    <div class="figma-numbered-step" style="left: 1208px; top: 434px">3. Print</div>
+                    <div class="thin-line" style="left: 641px; top: 452px; width: 229px" aria-hidden="true"></div>
+                    <div class="thin-line" style="left: 1039px; top: 452px; width: 197px" aria-hidden="true"></div>
+                    <div class="figma-marker" style="left: 483px; top: 435px; width: 10px; height: 26px" aria-hidden="true"></div>
+                    <div class="figma-marker" style="left: 879px; top: 434px; width: 10px; height: 26px" aria-hidden="true"></div>
+                    <div class="figma-marker" style="left: 1272px; top: 435px; width: 10px; height: 26px" aria-hidden="true"></div>
+                    <img class="figma-img figma-cover" src="assets/figma/workflow-image-419.png" alt="" style="left: 393px; top: 573px; width: 352px; height: 214px" />
+                    <img class="figma-img figma-cover" src="assets/figma/workflow-image-402.png" alt="" style="left: 841px; top: 534px; width: 257px; height: 328px" />
+                    <img class="figma-img figma-cover" src="assets/figma/workflow-image-418.png" alt="" style="left: 1236px; top: 500px; width: 287px; height: 370px" />
                 </div>
             </section>
 
-            <section class="printer-final-frame">
-                <div class="printer-final-slide" data-node-id="8112:537+8112:611">
-                    <div class="figma-slide soft" style="position: absolute; left: 0; top: 0; width: 1920px; height: 1080px" data-node-id="8112:537">
-                        <img class="figma-img figma-fill" src="assets/figma/printer-image-255.png" alt="" style="left: 176px; top: 254px; width: 1546px; height: 826px" />
-                        <div class="figma-marker" style="left: 757px; top: 112px; width: 15px; height: 41px" aria-hidden="true"></div>
-                        <p class="figma-text figma-roboto section-title-40" style="left: 784px; top: 108px; width: 506px; height: 112px">Klipper-based control</p>
-                        <p class="figma-text body-20-inter" style="left: 784px; top: 178px; width: 416px; height: 226px">Speed and precision in any printing direction.</p>
+            <section class="slide-frame">
+                <div class="slide figma-slide" data-node-id="8112:581">
+                    <p class="figma-text figma-roboto section-title-40" style="left: 635px; top: 67px; width: 772px; height: 112px">Automated Fiber Placement vs <span class="figma-green">CFNF</span></p>
+                    <div class="figma-marker" style="left: 616px; top: 75px; width: 11px; height: 29px" aria-hidden="true"></div>
+                    <img class="figma-img figma-cover" src="assets/figma/afp-image-489.png" alt="" style="left: 181px; top: 224px; width: 662px; height: 364px" />
+                    <img class="figma-img figma-cover" src="assets/figma/afp-image-491.png" alt="" style="left: 1048px; top: 179px; width: 436px; height: 419px" />
+                    <ul class="afp-list" style="left: 462px; top: 644px; width: 414px; height: 372px">
+                        <li>Mold/base needed</li>
+                        <li>Panel-type geometry only</li>
+                        <li>Structural features not supported</li>
+                        <li>Built for hull/fuselage type parts</li>
+                        <li>Unable to control fiber density</li>
+                    </ul>
+                    <ul class="afp-list" style="left: 1115px; top: 640px; width: 488px; height: 372px">
+                        <li>No molds needed</li>
+                        <li>Free geometry structures</li>
+                        <li>Features production supported</li>
+                        <li>Fully controlled and optimised internal structure anisotropy</li>
+                        <li>Built for any mechanical/casing parts</li>
+                        <li>Fiber density control</li>
+                        <li>Production time - <span class="figma-green">up to 24 hours</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="slide-frame">
+                <div class="slide figma-slide numbers-footer-slide" data-node-id="8112:597">
+                    <div class="numbers-panel">
+                        <div class="figma-text figma-roboto section-title-40" style="left: 644px; top: 76px; width: 658px; height: 112px; text-align: center">CFNF In numbers, <br />compared to other technologies</div>
+                        <div class="figma-marker" style="left: 790px; top: 83px; width: 12px; height: 32px" aria-hidden="true"></div>
+                        <img class="figma-img figma-cover" src="assets/figma/numbers-table.png" alt="" style="left: 304px; top: 258px; width: 1347px; height: 356px" />
                     </div>
-                    <footer class="figma-footer" style="top: 1080px; height: 331px">
+                    <footer class="figma-footer">
                         <a href="mailto:kinetronika@gmail.com" style="left: 302px; top: 104px; width: 228px; height: 24px">kinetronika@gmail.com</a>
                         <p style="left: 302px; top: 153px; width: 183px; height: 24px">Autofiber-5 printer</p>
                         <p style="left: 302px; top: 202px; width: 167px; height: 24px">CFNF technology</p>
@@ -1204,13 +1208,7 @@
             window.ANIMATIONS_SECTION2_SCROLL_SPAN = 280;
             window.ANIMATIONS_MANUAL_INIT = true;
         </script>
-        
-        <script>
-            window.ASSETS_BACKGROUND_PRELOAD_URLS = [
-                ...Array.from({ length: 240 }, (_, index) => `video1/${String(index + 1).padStart(4, "0")}.jpg`),
-                ...Array.from({ length: 180 }, (_, index) => `video2/${String(index + 1).padStart(4, "0")}.jpg`),
-            ];
-        </script>
+
         <script src="assets-preloader.js"></script>
         <script src="animations.js"></script>
     </body>
