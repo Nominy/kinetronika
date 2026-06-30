@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 
 const files = {
   indexSource: await readFile("src/pages/index.astro", "utf8"),
@@ -53,4 +53,9 @@ assert.match(
   files.preloader,
   /onAssetProgress/,
   "shared preloader should support fractional per-asset progress",
+);
+
+await assert.doesNotReject(
+  access(".nojekyll"),
+  "GitHub Pages should publish underscore-prefixed _astro assets",
 );
