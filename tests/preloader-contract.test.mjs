@@ -22,6 +22,16 @@ assert.match(
   /ASSETS_PRELOAD_URLS/,
   "index source should define explicit landing assets for the shared preloader",
 );
+assert.match(
+  files.indexSource,
+  /hero_background\.jpg/,
+  "index source should use the single hero background image, not the tiled PNG sheet",
+);
+assert.doesNotMatch(
+  files.indexSource,
+  /hero_background\.png/,
+  "index source should not use the tiled hero background PNG sheet",
+);
 
 assert.match(
   files.printer,
